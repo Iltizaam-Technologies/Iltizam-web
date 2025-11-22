@@ -28,11 +28,11 @@ export function Header() {
             <a href="#features" className="text-sm text-foreground hover:text-primary transition-colors">
               Features
             </a>
+            <a href="/contact" className="text-sm text-foreground hover:text-primary transition-colors">
+              Contact
+            </a>
             <a href="#testimonials" className="text-sm text-foreground hover:text-primary transition-colors">
               Testimonials
-            </a>
-            <a href="#contact" className="text-sm text-foreground hover:text-primary transition-colors">
-              Contact
             </a>
             <button className="bg-primary text-primary-foreground px-6 py-2 rounded-lg font-medium text-sm hover:opacity-90 transition-opacity">
               Get Started
@@ -57,11 +57,11 @@ export function Header() {
             <a href="#features" className="block text-sm text-foreground hover:text-primary transition-colors">
               Features
             </a>
+            <a href="/contact" className="block text-sm text-foreground hover:text-primary transition-colors">
+              Contact
+            </a>
             <a href="#testimonials" className="block text-sm text-foreground hover:text-primary transition-colors">
               Testimonials
-            </a>
-            <a href="#contact" className="block text-sm text-foreground hover:text-primary transition-colors">
-              Contact
             </a>
             <button className="w-full bg-primary text-primary-foreground px-6 py-2 rounded-lg font-medium text-sm hover:opacity-90 transition-opacity">
               Get Started
