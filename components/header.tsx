@@ -19,13 +19,19 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-sm font-bold text-foreground hover:text-primary transition-colors">
+            <a href="/" className="text-sm text-foreground hover:text-primary transition-colors">
+              Home
+            </a>
+            <a href="/about" className="text-sm text-foreground hover:text-primary transition-colors">
+              About
+            </a>
+            <a href="#features" className="text-sm text-foreground hover:text-primary transition-colors">
               Features
             </a>
-            <a href="#testimonials" className="text-sm font-bold text-foreground hover:text-primary transition-colors">
+            <a href="#testimonials" className="text-sm text-foreground hover:text-primary transition-colors">
               Testimonials
             </a>
-            <a href="#contact" className="text-sm text-foreground font-bold hover:text-primary transition-colors">
+            <a href="#contact" className="text-sm text-foreground hover:text-primary transition-colors">
               Contact
             </a>
             <button className="bg-primary text-primary-foreground px-6 py-2 rounded-lg font-medium text-sm hover:opacity-90 transition-opacity">
@@ -42,6 +48,12 @@ export function Header() {
         {/* Mobile Navigation */}
         {isOpen && (
           <nav className="md:hidden mt-4 pb-4 space-y-4 border-t border-border pt-4">
+            <a href="/" className="block text-sm text-foreground hover:text-primary transition-colors">
+              Home
+            </a>
+            <a href="/about" className="block text-sm text-foreground hover:text-primary transition-colors">
+              About
+            </a>
             <a href="#features" className="block text-sm text-foreground hover:text-primary transition-colors">
               Features
             </a>
