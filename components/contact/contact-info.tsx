@@ -44,11 +44,8 @@ export function ContactInfo() {
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Office Address</h3>
                   <p className="text-foreground/70">
-                    123 Innovation Street
-                    <br />
-                    San Francisco, CA 94105
-                    <br />
-                    United States
+                    Example Address 
+                   
                   </p>
                 </div>
               </div>

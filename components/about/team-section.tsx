@@ -9,11 +9,11 @@ const team = [
     role: "Head of Design",
     image: "/professional-woman-designer.png",
   },
-  {
-    name: "Abdusalam Muhammad",
-    role: "Lead Developer",
-    image: "/professional-man-developer.png",
-  },
+  // {
+  //   name: "Abdusalam Muhammad",
+  //   role: "Lead Developer",
+  //   image: "/professional-man-developer.png",
+  // },
   {
     name: "Layla Al-Mazrouei",
     role: "AI/ML Specialist",
