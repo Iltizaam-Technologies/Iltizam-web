@@ -25,7 +25,7 @@ export function Header() {
             <a href="/about" className="text-sm text-foreground hover:text-primary transition-colors">
               About
             </a>
-            <a href="#features" className="text-sm text-foreground hover:text-primary transition-colors">
+            <a href="/features" className="text-sm text-foreground hover:text-primary transition-colors">
               Features
             </a>
             <a href="/contact" className="text-sm text-foreground hover:text-primary transition-colors">
@@ -54,7 +54,7 @@ export function Header() {
             <a href="/about" className="block text-sm text-foreground hover:text-primary transition-colors">
               About
             </a>
-            <a href="#features" className="block text-sm text-foreground hover:text-primary transition-colors">
+            <a href="/features" className="block text-sm text-foreground hover:text-primary transition-colors">
               Features
             </a>
             <a href="/contact" className="block text-sm text-foreground hover:text-primary transition-colors">
