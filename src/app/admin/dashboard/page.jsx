@@ -1,12 +1,12 @@
 "use client"
 
-import { AdminNav } from "@/components/admin/admin-nav"
-import { DashboardHeader } from "@/components/admin/dashboard-header"
-import { KPICards } from "@/components/admin/kpi-cards"
-import { ChartsSection } from "@/components/admin/charts-section"
-import { RecentActivityTable } from "@/components/admin/recent-activity-table"
-import { Sidebar } from "@/components/admin/sidebar"
-import { Footer } from "@/components/footer"
+import { AdminNav } from "../../../../components/admin/admin-nav"
+import { DashboardHeader } from "../../../../components/admin/dashboard-header"
+import { KPICards } from "../../../../components/admin/kpi-cards"
+import { ChartsSection } from "../../../../components/admin/charts-section"
+import { RecentActivityTable } from "../../../../components/admin/recent-activity-table"
+import { Sidebar } from "../../../../components/admin/sidebar"
+import { Footer } from "../../../../components/footer"
 
 export default function AdminDashboard() {
   return (
