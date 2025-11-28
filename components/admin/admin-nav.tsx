@@ -22,7 +22,10 @@ export function AdminNav() {
                 <LayoutDashboard size={18} />
                 <span className="text-sm">Dashboard</span>
               </Link>
-              <Link href="#" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition">
+              <Link
+                href="/admin/users"
+                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition"
+              >
                 <Users size={18} />
                 <span className="text-sm">Users</span>
               </Link>
