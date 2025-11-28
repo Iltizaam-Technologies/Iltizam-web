@@ -24,7 +24,7 @@ export function FinancialTab() {
     <div className="space-y-6">
       <div className="bg-muted rounded-lg p-6 text-center">
         <p className="text-xs text-muted-foreground font-medium mb-2">Total Saved</p>
-        <p className="text-4xl font-bold text-foreground">$11,450</p>
+        <p className="text-4xl font-bold text-foreground">₦11,450</p>
         <p className="text-xs text-muted-foreground mt-2">All financial goals combined</p>
       </div>
 
