@@ -29,6 +29,13 @@ export function AdminNav() {
                 <Users size={18} />
                 <span className="text-sm">Users</span>
               </Link>
+              <Link
+                href="/admin/user-details"
+                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition"
+              >
+                <User size={18} />
+                <span className="text-sm">User Details</span>
+              </Link>
               <Link href="#" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition">
                 <BarChart3 size={18} />
                 <span className="text-sm">Reports</span>

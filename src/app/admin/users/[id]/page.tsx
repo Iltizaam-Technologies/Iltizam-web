@@ -3,6 +3,7 @@
 // import { Footer } from "@/components/footer"
 // import { UserDetailsContent } from "@/components/admin/user-details/user-details-content"
 import { AdminNav } from "../../../../../components/admin/admin-nav"
+import { UserDetailsContent } from "../../../../../components/admin/user-details/user-details-content"
 import { Footer } from "../../../../../components/footer"
 
 export default function UserDetailsPage() {
