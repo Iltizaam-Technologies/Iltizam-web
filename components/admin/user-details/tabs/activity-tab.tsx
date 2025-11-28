@@ -4,11 +4,16 @@ import { useState } from "react"
 import { Mail, MapPin, Calendar, Lock, LogOut } from "lucide-react"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
-import { OverviewTab } from "./tabs/overview-tab"
-import { GoalsTab } from "./tabs/goals-tab"
-import { ActivityTab } from "./tabs/activity-tab"
-import { FinancialTab } from "./tabs/financial-tab"
-import { SettingsTab } from "./tabs/settings-tab"
+import { SettingsTab } from "./settings-tab"
+import { FinancialTab } from "./financial-tab"
+import { RecentActivityTable } from "../../recent-activity-table"
+import { GoalsTab } from "./goals-tab"
+import { OverviewTab } from "./overview-tab"
+// import { OverviewTab } from "./tabs/overview-tab"
+// import { GoalsTab } from "./tabs/goals-tab"
+// import { ActivityTab } from "./tabs/activity-tab"
+// import { FinancialTab } from "./tabs/financial-tab"
+// import { SettingsTab } from "./tabs/settings-tab"
 
 export function UserDetailsContent() {
   const [activeTab, setActiveTab] = useState("overview")
@@ -120,7 +125,7 @@ export function UserDetailsContent() {
                   <GoalsTab />
                 </TabsContent>
                 <TabsContent value="activity">
-                  <ActivityTab />
+                  <RecentActivityTable />
                 </TabsContent>
                 <TabsContent value="financial">
                   <FinancialTab />
