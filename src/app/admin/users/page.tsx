@@ -1,0 +1,50 @@
+import { LayoutDashboard, Users, BarChart3, Settings, User } from "lucide-react"
+import Link from "next/link"
+
+export function AdminNav() {
+  return (
+    <nav className="sticky top-0 z-50 bg-white border-b border-border">
+      <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-8">
+            <Link href="/admin/dashboard" className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-primary rounded flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-sm">AI</span>
+              </div>
+              <span className="font-semibold text-foreground hidden sm:inline">ILTIZAM</span>
+            </Link>
+
+            <div className="hidden md:flex items-center gap-6">
+              <Link
+                href="/admin/dashboard"
+                className="flex items-center gap-2 text-foreground hover:text-primary transition"
+              >
+                <LayoutDashboard size={18} />
+                <span className="text-sm">Dashboard</span>
+              </Link>
+              <Link
+                href="/admin/users"
+                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition"
+              >
+                <Users size={18} />
+                <span className="text-sm">Users</span>
+              </Link>
+              <Link href="#" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition">
+                <BarChart3 size={18} />
+                <span className="text-sm">Reports</span>
+              </Link>
+              <Link href="#" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition">
+                <Settings size={18} />
+                <span className="text-sm">Settings</span>
+              </Link>
+            </div>
+          </div>
+
+          <button className="flex items-center justify-center w-10 h-10 rounded-full bg-muted">
+            <User size={20} className="text-muted-foreground" />
+          </button>
+        </div>
+      </div>
+    </nav>
+  )
+}
