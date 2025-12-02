@@ -1,4 +1,4 @@
-import { LayoutDashboard, Users, BarChart3, Settings, User } from "lucide-react"
+import { LayoutDashboard, Users, BarChart3, Settings, User, Target } from "lucide-react"
 import Link from "next/link"
 
 export function AdminNav() {
@@ -28,6 +28,13 @@ export function AdminNav() {
               >
                 <Users size={18} />
                 <span className="text-sm">Users</span>
+              </Link>
+              <Link
+                href="/admin/goals"
+                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition"
+              >
+                <Target size={18} />
+                <span className="text-sm">Goals</span>
               </Link>
               <Link
                 href="/admin/user-details"
