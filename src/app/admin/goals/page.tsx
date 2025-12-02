@@ -1,11 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import { AdminNav } from "@/components/admin/admin-nav"
-import { GoalsHeader } from "@/components/admin/goals-management/header"
-import { GoalsTable } from "@/components/admin/goals-management/goals-table"
-import { GoalsStats } from "@/components/admin/goals-management/goals-stats"
-import { Footer } from "@/components/footer"
+import { AdminNav } from "../../../../components/admin/admin-nav"
+import { GoalsHeader } from "../../../../components/admin/goal-management/header"
+import { GoalsTable } from "../../../../components/admin/goal-management/goals-table"
+import { GoalsStats } from "../../../../components/admin/goal-management/goal-stats"
+import { Footer } from "../../../../components/footer"
+
+
 
 export default function GoalsManagement() {
   const [searchQuery, setSearchQuery] = useState("")
