@@ -1,54 +1,70 @@
-import * as React from "react"
+import React from "react"
 
-export function Breadcrumb({
-  className = "",
-  ...props
-}: React.HTMLAttributes<HTMLElement>) {
-  return <nav className={`flex items-center space-x-1 ${className}`} {...props} />
-}
+type Props = React.HTMLAttributes<HTMLElement>
 
-export function BreadcrumbList({
-  className = "",
-  ...props
-}: React.HTMLAttributes<ol>) {
-  return <ol className={`flex items-center space-x-1 ${className}`} {...props} />
-}
-
-export function BreadcrumbItem({
-  className = "",
-  ...props
-}: React.HTMLAttributes<li>) {
-  return <li className={className} {...props} />
-}
-
-export function BreadcrumbLink({
-  asChild,
-  className = "",
-  ...props
-}: React.AnchorHTMLAttributes<HTMLAnchorElement> & { asChild?: boolean }) {
+export const Breadcrumb: React.FC<Props> = ({ children, className = "", ...props }) => {
   return (
-    <span className={className}>
-      {props.children}
-    </span>
+    <nav aria-label="Breadcrumb" className={`flex items-center ${className}`} {...props}>
+      {children}
+    </nav>
   )
 }
 
-export function BreadcrumbSeparator({
+export const BreadcrumbList: React.FC<React.OlHTMLAttributes<HTMLOListElement>> = ({
+  children,
   className = "",
   ...props
-}: React.HTMLAttributes<HTMLSpanElement>) {
+}) => {
   return (
-    <span className={`text-muted-foreground px-1 ${className}`} {...props}>
+    <ol className={`flex items-center space-x-2 ${className}`} {...props}>
+      {children}
+    </ol>
+  )
+}
+
+export const BreadcrumbItem: React.FC<React.LiHTMLAttributes<HTMLLIElement>> = ({
+  children,
+  className = "",
+  ...props
+}) => {
+  return (
+    <li className={`flex items-center ${className}`} {...props}>
+      {children}
+    </li>
+  )
+}
+
+export const BreadcrumbLink: React.FC<
+  React.AnchorHTMLAttributes<HTMLAnchorElement> & { asChild?: boolean }
+> = ({ children, className = "", asChild = false, ...props }) => {
+  // asChild is typically used by shadcn to allow passing Link as child.
+  // We just render whatever's passed.
+  return (
+    <a className={className} {...props}>
+      {children}
+    </a>
+  )
+}
+
+export const BreadcrumbSeparator: React.FC<React.HTMLAttributes<HTMLSpanElement>> = ({
+  className = "",
+  ...props
+}) => {
+  return (
+    <span aria-hidden="true" className={`text-muted-foreground ${className}`} {...props}>
       /
     </span>
   )
 }
 
-export function BreadcrumbPage({
+export const BreadcrumbPage: React.FC<React.HTMLAttributes<HTMLSpanElement>> = ({
+  children,
   className = "",
   ...props
-}: React.HTMLAttributes<HTMLSpanElement>) {
+}) => {
   return (
-    <span className={`font-semibold text-foreground ${className}`} {...props} />
+    <span aria-current="page" className={`font-semibold text-foreground ${className}`} {...props}>
+      {children}
+    </span>
   )
 }
