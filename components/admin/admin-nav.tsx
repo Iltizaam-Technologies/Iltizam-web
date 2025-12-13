@@ -1,4 +1,4 @@
-import { LayoutDashboard, Users, BarChart3, Settings, User, Target } from "lucide-react"
+import { LayoutDashboard, Users, BarChart3, Settings, User, Target, Heart } from "lucide-react"
 import Link from "next/link"
 
 export function AdminNav() {
@@ -35,6 +35,13 @@ export function AdminNav() {
               >
                 <Target size={18} />
                 <span className="text-sm">Goals</span>
+              </Link>
+              <Link
+                href="/admin/mood-analytics"
+                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition"
+              >
+                <Heart size={18} />
+                <span className="text-sm">Mood Analytics</span>
               </Link>
               <Link
                 href="/admin/user-details"
