@@ -1,11 +1,13 @@
 "use client"
 
-import { AdminNav } from "@/components/admin/admin-nav"
-import { Footer } from "@/components/footer"
-import { ReportsHeader } from "@/components/admin/reports/header"
-import { ReportsSummaryCards } from "@/components/admin/reports/reports-summary-cards"
-import { ReportsTabsContent } from "@/components/admin/reports/reports-tabs-content"
-import { ReportInsights } from "@/components/admin/reports/report-insights"
+import { AdminNav } from "../../../../components/admin/admin-nav"
+import { Footer } from "../../../../components/footer"
+import { ReportsHeader } from "../../../../components/reports/header"
+import { ReportInsights } from "../../../../components/reports/report-insights"
+import { ReportsSummaryCards } from "../../../../components/reports/report-summary-card"
+import { ReportsTabsContent } from "../../../../components/reports/reports-tabs-content"
+
+
 
 export default function ReportsWrapsPage() {
   return (
