@@ -10,7 +10,6 @@ import { MoodSummaryCards } from "../../../../components/mood-analytics/mood-sum
 import { MoodTrendsChart } from "../../../../components/mood-analytics/mood-trends-chart"
 
 
-
 export default function MoodAnalyticsPage() {
   return (
     <div className="min-h-screen bg-background">
