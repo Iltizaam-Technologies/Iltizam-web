@@ -1,13 +1,15 @@
 "use client"
 
-import { AdminNav } from "@/components/admin/admin-nav"
-import { Footer } from "@/components/footer"
-import { MoodAnalyticsHeader } from "@/components/admin/mood-analytics/header"
-import { MoodSummaryCards } from "@/components/admin/mood-analytics/mood-summary-cards"
-import { MoodTrendsChart } from "@/components/admin/mood-analytics/mood-trends-chart"
-import { MoodDistribution } from "@/components/admin/mood-analytics/mood-distribution"
-import { EmotionalRiskFlags } from "@/components/admin/mood-analytics/emotional-risk-flags"
-import { AIInsights } from "@/components/admin/mood-analytics/ai-insights"
+import { AdminNav } from "../../../../components/admin/admin-nav"
+import { Footer } from "../../../../components/footer"
+import { AIInsights } from "../../../../components/mood-analytics/ai-insights"
+import { EmotionalRiskFlags } from "../../../../components/mood-analytics/emotional-risk-flags"
+import { MoodAnalyticsHeader } from "../../../../components/mood-analytics/header"
+import { MoodDistribution } from "../../../../components/mood-analytics/mood-distribution"
+import { MoodSummaryCards } from "../../../../components/mood-analytics/mood-summary-cards"
+import { MoodTrendsChart } from "../../../../components/mood-analytics/mood-trends-chart"
+
+
 
 export default function MoodAnalyticsPage() {
   return (
