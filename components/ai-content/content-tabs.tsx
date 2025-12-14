@@ -3,10 +3,11 @@
 import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
-import { AffirmationsTab } from "./tabs/affirmations-tab"
 import { DuasTab } from "./tabs/duas-tab"
-import { MotivationalScriptsTab } from "./tabs/motivational-scripts-tab"
-import { AISystemPromptsTab } from "./tabs/ai-system-prompts-tab"
+import { AISystemPromptsTab } from "./tabs/ai-system-prompt-tab"
+import { MotivationalScriptsTab } from "./tabs/motivational-script"
+import { AffirmationsTab } from "./tabs/affirmation-tabs"
+
 
 export function AIContentTabs() {
   const [activeTab, setActiveTab] = useState("affirmations")

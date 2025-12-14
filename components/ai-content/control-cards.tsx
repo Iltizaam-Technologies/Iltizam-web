@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Switch } from "@/components/ui/switch"
 import { Slider } from "@/components/ui/slider"
 
+
 export function AIControlCards() {
   const [aiEnabled, setAiEnabled] = useState(true)
   const [spiritualMode, setSpiritualMode] = useState(true)
