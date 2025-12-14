@@ -4,6 +4,7 @@ import { AdminNav } from "../../../../components/admin/admin-nav"
 import { AIContentTabs } from "../../../../components/ai-content/content-tabs"
 import { AIControlCards } from "../../../../components/ai-content/control-cards"
 import { AIContentHeader } from "../../../../components/ai-content/hader"
+import { SafetyGuardrails } from "../../../../components/ai-content/safety-guardrails"
 import { Footer } from "../../../../components/footer"
 
 
