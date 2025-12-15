@@ -1,4 +1,4 @@
-import { LayoutDashboard, Users, BarChart3, Settings, User, Target, Heart } from "lucide-react"
+import { LayoutDashboard, Users, Settings, User, Target, Heart, FileText, Brain } from "lucide-react"
 import Link from "next/link"
 
 export function AdminNav() {
@@ -50,9 +50,19 @@ export function AdminNav() {
                 <User size={18} />
                 <span className="text-sm">User Details</span>
               </Link>
-              <Link href="#" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition">
-                <BarChart3 size={18} />
+              <Link
+                href="/admin/reports"
+                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition"
+              >
+                <FileText size={18} />
                 <span className="text-sm">Reports</span>
+              </Link>
+              <Link
+                href="/admin/ai-content"
+                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition"
+              >
+                <Brain size={18} />
+                <span className="text-sm">AI & Content</span>
               </Link>
               <Link href="#" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition">
                 <Settings size={18} />
