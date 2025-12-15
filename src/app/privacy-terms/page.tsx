@@ -1,7 +1,8 @@
-import { PrivacyTermsHeader } from "@/components/privacy-terms/privacy-terms-header"
-import { PrivacyPolicySection } from "@/components/privacy-terms/privacy-policy-section"
-import { TermsOfUseSection } from "@/components/privacy-terms/terms-of-use-section"
-import { PrivacyTermsFooter } from "@/components/privacy-terms/privacy-terms-footer"
+import { PrivacyPolicySection } from "../../../components/privacy-terms/privacy-policy-section"
+import { PrivacyTermsFooter } from "../../../components/privacy-terms/privacy-terms-footer"
+import { PrivacyTermsHeader } from "../../../components/privacy-terms/privacy-terms-header"
+import { TermsOfUseSection } from "../../../components/privacy-terms/terms-of-use-section"
+
 
 export const metadata = {
   title: "Privacy Policy & Terms of Use - Iltizaam",
