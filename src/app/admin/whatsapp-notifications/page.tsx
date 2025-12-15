@@ -1,6 +1,7 @@
 "use client"
 
 import { AdminNav } from "../../../../components/admin/admin-nav"
+import { Footer } from "../../../../components/footer"
 import { DeliveryLogs } from "../dashboard/deliver-logs"
 import { WhatsAppHeader } from "../dashboard/header"
 import { MessagePreview } from "../dashboard/message-preview"
