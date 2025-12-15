@@ -1,14 +1,14 @@
 "use client"
 
-import { AdminNav } from "@/components/admin/admin-nav"
-import { WhatsAppHeader } from "@/components/admin/whatsapp-notifications/header"
-import { StatusBar } from "@/components/admin/whatsapp-notifications/status-bar"
-import { ProviderConfiguration } from "@/components/admin/whatsapp-notifications/provider-configuration"
-import { NotificationTypesTable } from "@/components/admin/whatsapp-notifications/notification-types-table"
-import { NotificationRules } from "@/components/admin/whatsapp-notifications/notification-rules"
-import { MessagePreview } from "@/components/admin/whatsapp-notifications/message-preview"
-import { DeliveryLogs } from "@/components/admin/whatsapp-notifications/delivery-logs"
-import { Footer } from "@/components/footer"
+import { AdminNav } from "../../../../components/admin/admin-nav"
+import { DeliveryLogs } from "../dashboard/deliver-logs"
+import { WhatsAppHeader } from "../dashboard/header"
+import { MessagePreview } from "../dashboard/message-preview"
+import { NotificationRules } from "../dashboard/notification-rules"
+import { NotificationTypesTable } from "../dashboard/notification-types-table"
+import { ProviderConfiguration } from "../dashboard/provider-configuration"
+import { StatusBar } from "../dashboard/status-bar"
+
 
 export default function WhatsAppNotificationsPage() {
   return (
