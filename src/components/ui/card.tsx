@@ -14,6 +14,14 @@ export const CardTitle: React.FC<PropsWithChildren<{ className?: string }>> = ({
   return <h3 className={`text-lg font-semibold text-foreground ${className}`}>{children}</h3>
 }
 
+
+export const CardDescription: React.FC<PropsWithChildren<{ className?: string }>> = ({
+  children,
+  className = "",
+}) => {
+  return <p className={`text-sm text-muted-foreground ${className}`}>{children}</p>
+}
+
 export const CardContent: React.FC<PropsWithChildren<{ className?: string }>> = ({ children, className = "" }) => {
   return <div className={`p-4 ${className}`}>{children}</div>
 }
