@@ -1,4 +1,4 @@
-import { LayoutDashboard, Users, Settings, User, Target, Heart, FileText, Brain } from "lucide-react"
+import { LayoutDashboard, Users, Settings, User, Target, Heart, FileText, Brain, MessageSquare } from "lucide-react"
 import Link from "next/link"
 
 export function AdminNav() {
@@ -63,6 +63,13 @@ export function AdminNav() {
               >
                 <Brain size={18} />
                 <span className="text-sm">AI & Content</span>
+              </Link>
+              <Link
+                href="/admin/whatsapp-notifications"
+                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition"
+              >
+                <MessageSquare size={18} />
+                <span className="text-sm">WhatsApp</span>
               </Link>
               <Link href="#" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition">
                 <Settings size={18} />
