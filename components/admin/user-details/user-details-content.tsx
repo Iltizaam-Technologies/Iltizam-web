@@ -11,20 +11,25 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 
 
-export function UserDetailsContent() {
-  const [activeTab, setActiveTab] = useState("overview")
+export interface UserDetailsUser {
+  id: string
+  name: string
+  email: string
+  role: string
+  status: "Active" | "Inactive" | "Suspended"
+  joinedDate: string
+  avatar: string
+  location?: string
+}
 
-  // Sample user data
-  const user = {
-    id: "1",
-    name: "Sarah Johnson",
-    email: "sarah.johnson@email.com",
-    role: "Premium",
-    status: "Active",
-    joinedDate: "November 15, 2024",
-    avatar: "SJ",
-    location: "San Francisco, CA",
-  }
+interface UserDetailsContentProps {
+  user: UserDetailsUser | null
+  loading?: boolean
+  error?: string | null
+}
+
+export function UserDetailsContent({ user: userProp, loading, error }: UserDetailsContentProps) {
+  const [activeTab, setActiveTab] = useState("overview")
 
   const statusConfig = {
     Active: { bg: "bg-green-50", text: "text-green-700", label: "Active" },
@@ -32,6 +37,23 @@ export function UserDetailsContent() {
     Suspended: { bg: "bg-red-50", text: "text-red-700", label: "Suspended" },
   }
 
+  if (loading) {
+    return (
+      <div className="py-12 text-center text-muted-foreground">Loading user…</div>
+    )
+  }
+  if (error) {
+    return (
+      <div className="p-4 rounded-lg bg-red-50 text-red-700 text-sm">{error}</div>
+    )
+  }
+  if (!userProp) {
+    return (
+      <div className="p-4 rounded-lg bg-muted text-muted-foreground text-sm">User not found.</div>
+    )
+  }
+
+  const user = userProp
   const config = statusConfig[user.status as keyof typeof statusConfig]
 
   return (
@@ -68,7 +90,7 @@ export function UserDetailsContent() {
                 <MapPin size={18} className="text-muted-foreground mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-xs text-muted-foreground font-medium">Location</p>
-                  <p className="text-sm text-foreground">{user.location}</p>
+                  <p className="text-sm text-foreground">{user.location ?? "—"}</p>
                 </div>
               </div>
 

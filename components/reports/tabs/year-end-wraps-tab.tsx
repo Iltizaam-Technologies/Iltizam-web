@@ -57,7 +57,7 @@ export function YearEndWrapsTab() {
           >
             <div className="flex items-start justify-between mb-4">
               <div>
-                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">ILTIZAM WRAP</p>
+                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">ILTIZAAM WRAP</p>
                 <p className="text-lg font-bold text-foreground mt-1">{wrap.year}</p>
               </div>
               <Sparkles size={20} className="text-accent" />

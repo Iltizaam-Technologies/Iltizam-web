@@ -4,13 +4,14 @@ import type React from "react"
 
 import { useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { Lock } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-// import { Button } from "@/components/ui/button"
-// import { Input } from "@/components/ui/input"
+import { loginAdmin, setAdminToken } from "@/lib/admin-api"
 
 export default function AdminLoginPage() {
+  const router = useRouter()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [rememberMe, setRememberMe] = useState(false)
@@ -23,14 +24,12 @@ export default function AdminLoginPage() {
     setIsLoading(true)
 
     try {
-      // Simulate API call - replace with actual authentication logic
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-
-      // Success - redirect to dashboard
-      console.log("Login attempt with:", { email, password, rememberMe })
-      // window.location.href = '/admin/dashboard'
+      const res = await loginAdmin(email, password)
+      setAdminToken(res.token)
+      router.push("/admin/dashboard")
     } catch (err) {
-      setError("Invalid credentials. Please try again.")
+      const message = err instanceof Error ? err.message : "Invalid credentials. Please try again."
+      setError(message)
     } finally {
       setIsLoading(false)
     }
@@ -55,7 +54,7 @@ export default function AdminLoginPage() {
 
             {/* Subtext */}
             <p className="mb-12 text-base text-muted-foreground">
-              Manage users, monitor progress, and oversee the ILTIZAM AI system.
+              Manage users, monitor progress, and oversee the ILTIZAAM AI system.
             </p>
 
             {/* Illustration Placeholder */}
@@ -173,7 +172,7 @@ export default function AdminLoginPage() {
 
             {/* Footer */}
             <div className="mt-8 text-center text-xs text-muted-foreground">
-              © 2025 ILTIZAM AI. All rights reserved.
+              © 2025 ILTIZAAM AI. All rights reserved.
             </div>
           </div>
         </div>

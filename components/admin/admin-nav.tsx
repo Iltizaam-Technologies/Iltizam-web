@@ -1,4 +1,4 @@
-import { LayoutDashboard, Users, Settings, User, Target, Heart, FileText, Brain, MessageSquare } from "lucide-react"
+import { LayoutDashboard, Users, User, Target, Heart, FileText, Brain, MessageSquare } from "lucide-react"
 import Link from "next/link"
 
 export function AdminNav() {
@@ -11,7 +11,7 @@ export function AdminNav() {
               <div className="w-8 h-8 bg-primary rounded flex items-center justify-center">
                 <span className="text-primary-foreground font-bold text-sm">AI</span>
               </div>
-              <span className="font-semibold text-foreground hidden sm:inline">ILTIZAM</span>
+              <span className="font-semibold text-foreground hidden sm:inline">ILTIZAAM</span>
             </Link>
 
             <div className="hidden md:flex items-center gap-6">
@@ -44,13 +44,6 @@ export function AdminNav() {
                 <span className="text-sm">Mood Analytics</span>
               </Link>
               <Link
-                href="/admin/user-details"
-                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition"
-              >
-                <User size={18} />
-                <span className="text-sm">User Details</span>
-              </Link>
-              <Link
                 href="/admin/reports"
                 className="flex items-center gap-2 text-muted-foreground hover:text-primary transition"
               >
@@ -70,10 +63,6 @@ export function AdminNav() {
               >
                 <MessageSquare size={18} />
                 <span className="text-sm">WhatsApp</span>
-              </Link>
-              <Link href="#" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition">
-                <Settings size={18} />
-                <span className="text-sm">Settings</span>
               </Link>
             </div>
           </div>

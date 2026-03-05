@@ -8,9 +8,9 @@ import { Header } from "../../../components/header"
 
 
 export const metadata = {
-  title: "Features - ILTIZAM AI",
+  title: "Features - ILTIZAAM AI",
   description:
-    "Discover the powerful features of ILTIZAM AI that help you build consistency, achieve goals, and stay emotionally balanced through smart goal setting, AI coaching, focus mode, and more.",
+    "Discover the powerful features of ILTIZAAM AI that help you build consistency, achieve goals, and stay emotionally balanced through smart goal setting, AI coaching, focus mode, and more.",
 }
 
 export default function FeaturesPage() {

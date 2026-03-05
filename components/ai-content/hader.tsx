@@ -22,7 +22,7 @@ export function AIContentHeader() {
           </BreadcrumbList>
         </Breadcrumb>
         <h1 className="text-3xl font-bold text-foreground">AI & Content Management</h1>
-        <p className="text-muted-foreground mt-2">Control how ILTIZAM speaks, motivates, and supports users.</p>
+        <p className="text-muted-foreground mt-2">Control how ILTIZAAM speaks, motivates, and supports users.</p>
       </div>
     </div>
   )

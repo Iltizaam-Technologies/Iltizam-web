@@ -1,93 +1,19 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { Search, MoreVertical, Eye, Lock } from "lucide-react"
 import { UserAvatar } from "./user-avatar"
 
-interface User {
+export interface User {
   id: string
   name: string
   email: string
-  role: "User" | "Student" | "Premium"
+  role: "User" | "Student" | "Premium" | string
   joinedDate: string
   status: "Active" | "Inactive" | "Suspended"
   avatar: string
 }
-
-const sampleUsers: User[] = [
-  {
-    id: "1",
-    name: "Sarah Johnson",
-    email: "sarah.johnson@email.com",
-    role: "Premium",
-    joinedDate: "Nov 15, 2024",
-    status: "Active",
-    avatar: "SJ",
-  },
-  {
-    id: "2",
-    name: "Ahmed Hassan",
-    email: "ahmed.hassan@email.com",
-    role: "Student",
-    joinedDate: "Nov 12, 2024",
-    status: "Active",
-    avatar: "AH",
-  },
-  {
-    id: "3",
-    name: "Maria Garcia",
-    email: "maria.garcia@email.com",
-    role: "User",
-    joinedDate: "Nov 10, 2024",
-    status: "Active",
-    avatar: "MG",
-  },
-  {
-    id: "4",
-    name: "John Smith",
-    email: "john.smith@email.com",
-    role: "User",
-    joinedDate: "Nov 8, 2024",
-    status: "Inactive",
-    avatar: "JS",
-  },
-  {
-    id: "5",
-    name: "Lisa Chen",
-    email: "lisa.chen@email.com",
-    role: "Premium",
-    joinedDate: "Nov 5, 2024",
-    status: "Active",
-    avatar: "LC",
-  },
-  {
-    id: "6",
-    name: "Amara Okafor",
-    email: "amara.okafor@email.com",
-    role: "Student",
-    joinedDate: "Nov 1, 2024",
-    status: "Suspended",
-    avatar: "AO",
-  },
-  {
-    id: "7",
-    name: "David Martinez",
-    email: "david.martinez@email.com",
-    role: "User",
-    joinedDate: "Oct 28, 2024",
-    status: "Active",
-    avatar: "DM",
-  },
-  {
-    id: "8",
-    name: "Emma Wilson",
-    email: "emma.wilson@email.com",
-    role: "Premium",
-    joinedDate: "Oct 25, 2024",
-    status: "Active",
-    avatar: "EW",
-  },
-]
 
 const statusConfig = {
   Active: { bg: "bg-green-50", text: "text-green-700", label: "Active" },
@@ -96,16 +22,17 @@ const statusConfig = {
 }
 
 interface UserTableProps {
+  users: User[]
   searchQuery: string
   setSearchQuery: (query: string) => void
   filterStatus: string
   setFilterStatus: (status: string) => void
 }
 
-export function UserTable({ searchQuery, setSearchQuery, filterStatus, setFilterStatus }: UserTableProps) {
+export function UserTable({ users, searchQuery, setSearchQuery, filterStatus, setFilterStatus }: UserTableProps) {
   const [expandedRow, setExpandedRow] = useState<string | null>(null)
 
-  const filteredUsers = sampleUsers.filter((user) => {
+  const filteredUsers = users.filter((user) => {
     const matchesSearch =
       user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       user.email.toLowerCase().includes(searchQuery.toLowerCase())
@@ -174,7 +101,14 @@ export function UserTable({ searchQuery, setSearchQuery, filterStatus, setFilter
                       {config.label}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4 flex items-center gap-2">
+                    <Link
+                      href={`/admin/users/${user.id}`}
+                      className="p-2 hover:bg-muted rounded-lg transition inline-flex items-center gap-1 text-sm text-primary font-medium"
+                    >
+                      <Eye size={16} />
+                      View
+                    </Link>
                     <button className="p-2 hover:bg-muted rounded-lg transition">
                       <MoreVertical size={18} className="text-muted-foreground" />
                     </button>
@@ -217,10 +151,13 @@ export function UserTable({ searchQuery, setSearchQuery, filterStatus, setFilter
                     <span className="text-foreground font-medium">{user.joinedDate}</span>
                   </div>
                   <div className="flex gap-2 mt-4">
-                    <button className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-lg text-xs font-medium hover:bg-primary/90 transition">
+                    <Link
+                      href={`/admin/users/${user.id}`}
+                      className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-lg text-xs font-medium hover:bg-primary/90 transition"
+                    >
                       <Eye size={14} />
                       View
-                    </button>
+                    </Link>
                     <button className="flex-1 flex items-center justify-center gap-2 px-3 py-2 border border-border rounded-lg text-xs font-medium text-foreground hover:bg-muted transition">
                       <Lock size={14} />
                       Deactivate

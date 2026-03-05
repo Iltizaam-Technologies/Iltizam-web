@@ -5,7 +5,7 @@ export function WhyIltizam() {
     <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-background">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-12 md:mb-16 text-balance">
-          Why ILTIZAM AI Exists
+          Why ILTIZAAM AI Exists
         </h2>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -33,7 +33,7 @@ export function WhyIltizam() {
               <h3 className="text-2xl font-bold text-foreground">The Problem</h3>
               <p className="text-lg text-foreground/70 leading-relaxed">
                 In today's world, distraction is everywhere. We set ambitious goals but struggle with inconsistency.
-                Without accountability, even the best intentions fade. That's where ILTIZAM AI comes in.
+                Without accountability, even the best intentions fade. That's where ILTIZAAM AI comes in.
               </p>
             </div>
 
