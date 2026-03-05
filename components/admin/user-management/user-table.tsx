@@ -27,9 +27,13 @@ interface UserTableProps {
   setSearchQuery: (query: string) => void
   filterStatus: string
   setFilterStatus: (status: string) => void
+  filterRole?: string
+  setFilterRole?: (role: string) => void
+  pagination?: { page: number; totalPages: number; onPageChange: (page: number) => void }
+  loading?: boolean
 }
 
-export function UserTable({ users, searchQuery, setSearchQuery, filterStatus, setFilterStatus }: UserTableProps) {
+export function UserTable({ users, searchQuery, setSearchQuery, filterStatus, setFilterStatus, filterRole, setFilterRole, pagination, loading }: UserTableProps) {
   const [expandedRow, setExpandedRow] = useState<string | null>(null)
 
   const filteredUsers = users.filter((user) => {
@@ -55,6 +59,18 @@ export function UserTable({ users, searchQuery, setSearchQuery, filterStatus, se
               className="w-full pl-10 pr-4 py-2 border border-border rounded-lg bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             />
           </div>
+          {setFilterRole && (
+            <select
+              value={filterRole ?? "all"}
+              onChange={(e) => setFilterRole(e.target.value)}
+              className="px-4 py-2 border border-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            >
+              <option value="all">All Roles</option>
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+              <option value="super_admin">Super Admin</option>
+            </select>
+          )}
           <select
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
@@ -83,7 +99,7 @@ export function UserTable({ users, searchQuery, setSearchQuery, filterStatus, se
             </tr>
           </thead>
           <tbody>
-            {filteredUsers.map((user) => {
+            {(loading ? [] : filteredUsers).map((user) => {
               const config = statusConfig[user.status]
               return (
                 <tr key={user.id} className="border-b border-border hover:bg-muted transition">
@@ -178,9 +194,32 @@ export function UserTable({ users, searchQuery, setSearchQuery, filterStatus, se
       </div>
 
       {/* Empty State */}
-      {filteredUsers.length === 0 && (
+      {!loading && filteredUsers.length === 0 && (
         <div className="p-12 text-center">
           <p className="text-muted-foreground">No users found matching your criteria.</p>
+        </div>
+      )}
+
+      {/* Pagination */}
+      {pagination && pagination.totalPages > 1 && (
+        <div className="p-6 border-t border-border flex items-center justify-center gap-2">
+          <button
+            onClick={() => pagination.onPageChange(Math.max(1, pagination.page - 1))}
+            disabled={pagination.page === 1}
+            className="px-3 py-2 border border-border rounded-lg text-sm font-medium text-foreground hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed transition"
+          >
+            Previous
+          </button>
+          <span className="px-3 py-2 text-sm text-muted-foreground">
+            Page {pagination.page} of {pagination.totalPages}
+          </span>
+          <button
+            onClick={() => pagination.onPageChange(Math.min(pagination.totalPages, pagination.page + 1))}
+            disabled={pagination.page === pagination.totalPages}
+            className="px-3 py-2 border border-border rounded-lg text-sm font-medium text-foreground hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed transition"
+          >
+            Next
+          </button>
         </div>
       )}
     </div>

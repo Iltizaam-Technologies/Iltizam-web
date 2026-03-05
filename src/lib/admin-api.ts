@@ -63,8 +63,15 @@ export function getAdminMe(): Promise<Record<string, unknown>> {
 }
 
 export interface AdminStats {
-  users: { total: number; active: number; paying: number; activeSubscriptions: number };
-  content: { goals: number; habits: number; journals: number };
+  users: { total: number; active: number; paying: number; activeSubscriptions: number; signupsThisWeek?: number };
+  content: {
+    goals: number;
+    goalsActive?: number;
+    goalsCompleted?: number;
+    goalsPaused?: number;
+    habits: number;
+    journals: number;
+  };
   community: { posts: number; activePosts: number; flaggedPosts: number };
 }
 
@@ -139,4 +146,238 @@ export function getAdminNotifications(params?: { page?: number; limit?: number }
   if (params?.limit != null) search.set("limit", String(params.limit));
   const q = search.toString();
   return apiRequest<AdminNotificationsResponse>(`/api/admin/notifications${q ? `?${q}` : ""}`);
+}
+
+export interface AdminGoalItem {
+  _id: string;
+  title: string;
+  userId: { _id: string; name?: string; email?: string } | string;
+  userName?: string | null;
+  status: string;
+  category?: string;
+  progress: number;
+  createdAt?: string;
+  updatedAt?: string;
+  [key: string]: unknown;
+}
+
+export interface AdminGoalsResponse {
+  items: AdminGoalItem[];
+  pagination: { page: number; limit: number; total: number; totalPages: number };
+}
+
+export function getAdminGoals(params?: {
+  page?: number;
+  limit?: number;
+  status?: string;
+  category?: string;
+}): Promise<AdminGoalsResponse> {
+  const search = new URLSearchParams();
+  if (params?.page != null) search.set("page", String(params.page));
+  if (params?.limit != null) search.set("limit", String(params.limit));
+  if (params?.status) search.set("status", params.status);
+  if (params?.category) search.set("category", params.category);
+  const q = search.toString();
+  return apiRequest<AdminGoalsResponse>(`/api/admin/goals${q ? `?${q}` : ""}`);
+}
+
+export interface AdminGoalDetail {
+  _id: string;
+  title: string;
+  description?: string;
+  userId?: { _id: string; name?: string; email?: string } | string;
+  owner?: { _id: string; name?: string; email?: string };
+  userName?: string | null;
+  userEmail?: string | null;
+  status: string;
+  category?: string;
+  targetDate?: string;
+  tasks: Array<{
+    _id: string;
+    title: string;
+    completed: boolean;
+    dueDate?: string;
+    createdAt?: string;
+    [key: string]: unknown;
+  }>;
+  progress: number;
+  createdAt?: string;
+  updatedAt?: string;
+  [key: string]: unknown;
+}
+
+export function getAdminGoalById(id: string): Promise<AdminGoalDetail> {
+  return apiRequest<AdminGoalDetail>(`/api/admin/goals/${id}`);
+}
+
+export interface AdminCommunityPost {
+  _id: string;
+  title: string;
+  content: string;
+  userId?: { _id: string; name?: string; email?: string; displayName?: string } | string;
+  likes?: number;
+  isDeleted?: boolean;
+  isFlagged?: boolean;
+  createdAt?: string;
+  [key: string]: unknown;
+}
+
+export interface AdminCommunityPostsResponse {
+  items: AdminCommunityPost[];
+  pagination: { page: number; limit: number; total: number; totalPages: number };
+}
+
+export function getAdminCommunityPosts(params?: {
+  page?: number;
+  limit?: number;
+  isDeleted?: boolean;
+  isFlagged?: boolean;
+}): Promise<AdminCommunityPostsResponse> {
+  const search = new URLSearchParams();
+  if (params?.page != null) search.set("page", String(params.page));
+  if (params?.limit != null) search.set("limit", String(params.limit));
+  if (params?.isDeleted !== undefined) search.set("isDeleted", String(params.isDeleted));
+  if (params?.isFlagged !== undefined) search.set("isFlagged", String(params.isFlagged));
+  const q = search.toString();
+  return apiRequest<AdminCommunityPostsResponse>(`/api/admin/community/posts${q ? `?${q}` : ""}`);
+}
+
+export function deleteCommunityPost(id: string): Promise<void> {
+  return apiRequest<void>(`/api/community/posts/${id}`, { method: "DELETE" });
+}
+
+export interface UserGrowthPoint {
+  month: string;
+  usersRegistered: number;
+}
+
+export function getUserGrowth(): Promise<UserGrowthPoint[]> {
+  return apiRequest<UserGrowthPoint[]>("/api/admin/analytics/user-growth");
+}
+
+export interface ActivityMetricPoint {
+  day: string;
+  date?: string;
+  activity: number;
+  goalsCreated?: number;
+  tasksCompleted?: number;
+}
+
+export function getActivityMetrics(): Promise<ActivityMetricPoint[]> {
+  return apiRequest<ActivityMetricPoint[]>("/api/admin/analytics/activity");
+}
+
+export interface RecentActivityItem {
+  type: string;
+  user: string;
+  description: string;
+  time: string;
+}
+
+export function getRecentActivity(limit?: number): Promise<RecentActivityItem[]> {
+  const q = limit != null ? `?limit=${limit}` : "";
+  return apiRequest<RecentActivityItem[]>(`/api/admin/analytics/recent${q}`);
+}
+
+export interface MoodSummary {
+  averageMood: string;
+  totalEntries: number;
+  happiestDay: string;
+  engagementRate: number;
+  usersWithMood?: number;
+}
+
+export function getMoodSummary(): Promise<MoodSummary> {
+  return apiRequest<MoodSummary>("/api/admin/mood/summary");
+}
+
+export interface MoodTrendPoint {
+  date: string;
+  mood: number;
+  count?: number;
+}
+
+export function getMoodTrends(): Promise<MoodTrendPoint[]> {
+  return apiRequest<MoodTrendPoint[]>("/api/admin/mood/trends");
+}
+
+export interface MoodDistributionItem {
+  emoji: string;
+  label: string;
+  percentage: number;
+  color: string;
+}
+
+export function getMoodDistribution(): Promise<MoodDistributionItem[]> {
+  return apiRequest<MoodDistributionItem[]>("/api/admin/mood/distribution");
+}
+
+export interface MoodRiskFlag {
+  userId: string;
+  user: string;
+  lastMood: string;
+  trend: string;
+  riskLevel: "Low" | "Medium" | "High";
+}
+
+export function getMoodRiskFlags(limit?: number): Promise<MoodRiskFlag[]> {
+  const q = limit != null ? `?limit=${limit}` : "";
+  return apiRequest<MoodRiskFlag[]>(`/api/admin/mood/risk-flags${q}`);
+}
+
+export interface ReportsSummary {
+  weeklyReportsGenerated?: number;
+  monthlyReviewsCompleted?: number;
+  yearEndWrapsGenerated?: number;
+  averageCompletionRate?: number;
+}
+
+export function getReportsSummary(): Promise<ReportsSummary> {
+  return apiRequest<ReportsSummary>("/api/admin/reports/summary");
+}
+
+export interface WeeklyReportItem {
+  id: string;
+  user: string;
+  weekRange: string;
+  tasksCompleted: number;
+  averageMood: string;
+  status: string;
+}
+
+export function getReportsWeekly(params?: { page?: number; limit?: number }): Promise<{ items: WeeklyReportItem[]; pagination: { page: number; totalPages: number } }> {
+  const search = new URLSearchParams();
+  if (params?.page != null) search.set("page", String(params.page));
+  if (params?.limit != null) search.set("limit", String(params.limit));
+  const q = search.toString();
+  return apiRequest(`/api/admin/reports/weekly${q ? `?${q}` : ""}`);
+}
+
+export interface ReportInsight {
+  text: string;
+  impact: string;
+}
+
+export function getReportsInsights(): Promise<ReportInsight[]> {
+  return apiRequest<ReportInsight[]>("/api/admin/reports/insights");
+}
+
+export interface NotificationLogItem {
+  id: string;
+  notificationId?: string;
+  user: string;
+  status: string;
+  sentAt: string;
+  error: string | null;
+}
+
+export function getNotificationLogs(params?: { page?: number; limit?: number }): Promise<{
+  items: NotificationLogItem[];
+  pagination: { page: number; limit: number; total: number; totalPages: number };
+}> {
+  const search = new URLSearchParams();
+  if (params?.page != null) search.set("page", String(params.page));
+  if (params?.limit != null) search.set("limit", String(params.limit));
+  const q = search.toString();
+  return apiRequest(`/api/admin/notifications/logs${q ? `?${q}` : ""}`);
 }

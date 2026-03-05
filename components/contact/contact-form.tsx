@@ -4,6 +4,8 @@ import type React from "react"
 
 import { useState } from "react"
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"
+
 export function ContactForm() {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -13,18 +15,44 @@ export function ContactForm() {
   })
 
   const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
+    setError(null)
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Form submission logic would go here
-    setSubmitted(true)
-    setFormData({ fullName: "", email: "", subject: "", message: "" })
-    setTimeout(() => setSubmitted(false), 5000)
+    setError(null)
+    setLoading(true)
+    try {
+      const res = await fetch(`${API_BASE}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.fullName,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        const msg = (data as { error?: { message?: string }; message?: string })?.error?.message ?? (data as { message?: string })?.message ?? "Something went wrong."
+        setError(msg)
+        return
+      }
+      setSubmitted(true)
+      setFormData({ fullName: "", email: "", subject: "", message: "" })
+      setTimeout(() => setSubmitted(false), 5000)
+    } catch {
+      setError("Network error. Please try again.")
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -34,6 +62,11 @@ export function ContactForm() {
           {submitted && (
             <div className="mb-6 p-4 bg-primary/10 border border-primary/20 rounded-lg">
               <p className="text-primary font-medium">Thank you for your message! We'll get back to you soon.</p>
+            </div>
+          )}
+          {error && (
+            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+              <p className="text-red-700 text-sm">{error}</p>
             </div>
           )}
 
@@ -92,9 +125,10 @@ export function ContactForm() {
 
             <button
               type="submit"
-              className="w-full bg-primary text-primary-foreground py-3 rounded-lg font-medium hover:opacity-90 transition-opacity"
+              disabled={loading}
+              className="w-full bg-primary text-primary-foreground py-3 rounded-lg font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
             >
-              Send Message
+              {loading ? "Sending…" : "Send Message"}
             </button>
           </form>
         </div>

@@ -1,7 +1,18 @@
-import { LayoutDashboard, Users, User, Target, Heart, FileText, Brain, MessageSquare } from "lucide-react"
+"use client"
+
+import { LayoutDashboard, Users, User, Target, Heart, FileText, Brain, MessageSquare, MessageCircle, LogOut } from "lucide-react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { clearAdminToken } from "@/lib/admin-api"
 
 export function AdminNav() {
+  const router = useRouter()
+
+  function handleLogout() {
+    clearAdminToken()
+    router.replace("/admin/login")
+  }
+
   return (
     <nav className="sticky top-0 z-50 bg-white border-b border-border">
       <div className="max-w-7xl mx-auto px-6 py-4">
@@ -37,6 +48,13 @@ export function AdminNav() {
                 <span className="text-sm">Goals</span>
               </Link>
               <Link
+                href="/admin/community"
+                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition"
+              >
+                <MessageCircle size={18} />
+                <span className="text-sm">Community</span>
+              </Link>
+              <Link
                 href="/admin/mood-analytics"
                 className="flex items-center gap-2 text-muted-foreground hover:text-primary transition"
               >
@@ -67,8 +85,13 @@ export function AdminNav() {
             </div>
           </div>
 
-          <button className="flex items-center justify-center w-10 h-10 rounded-full bg-muted">
-            <User size={20} className="text-muted-foreground" />
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition"
+            title="Log out"
+          >
+            <LogOut size={18} />
+            <span className="hidden sm:inline">Log out</span>
           </button>
         </div>
       </div>

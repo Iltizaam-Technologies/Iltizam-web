@@ -1,50 +1,23 @@
+"use client"
+
 import { Eye, Download, Flag } from "lucide-react"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 
-export function WeeklyReportsTab() {
-  const weeklyReports = [
-    {
-      id: 1,
-      user: "Sarah Johnson",
-      weekRange: "Nov 25 - Dec 1",
-      tasksCompleted: 24,
-      averageMood: "Happy",
-      status: "Completed",
-    },
-    {
-      id: 2,
-      user: "Michael Chen",
-      weekRange: "Nov 25 - Dec 1",
-      tasksCompleted: 18,
-      averageMood: "Neutral",
-      status: "Completed",
-    },
-    {
-      id: 3,
-      user: "Emily Davis",
-      weekRange: "Nov 25 - Dec 1",
-      tasksCompleted: 0,
-      averageMood: "N/A",
-      status: "Skipped",
-    },
-    {
-      id: 4,
-      user: "James Wilson",
-      weekRange: "Nov 25 - Dec 1",
-      tasksCompleted: 31,
-      averageMood: "Happy",
-      status: "Completed",
-    },
-    {
-      id: 5,
-      user: "Sophia Martinez",
-      weekRange: "Nov 25 - Dec 1",
-      tasksCompleted: 22,
-      averageMood: "Satisfied",
-      status: "Completed",
-    },
-  ]
+interface WeeklyReportRow {
+  id: string
+  user: string
+  weekRange: string
+  tasksCompleted: number
+  averageMood: string
+  status: string
+}
 
+interface WeeklyReportsTabProps {
+  weeklyReports?: WeeklyReportRow[]
+  loading?: boolean
+}
+
+export function WeeklyReportsTab({ weeklyReports = [], loading }: WeeklyReportsTabProps) {
   const statusConfig = {
     Completed: "bg-green-50 text-green-700",
     Skipped: "bg-red-50 text-red-700",
@@ -66,7 +39,7 @@ export function WeeklyReportsTab() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {weeklyReports.map((report) => (
+            {(loading && !weeklyReports.length ? [] : weeklyReports).map((report) => (
               <TableRow key={report.id}>
                 <TableCell className="font-medium">{report.user}</TableCell>
                 <TableCell>{report.weekRange}</TableCell>

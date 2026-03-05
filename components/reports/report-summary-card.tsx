@@ -1,40 +1,22 @@
 import { FileText, Calendar, Sparkles, TrendingUp } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 
-export function ReportsSummaryCards() {
+interface ReportsSummaryCardsProps {
+  summary?: {
+    weeklyReportsGenerated?: number
+    monthlyReviewsCompleted?: number
+    yearEndWrapsGenerated?: number
+    averageCompletionRate?: number
+  } | null
+  loading?: boolean
+}
+
+export function ReportsSummaryCards({ summary, loading }: ReportsSummaryCardsProps) {
   const cards = [
-    {
-      icon: FileText,
-      label: "Weekly Reports Generated",
-      value: "1,248",
-      caption: "Last 7 days",
-      bgColor: "bg-blue-50",
-      iconColor: "text-blue-600",
-    },
-    {
-      icon: Calendar,
-      label: "Monthly Reviews Completed",
-      value: "892",
-      caption: "This month",
-      bgColor: "bg-purple-50",
-      iconColor: "text-purple-600",
-    },
-    {
-      icon: Sparkles,
-      label: "Year-End Wraps Generated",
-      value: "320",
-      caption: "Current cycle",
-      bgColor: "bg-amber-50",
-      iconColor: "text-amber-600",
-    },
-    {
-      icon: TrendingUp,
-      label: "Average Completion Rate",
-      value: "81%",
-      caption: "Across all reports",
-      bgColor: "bg-green-50",
-      iconColor: "text-green-600",
-    },
+    { icon: FileText, label: "Weekly Reports Generated", value: summary ? String(summary.weeklyReportsGenerated ?? 0) : "—", caption: "Last 7 days", bgColor: "bg-blue-50", iconColor: "text-blue-600" },
+    { icon: Calendar, label: "Monthly Reviews Completed", value: summary ? String(summary.monthlyReviewsCompleted ?? 0) : "—", caption: "This month", bgColor: "bg-purple-50", iconColor: "text-purple-600" },
+    { icon: Sparkles, label: "Year-End Wraps Generated", value: summary ? String(summary.yearEndWrapsGenerated ?? 0) : "—", caption: "Current cycle", bgColor: "bg-amber-50", iconColor: "text-amber-600" },
+    { icon: TrendingUp, label: "Average Completion Rate", value: summary ? `${summary.averageCompletionRate ?? 0}%` : "—", caption: "Across all reports", bgColor: "bg-green-50", iconColor: "text-green-600" },
   ]
 
   return (

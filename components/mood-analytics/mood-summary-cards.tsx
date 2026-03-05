@@ -1,36 +1,51 @@
 import { Smile, Calendar, TrendingDown, Activity } from "lucide-react"
 
-export function MoodSummaryCards() {
+interface MoodSummaryCardsProps {
+  summary?: {
+    averageMood?: string;
+    happiestDay?: string;
+    engagementRate?: number;
+  } | null
+  loading?: boolean
+}
+
+export function MoodSummaryCards({ summary, loading }: MoodSummaryCardsProps) {
   const cards = [
     {
       icon: <Smile className="w-6 h-6 text-primary" />,
       title: "Average Mood Score",
-      value: "3.8 / 5",
+      value: summary ? `${summary.averageMood ?? "—"} / 5` : "—",
       caption: "Across all users",
+      badge: false,
     },
     {
       icon: <Calendar className="w-6 h-6 text-primary" />,
       title: "Happiest Day",
-      value: "Friday 😄",
+      value: summary?.happiestDay ?? "—",
       caption: "Peak engagement",
+      badge: false,
     },
     {
       icon: <TrendingDown className="w-6 h-6 text-amber-600" />,
-      title: "Lowest Mood Trend",
-      value: "Warning",
-      caption: "Consistent low moods detected",
+      title: "Low Mood Alerts",
+      value: summary ? "View risk flags below" : "—",
+      caption: "Check risk flags table",
       badge: true,
     },
     {
       icon: <Activity className="w-6 h-6 text-primary" />,
       title: "Emotional Engagement Rate",
-      value: "76%",
+      value: summary ? `${summary.engagementRate ?? 0}%` : "—",
       caption: "Users logging moods regularly",
+      badge: false,
     },
   ]
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {loading && !summary && (
+        <div className="col-span-full py-8 text-center text-muted-foreground">Loading…</div>
+      )}
       {cards.map((card, index) => (
         <div key={index} className="bg-white rounded-lg border border-border p-6 shadow-sm hover:shadow-md transition">
           <div className="flex items-start justify-between">

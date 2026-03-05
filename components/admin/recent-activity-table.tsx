@@ -1,20 +1,13 @@
+"use client"
+
 import { CheckCircle, Clock, XCircle } from "lucide-react"
 
-interface Activity {
+export interface ActivityItem {
   user: string
   activity: string
   time: string
   status: "completed" | "pending" | "failed"
 }
-
-const activityData: Activity[] = [
-  { user: "Sarah Johnson", activity: "Completed morning workout goal", time: "2 hours ago", status: "completed" },
-  { user: "Ahmed Hassan", activity: "Submitted project proposal", time: "4 hours ago", status: "completed" },
-  { user: "Maria Garcia", activity: "Reading habit tracking", time: "6 hours ago", status: "pending" },
-  { user: "John Smith", activity: "Meditation session logged", time: "8 hours ago", status: "completed" },
-  { user: "Lisa Chen", activity: "Study goal failed - no update", time: "10 hours ago", status: "failed" },
-  { user: "Amara Okafor", activity: "Updated daily priorities", time: "12 hours ago", status: "completed" },
-]
 
 const statusConfig = {
   completed: { icon: CheckCircle, bg: "bg-green-50", text: "text-green-700", label: "Completed" },
@@ -22,12 +15,39 @@ const statusConfig = {
   failed: { icon: XCircle, bg: "bg-red-50", text: "text-red-700", label: "Failed" },
 }
 
-export function RecentActivityTable() {
+function formatTimeAgo(iso: string): string {
+  try {
+    const d = new Date(iso)
+    const now = new Date()
+    const diffMs = now.getTime() - d.getTime()
+    const diffMins = Math.floor(diffMs / 60000)
+    const diffHours = Math.floor(diffMs / 3600000)
+    const diffDays = Math.floor(diffMs / 86400000)
+    if (diffMins < 60) return `${diffMins} min ago`
+    if (diffHours < 24) return `${diffHours} hours ago`
+    if (diffDays < 7) return `${diffDays} days ago`
+    return d.toLocaleDateString()
+  } catch {
+    return iso
+  }
+}
+
+interface RecentActivityTableProps {
+  activityData?: ActivityItem[] | null
+  loading?: boolean
+}
+
+export function RecentActivityTable({ activityData = [], loading }: RecentActivityTableProps) {
+  const items = activityData ?? []
+
   return (
     <div className="bg-white rounded-lg border border-border shadow-sm overflow-hidden">
       <div className="p-6 border-b border-border">
         <h2 className="text-lg font-semibold text-foreground">Recent Activity</h2>
       </div>
+      {loading && !items.length ? (
+        <div className="p-12 text-center text-muted-foreground">Loading…</div>
+      ) : (
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
@@ -39,7 +59,7 @@ export function RecentActivityTable() {
             </tr>
           </thead>
           <tbody>
-            {activityData.map((item, index) => {
+            {items.map((item, index) => {
               const config = statusConfig[item.status]
               const StatusIcon = config.icon
               return (
@@ -59,6 +79,10 @@ export function RecentActivityTable() {
           </tbody>
         </table>
       </div>
+      )}
+      {!loading && items.length === 0 && (
+        <div className="p-12 text-center text-muted-foreground">No recent activity.</div>
+      )}
     </div>
   )
 }

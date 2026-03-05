@@ -3,15 +3,19 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { CheckCircle2, Circle } from "lucide-react"
 
-export function TasksSection() {
-  const tasks = [
-    { id: 1, title: "Research and planning", status: "Done", dueDate: "Nov 5" },
-    { id: 2, title: "Design system architecture", status: "Done", dueDate: "Nov 12" },
-    { id: 3, title: "Backend development phase 1", status: "Pending", dueDate: "Nov 25" },
-    { id: 4, title: "Frontend implementation", status: "Pending", dueDate: "Dec 5" },
-    { id: 5, title: "Testing and QA", status: "Pending", dueDate: "Dec 20" },
-  ]
+export interface TaskItem {
+  id: string
+  title: string
+  status: "Done" | "Pending"
+  dueDate: string
+}
 
+interface TasksSectionProps {
+  tasks?: TaskItem[] | null
+}
+
+export function TasksSection({ tasks: tasksProp }: TasksSectionProps) {
+  const tasks = tasksProp ?? []
   const completedCount = tasks.filter((t) => t.status === "Done").length
 
   return (
@@ -24,6 +28,9 @@ export function TasksSection() {
       </CardHeader>
       <CardContent>
         <div className="space-y-3">
+          {tasks.length === 0 && (
+            <p className="text-sm text-muted-foreground py-4">No tasks for this goal.</p>
+          )}
           {tasks.map((task, index) => (
             <div key={task.id}>
               <div className="flex items-start gap-3 py-3">

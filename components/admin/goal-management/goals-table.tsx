@@ -1,98 +1,29 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { Search, MoreVertical, Eye, Archive } from "lucide-react"
 
-interface Goal {
+export interface Goal {
   id: string
   title: string
   ownerName: string
-  goalType: "Daily" | "Weekly" | "Monthly" | "Long-term"
+  goalType: string
   progress: number
   status: "In Progress" | "Completed" | "Archived"
   createdDate: string
 }
 
-const sampleGoals: Goal[] = [
-  {
-    id: "1",
-    title: "Exercise Daily",
-    ownerName: "Sarah Johnson",
-    goalType: "Daily",
-    progress: 80,
-    status: "In Progress",
-    createdDate: "Nov 20, 2024",
-  },
-  {
-    id: "2",
-    title: "Read for 30 minutes",
-    ownerName: "Ahmed Hassan",
-    goalType: "Daily",
-    progress: 100,
-    status: "Completed",
-    createdDate: "Nov 19, 2024",
-  },
-  {
-    id: "3",
-    title: "Complete Project Alpha",
-    ownerName: "Maria Garcia",
-    goalType: "Long-term",
-    progress: 45,
-    status: "In Progress",
-    createdDate: "Nov 18, 2024",
-  },
-  {
-    id: "4",
-    title: "Learn Spanish Basics",
-    ownerName: "John Smith",
-    goalType: "Weekly",
-    progress: 60,
-    status: "In Progress",
-    createdDate: "Nov 17, 2024",
-  },
-  {
-    id: "5",
-    title: "Write 50k words",
-    ownerName: "Lisa Chen",
-    goalType: "Monthly",
-    progress: 35,
-    status: "In Progress",
-    createdDate: "Nov 16, 2024",
-  },
-  {
-    id: "6",
-    title: "Meditation Challenge",
-    ownerName: "Amara Okafor",
-    goalType: "Weekly",
-    progress: 100,
-    status: "Completed",
-    createdDate: "Nov 15, 2024",
-  },
-  {
-    id: "7",
-    title: "Save $5000",
-    ownerName: "David Martinez",
-    goalType: "Monthly",
-    progress: 75,
-    status: "In Progress",
-    createdDate: "Nov 14, 2024",
-  },
-  {
-    id: "8",
-    title: "Old Project Goal",
-    ownerName: "Emma Wilson",
-    goalType: "Long-term",
-    progress: 100,
-    status: "Archived",
-    createdDate: "Nov 1, 2024",
-  },
-]
-
-const goalTypeConfig = {
+const goalTypeConfig: Record<string, string> = {
   Daily: "bg-blue-50 text-blue-700",
   Weekly: "bg-purple-50 text-purple-700",
   Monthly: "bg-orange-50 text-orange-700",
   "Long-term": "bg-pink-50 text-pink-700",
+  health: "bg-blue-50 text-blue-700",
+  career: "bg-purple-50 text-purple-700",
+  spiritual: "bg-amber-50 text-amber-700",
+  financial: "bg-green-50 text-green-700",
+  personal: "bg-pink-50 text-pink-700",
 }
 
 const statusConfig = {
@@ -102,27 +33,34 @@ const statusConfig = {
 }
 
 interface GoalsTableProps {
+  goals: Goal[]
   searchQuery: string
   setSearchQuery: (query: string) => void
   goalType: string
   setGoalType: (type: string) => void
   goalStatus: string
   setGoalStatus: (status: string) => void
+  pagination?: { page: number; totalPages: number; onPageChange: (page: number) => void }
+  loading?: boolean
 }
 
 export function GoalsTable({
+  goals,
   searchQuery,
   setSearchQuery,
   goalType,
   setGoalType,
   goalStatus,
   setGoalStatus,
+  pagination,
+  loading,
 }: GoalsTableProps) {
   const [expandedRow, setExpandedRow] = useState<string | null>(null)
-  const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 5
+  const [localPage, setLocalPage] = useState(1)
+  const itemsPerPage = 10
+  const useServerPagination = pagination && pagination.totalPages > 0
 
-  const filteredGoals = sampleGoals.filter((goal) => {
+  const filteredGoals = goals.filter((goal) => {
     const matchesSearch =
       goal.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       goal.ownerName.toLowerCase().includes(searchQuery.toLowerCase())
@@ -131,15 +69,18 @@ export function GoalsTable({
     return matchesSearch && matchesType && matchesStatus
   })
 
-  const totalPages = Math.ceil(filteredGoals.length / itemsPerPage)
+  const totalPages = useServerPagination ? pagination!.totalPages : Math.ceil(filteredGoals.length / itemsPerPage) || 1
+  const currentPage = useServerPagination ? pagination!.page : localPage
+  const onPageChange = useServerPagination ? pagination!.onPageChange : setLocalPage
   const startIdx = (currentPage - 1) * itemsPerPage
-  const paginatedGoals = filteredGoals.slice(startIdx, startIdx + itemsPerPage)
+  const paginatedGoals = useServerPagination ? filteredGoals : filteredGoals.slice(startIdx, startIdx + itemsPerPage)
 
   const handleReset = () => {
     setSearchQuery("")
     setGoalType("all")
     setGoalStatus("all")
-    setCurrentPage(1)
+    if (useServerPagination) pagination!.onPageChange(1)
+    else setLocalPage(1)
   }
 
   return (
@@ -155,7 +96,7 @@ export function GoalsTable({
               value={searchQuery}
               onChange={(e) => {
                 setSearchQuery(e.target.value)
-                setCurrentPage(1)
+                onPageChange(1)
               }}
               className="w-full pl-10 pr-4 py-2 border border-border rounded-lg bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             />
@@ -166,22 +107,23 @@ export function GoalsTable({
               value={goalType}
               onChange={(e) => {
                 setGoalType(e.target.value)
-                setCurrentPage(1)
+                onPageChange(1)
               }}
               className="px-4 py-2 border border-border rounded-lg bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             >
               <option value="all">All Types</option>
-              <option value="Daily">Daily</option>
-              <option value="Weekly">Weekly</option>
-              <option value="Monthly">Monthly</option>
-              <option value="Long-term">Long-term</option>
+              <option value="health">Health</option>
+              <option value="career">Career</option>
+              <option value="spiritual">Spiritual</option>
+              <option value="financial">Financial</option>
+              <option value="personal">Personal</option>
             </select>
 
             <select
               value={goalStatus}
               onChange={(e) => {
                 setGoalStatus(e.target.value)
-                setCurrentPage(1)
+                onPageChange(1)
               }}
               className="px-4 py-2 border border-border rounded-lg bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             >
@@ -220,9 +162,9 @@ export function GoalsTable({
             </tr>
           </thead>
           <tbody>
-            {paginatedGoals.map((goal) => {
+            {(loading ? [] : paginatedGoals).map((goal) => {
               const statusBadge = statusConfig[goal.status as keyof typeof statusConfig]
-              const typeBadge = goalTypeConfig[goal.goalType as keyof typeof goalTypeConfig]
+              const typeBadge = goalTypeConfig[goal.goalType] || "bg-muted text-muted-foreground"
               return (
                 <tr key={goal.id} className="border-b border-border hover:bg-muted transition">
                   <td className="px-6 py-4 text-sm font-medium text-foreground">{goal.title}</td>
@@ -250,9 +192,12 @@ export function GoalsTable({
                   <td className="px-6 py-4 text-sm text-muted-foreground">{goal.createdDate}</td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2">
-                      <button className="p-2 hover:bg-muted rounded-lg transition text-muted-foreground hover:text-foreground">
+                      <Link
+                        href={`/admin/goals/${goal.id}`}
+                        className="p-2 hover:bg-muted rounded-lg transition text-muted-foreground hover:text-foreground inline-flex"
+                      >
                         <Eye size={18} />
-                      </button>
+                      </Link>
                       <button className="p-2 hover:bg-muted rounded-lg transition text-muted-foreground hover:text-foreground">
                         <MoreVertical size={18} />
                       </button>
@@ -267,9 +212,9 @@ export function GoalsTable({
 
       {/* Mobile Card View */}
       <div className="md:hidden space-y-4 p-6">
-        {paginatedGoals.map((goal) => {
+        {(loading ? [] : paginatedGoals).map((goal) => {
           const statusBadge = statusConfig[goal.status as keyof typeof statusConfig]
-          const typeBadge = goalTypeConfig[goal.goalType as keyof typeof goalTypeConfig]
+          const typeBadge = goalTypeConfig[goal.goalType] || "bg-muted text-muted-foreground"
           const isExpanded = expandedRow === goal.id
 
           return (
@@ -306,10 +251,13 @@ export function GoalsTable({
                     <span className="text-foreground font-medium">{goal.createdDate}</span>
                   </div>
                   <div className="flex gap-2 mt-4">
-                    <button className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-lg text-xs font-medium hover:bg-primary/90 transition">
+                    <Link
+                      href={`/admin/goals/${goal.id}`}
+                      className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-lg text-xs font-medium hover:bg-primary/90 transition"
+                    >
                       <Eye size={14} />
                       View
-                    </button>
+                    </Link>
                     <button className="flex-1 flex items-center justify-center gap-2 px-3 py-2 border border-border rounded-lg text-xs font-medium text-foreground hover:bg-muted transition">
                       <Archive size={14} />
                       Archive
@@ -330,44 +278,52 @@ export function GoalsTable({
       </div>
 
       {/* Empty State */}
-      {paginatedGoals.length === 0 && (
+      {!loading && paginatedGoals.length === 0 && (
         <div className="p-12 text-center">
           <p className="text-muted-foreground">No goals found matching your criteria.</p>
         </div>
       )}
 
+      {loading && (
+        <div className="p-12 text-center">
+          <p className="text-muted-foreground">Loading goals…</p>
+        </div>
+      )}
+
       {/* Pagination */}
-      <div className="p-6 border-t border-border flex items-center justify-center gap-2">
-        <button
-          onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-          disabled={currentPage === 1}
-          className="px-3 py-2 border border-border rounded-lg text-sm font-medium text-foreground hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed transition"
-        >
-          Previous
-        </button>
-
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+      {totalPages > 1 && (
+        <div className="p-6 border-t border-border flex items-center justify-center gap-2">
           <button
-            key={page}
-            onClick={() => setCurrentPage(page)}
-            className={`px-3 py-2 rounded-lg text-sm font-medium transition ${
-              page === currentPage
-                ? "bg-primary text-primary-foreground"
-                : "border border-border text-foreground hover:bg-muted"
-            }`}
+            onClick={() => onPageChange(Math.max(1, currentPage - 1))}
+            disabled={currentPage === 1}
+            className="px-3 py-2 border border-border rounded-lg text-sm font-medium text-foreground hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed transition"
           >
-            {page}
+            Previous
           </button>
-        ))}
 
-        <button
-          onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-          disabled={currentPage === totalPages}
-          className="px-3 py-2 border border-border rounded-lg text-sm font-medium text-foreground hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed transition"
-        >
-          Next
-        </button>
-      </div>
+          {Array.from({ length: Math.min(totalPages, 10) }, (_, i) => i + 1).map((page) => (
+            <button
+              key={page}
+              onClick={() => onPageChange(page)}
+              className={`px-3 py-2 rounded-lg text-sm font-medium transition ${
+                page === currentPage
+                  ? "bg-primary text-primary-foreground"
+                  : "border border-border text-foreground hover:bg-muted"
+              }`}
+            >
+              {page}
+            </button>
+          ))}
+
+          <button
+            onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
+            disabled={currentPage === totalPages}
+            className="px-3 py-2 border border-border rounded-lg text-sm font-medium text-foreground hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed transition"
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   )
 }

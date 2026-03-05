@@ -3,36 +3,56 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge, CalendarDays, TrendingUp } from "lucide-react"
 
-export function GoalOverview() {
-  const goal = {
-    title: "Complete Project Alpha",
-    ownerName: "Maria Garcia",
-    ownerEmail: "maria.garcia@email.com",
-    ownerAvatar: "MG",
-    type: "Long-term",
-    status: "In Progress",
-    progress: 45,
-    startDate: "November 1, 2024",
-    endDate: "December 31, 2024",
-    description:
-      "A comprehensive long-term project aimed at building a complete AI-powered platform. This goal involves multiple phases including research, development, testing, and deployment. The project is scheduled to be completed by the end of the year with regular milestone checkpoints.",
-  }
+export interface GoalOverviewData {
+  title: string
+  ownerName: string
+  ownerEmail: string
+  ownerAvatar: string
+  type: string
+  status: string
+  progress: number
+  startDate: string
+  endDate: string
+  description: string
+}
 
-  const goalTypeConfig = {
+interface GoalOverviewProps {
+  goal?: GoalOverviewData | null
+}
+
+const goalTypeConfig = {
     "Long-term": { bg: "bg-pink-50", text: "text-pink-700" },
-    Monthly: { bg: "bg-orange-50", text: "text-orange-700" },
-    Weekly: { bg: "bg-purple-50", text: "text-purple-700" },
-    Daily: { bg: "bg-blue-50", text: "text-blue-700" },
-  }
+  Monthly: { bg: "bg-orange-50", text: "text-orange-700" },
+  Weekly: { bg: "bg-purple-50", text: "text-purple-700" },
+  Daily: { bg: "bg-blue-50", text: "text-blue-700" },
+  health: { bg: "bg-blue-50", text: "text-blue-700" },
+  career: { bg: "bg-purple-50", text: "text-purple-700" },
+  spiritual: { bg: "bg-amber-50", text: "text-amber-700" },
+  financial: { bg: "bg-green-50", text: "text-green-700" },
+  personal: { bg: "bg-pink-50", text: "text-pink-700" },
+}
 
-  const statusConfig = {
-    "In Progress": { bg: "bg-amber-50", text: "text-amber-700" },
-    Completed: { bg: "bg-green-50", text: "text-green-700" },
-    Archived: { bg: "bg-gray-50", text: "text-gray-700" },
-  }
+const statusConfig = {
+  "In Progress": { bg: "bg-amber-50", text: "text-amber-700" },
+  Completed: { bg: "bg-green-50", text: "text-green-700" },
+  Archived: { bg: "bg-gray-50", text: "text-gray-700" },
+}
 
-  const typeConfig = goalTypeConfig[goal.type as keyof typeof goalTypeConfig]
-  const statusBadge = statusConfig[goal.status as keyof typeof statusConfig]
+export function GoalOverview({ goal: goalProp }: GoalOverviewProps) {
+  const goal = goalProp ?? {
+    title: "—",
+    ownerName: "—",
+    ownerEmail: "—",
+    ownerAvatar: "—",
+    type: "—",
+    status: "In Progress",
+    progress: 0,
+    startDate: "—",
+    endDate: "—",
+    description: "No description.",
+  }
+  const typeConfig = goalTypeConfig[goal.type as keyof typeof goalTypeConfig] ?? { bg: "bg-muted", text: "text-muted-foreground" }
+  const statusBadge = statusConfig[goal.status as keyof typeof statusConfig] ?? statusConfig["In Progress"]
 
   return (
     <Card>

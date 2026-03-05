@@ -35,20 +35,33 @@ function initials(name: string): string {
     .slice(0, 2) || "?"
 }
 
+function mapStatusToApi(ui: string): string | undefined {
+  if (ui === "Active") return "active"
+  if (ui === "Inactive") return "free"
+  if (ui === "Suspended") return "canceled"
+  return undefined
+}
+
 export default function UserManagementPage() {
   const [searchQuery, setSearchQuery] = useState("")
   const [filterStatus, setFilterStatus] = useState("all")
+  const [filterRole, setFilterRole] = useState("all")
   const [users, setUsers] = useState<User[]>([])
+  const [pagination, setPagination] = useState({ page: 1, totalPages: 1 })
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [page, setPage] = useState(1)
   const limit = 20
 
   useEffect(() => {
     let cancelled = false
     setLoading(true)
     setError(null)
-    getUsers({ page, limit })
+    getUsers({
+      page: pagination.page,
+      limit,
+      role: filterRole === "all" ? undefined : filterRole,
+      subscriptionStatus: mapStatusToApi(filterStatus),
+    })
       .then((res) => {
         if (cancelled) return
         const mapped: User[] = (res.items || []).map((u) => ({
@@ -61,6 +74,10 @@ export default function UserManagementPage() {
           avatar: initials(u.name ?? "U"),
         }))
         setUsers(mapped)
+        setPagination((prev) => ({
+          ...prev,
+          totalPages: res.pagination?.totalPages ?? 1,
+        }))
       })
       .catch((err) => {
         if (!cancelled) setError(err instanceof Error ? err.message : "Failed to load users")
@@ -71,7 +88,7 @@ export default function UserManagementPage() {
     return () => {
       cancelled = true
     }
-  }, [page])
+  }, [pagination.page, filterStatus, filterRole])
 
   return (
     <div className="min-h-screen bg-background">
@@ -85,7 +102,7 @@ export default function UserManagementPage() {
                 {error}
               </div>
             )}
-            {loading ? (
+            {loading && !users.length ? (
               <div className="py-12 text-center text-muted-foreground">Loading users…</div>
             ) : (
               <UserTable
@@ -93,7 +110,15 @@ export default function UserManagementPage() {
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
                 filterStatus={filterStatus}
-                setFilterStatus={setFilterStatus}
+                setFilterStatus={(v) => { setPagination((p) => ({ ...p, page: 1 })); setFilterStatus(v) }}
+                filterRole={filterRole}
+                setFilterRole={(v) => { setPagination((p) => ({ ...p, page: 1 })); setFilterRole(v) }}
+                pagination={{
+                  page: pagination.page,
+                  totalPages: pagination.totalPages,
+                  onPageChange: (p) => setPagination((prev) => ({ ...prev, page: p })),
+                }}
+                loading={loading}
               />
             )}
           </div>

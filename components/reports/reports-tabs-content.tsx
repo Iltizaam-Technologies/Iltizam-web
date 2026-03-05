@@ -7,7 +7,12 @@ import { MonthlyReviewsTab } from "./tabs/monthly-reviews-tab"
 import { YearEndWrapsTab } from "./tabs/year-end-wraps-tab"
 import { WeeklyReportsTab } from "./tabs/weekly-reviews-tab"
 
-export function ReportsTabsContent() {
+interface ReportsTabsContentProps {
+  weeklyReports?: Array<{ id: string; user: string; weekRange: string; tasksCompleted: number; averageMood: string; status: string }>
+  weeklyLoading?: boolean
+}
+
+export function ReportsTabsContent({ weeklyReports = [], weeklyLoading }: ReportsTabsContentProps) {
   const [activeTab, setActiveTab] = useState("weekly")
 
   return (
@@ -22,7 +27,7 @@ export function ReportsTabsContent() {
 
           <div className="mt-6">
             <TabsContent value="weekly">
-              <WeeklyReportsTab />
+              <WeeklyReportsTab weeklyReports={weeklyReports} loading={weeklyLoading} />
             </TabsContent>
             <TabsContent value="monthly">
               <MonthlyReviewsTab />
