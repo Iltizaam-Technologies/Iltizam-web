@@ -62,8 +62,10 @@ export default function GoalDetailsPage() {
       .then((data) => {
         if (cancelled) return
         const owner = data.owner ?? data.userId
-        const name = data.userName ?? (typeof owner === "object" && owner?.name) ?? "—"
-        const email = data.userEmail ?? (typeof owner === "object" && owner?.email) ?? "—"
+        const nameVal = data.userName ?? (typeof owner === "object" && owner ? (owner as { name?: string }).name : undefined)
+        const emailVal = data.userEmail ?? (typeof owner === "object" && owner ? (owner as { email?: string }).email : undefined)
+        const name = typeof nameVal === "string" ? nameVal : "—"
+        const email = typeof emailVal === "string" ? emailVal : "—"
         setGoalOverview({
           title: data.title ?? "—",
           ownerName: name,

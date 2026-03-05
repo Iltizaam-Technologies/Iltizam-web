@@ -54,15 +54,18 @@ export default function GoalsManagement() {
       category: goalType === "all" ? undefined : goalType,
     })
       .then((res) => {
-        const mapped: Goal[] = (res.items || []).map((g) => ({
+        const mapped: Goal[] = (res.items || []).map((g) => {
+          const ownerNameVal = g.userName ?? (typeof g.userId === "object" && g.userId ? (g.userId as { name?: string }).name : undefined)
+          return {
           id: g._id,
           title: g.title || "—",
-          ownerName: g.userName ?? (typeof g.userId === "object" && g.userId?.name) ?? "—",
+          ownerName: typeof ownerNameVal === "string" ? ownerNameVal : "—",
           goalType: capitalize(g.category || "personal"),
           progress: g.progress ?? 0,
           status: mapStatusFromApi(g.status || "active"),
           createdDate: formatDate(g.createdAt),
-        }))
+          }
+        });
         setGoals(mapped)
         setPagination({ totalPages: res.pagination?.totalPages ?? 1 })
       })

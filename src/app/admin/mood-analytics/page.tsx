@@ -14,10 +14,11 @@ import {
   getMoodTrends,
   getMoodDistribution,
   getMoodRiskFlags,
+  type MoodSummary,
 } from "@/lib/admin-api"
 
 export default function MoodAnalyticsPage() {
-  const [summary, setSummary] = useState<Record<string, unknown> | null>(null)
+  const [summary, setSummary] = useState<MoodSummary | null>(null)
   const [trends, setTrends] = useState<Array<{ date: string; mood: number }>>([])
   const [distribution, setDistribution] = useState<Array<{ emoji: string; label: string; percentage: number; color: string }>>([])
   const [riskFlags, setRiskFlags] = useState<Array<{ user: string; lastMood: string; trend: string; riskLevel: "Low" | "Medium" | "High"; userId?: string }>>([])

@@ -7,10 +7,10 @@ import { ReportsHeader } from "../../../../components/reports/header"
 import { ReportInsights } from "../../../../components/reports/report-insights"
 import { ReportsSummaryCards } from "../../../../components/reports/report-summary-card"
 import { ReportsTabsContent } from "../../../../components/reports/reports-tabs-content"
-import { getReportsSummary, getReportsWeekly, getReportsInsights } from "@/lib/admin-api"
+import { getReportsSummary, getReportsWeekly, getReportsInsights, type ReportsSummary } from "@/lib/admin-api"
 
 export default function ReportsWrapsPage() {
-  const [summary, setSummary] = useState<Record<string, unknown> | null>(null)
+  const [summary, setSummary] = useState<ReportsSummary | null>(null)
   const [weeklyItems, setWeeklyItems] = useState<Array<{ id: string; user: string; weekRange: string; tasksCompleted: number; averageMood: string; status: string }>>([])
   const [insights, setInsights] = useState<Array<{ text: string; impact: string }>>([])
   const [loading, setLoading] = useState(true)

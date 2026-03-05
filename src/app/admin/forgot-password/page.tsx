@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import { Lock } from "lucide-react"
-import { Button } from "@/components/ui/button"
 
 export default function AdminForgotPasswordPage() {
   return (
@@ -17,9 +16,12 @@ export default function AdminForgotPasswordPage() {
         <p className="mb-6 text-sm text-muted-foreground">
           Admin password reset is not available here. Contact your system administrator to reset your password.
         </p>
-        <Button asChild className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-          <Link href="/admin/login">Back to login</Link>
-        </Button>
+        <Link
+          href="/admin/login"
+          className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium w-full bg-primary text-primary-foreground hover:bg-primary/90"
+        >
+          Back to login
+        </Link>
       </div>
     </div>
   )
