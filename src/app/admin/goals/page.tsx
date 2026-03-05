@@ -6,7 +6,7 @@ import { GoalsHeader } from "../../../../components/admin/goal-management/header
 import { GoalsTable, type Goal } from "../../../../components/admin/goal-management/goals-table"
 import { GoalsStats } from "../../../../components/admin/goal-management/goal-stats"
 import { Footer } from "../../../../components/footer"
-import { getAdminGoals, getAdminStats } from "../../../../lib/admin-api"
+import { getAdminGoals, getAdminStats } from "@/lib/admin-api"
 
 function mapStatusFromApi(s: string): "In Progress" | "Completed" | "Archived" {
   if (s === "active") return "In Progress"

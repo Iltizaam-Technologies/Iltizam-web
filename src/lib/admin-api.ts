@@ -24,26 +24,57 @@ export function clearAdminToken(): void {
 async function apiRequest<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const token = getToken();
   const url = `${API_BASE_URL}${endpoint}`;
-  const res = await fetch(url, {
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      ...(options.headers as Record<string, string>),
-    },
-  });
 
-  const data = await res.json().catch(() => ({}));
+  let res: Response;
+  try {
+    res = await fetch(url, {
+      ...options,
+      headers: {
+        "Content-Type": "application/json",
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        ...(options.headers as Record<string, string>),
+      },
+    });
+  } catch (err) {
+    const msg =
+      err instanceof Error ? err.message : "Network error";
+    const isNetwork =
+      msg === "Failed to fetch" ||
+      msg.includes("NetworkError") ||
+      msg.includes("Load failed") ||
+      msg.includes("network") ||
+      msg.includes("CORS");
+    throw new Error(
+      isNetwork
+        ? "Cannot reach the server. Check that the backend is running and NEXT_PUBLIC_API_URL is correct."
+        : msg
+    );
+  }
+
+  const contentType = res.headers.get("content-type");
+  const isJson = contentType?.includes("application/json");
+  const data = isJson
+    ? await res.json().catch(() => ({}))
+    : {};
 
   if (!res.ok) {
     const message =
-      (data as { error?: { message?: string }; message?: string })?.error?.message ||
+      (data as { error?: { message?: string } })?.error?.message ||
       (data as { message?: string })?.message ||
-      "API request failed";
+      `Request failed (${res.status}). Try again.`;
     throw new Error(message);
   }
 
-  return ((data as { data?: T }).data !== undefined ? (data as { data: T }).data : data) as T;
+  const out = ((data as { data?: T }).data !== undefined ? (data as { data: T }).data : data) as T;
+
+  if (endpoint === "/api/admin/login") {
+    const login = out as LoginResponse;
+    if (!login?.token || typeof login.token !== "string") {
+      throw new Error("Invalid response from server. Please try again.");
+    }
+  }
+
+  return out;
 }
 
 export interface LoginResponse {

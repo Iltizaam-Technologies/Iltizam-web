@@ -7,7 +7,7 @@ import { ReportsHeader } from "../../../../components/reports/header"
 import { ReportInsights } from "../../../../components/reports/report-insights"
 import { ReportsSummaryCards } from "../../../../components/reports/report-summary-card"
 import { ReportsTabsContent } from "../../../../components/reports/reports-tabs-content"
-import { getReportsSummary, getReportsWeekly, getReportsInsights } from "../../../../lib/admin-api"
+import { getReportsSummary, getReportsWeekly, getReportsInsights } from "@/lib/admin-api"
 
 export default function ReportsWrapsPage() {
   const [summary, setSummary] = useState<Record<string, unknown> | null>(null)

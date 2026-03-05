@@ -5,7 +5,7 @@ import { useParams } from "next/navigation"
 import { AdminNav } from "../../../../../components/admin/admin-nav"
 import { UserDetailsContent, type UserDetailsUser } from "../../../../../components/admin/user-details/user-details-content"
 import { Footer } from "../../../../../components/footer"
-import { getUserById } from "../../../../../lib/admin-api"
+import { getUserById } from "@/lib/admin-api"
 
 function mapSubscriptionToStatus(s?: string): "Active" | "Inactive" | "Suspended" {
   if (!s) return "Inactive"

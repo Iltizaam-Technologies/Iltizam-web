@@ -25,11 +25,22 @@ export default function AdminLoginPage() {
 
     try {
       const res = await loginAdmin(email, password)
+      if (!res?.token) {
+        setError("Invalid response from server. Please try again.")
+        return
+      }
       setAdminToken(res.token)
-      router.push("/admin/dashboard")
+      router.replace("/admin/dashboard")
     } catch (err) {
-      const message = err instanceof Error ? err.message : "Invalid credentials. Please try again."
+      const raw = err instanceof Error ? err.message : String(err)
+      const message =
+        raw && raw !== "[object Object]"
+          ? raw
+          : "Something went wrong. Please check the backend is running and try again."
       setError(message)
+      if (process.env.NODE_ENV === "development") {
+        console.error("[Admin login error]", err)
+      }
     } finally {
       setIsLoading(false)
     }
@@ -88,8 +99,16 @@ export default function AdminLoginPage() {
               <h2 className="mb-2 text-2xl font-semibold text-foreground">Admin Login</h2>
               <p className="mb-6 text-sm text-muted-foreground">Sign in to access your admin dashboard</p>
 
-              {/* Error Message */}
-              {error && <div className="mb-4 rounded-md bg-destructive/10 p-3 text-sm text-destructive">{error}</div>}
+              {/* Error Message - always visible when error is set */}
+              {error && (
+                <div
+                  role="alert"
+                  aria-live="polite"
+                  className="mb-4 rounded-md border border-destructive/50 bg-destructive/15 p-3 text-sm font-medium text-destructive"
+                >
+                  {error}
+                </div>
+              )}
 
               {/* Login Form */}
               <form onSubmit={handleSubmit} className="space-y-4">

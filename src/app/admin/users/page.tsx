@@ -5,7 +5,7 @@ import { AdminNav } from "../../../../components/admin/admin-nav"
 import { UserManagementHeader } from "../../../../components/admin/user-management/header"
 import { UserTable, type User } from "../../../../components/admin/user-management/user-table"
 import { Footer } from "../../../../components/footer"
-import { getUsers } from "../../../../lib/admin-api"
+import { getUsers } from "@/lib/admin-api"
 
 function mapSubscriptionToStatus(subscriptionStatus?: string): "Active" | "Inactive" | "Suspended" {
   if (!subscriptionStatus) return "Inactive"

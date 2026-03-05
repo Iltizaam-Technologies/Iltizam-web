@@ -15,7 +15,7 @@ import {
   getAdminNotifications,
   type AdminNotificationItem,
   type BroadcastPayload,
-} from "../../../../lib/admin-api"
+} from "@/lib/admin-api"
 
 export default function WhatsAppNotificationsPage() {
   const [title, setTitle] = useState("")

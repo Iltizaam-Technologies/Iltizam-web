@@ -37,8 +37,12 @@ export const BreadcrumbItem: React.FC<React.LiHTMLAttributes<HTMLLIElement>> = (
 export const BreadcrumbLink: React.FC<
   React.AnchorHTMLAttributes<HTMLAnchorElement> & { asChild?: boolean }
 > = ({ children, className = "", asChild = false, ...props }) => {
-  // asChild is typically used by shadcn to allow passing Link as child.
-  // We just render whatever's passed.
+  if (asChild && React.isValidElement(children)) {
+    return React.cloneElement(children as React.ReactElement<{ className?: string }>, {
+      className: [className, (children as React.ReactElement<{ className?: string }>).props?.className].filter(Boolean).join(" "),
+      ...props,
+    })
+  }
   return (
     <a className={className} {...props}>
       {children}

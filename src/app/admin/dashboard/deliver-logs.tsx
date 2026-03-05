@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { FileText } from "lucide-react"
-import { getNotificationLogs } from "../../../../lib/admin-api"
+import { getNotificationLogs } from "@/lib/admin-api"
 
 function formatSentAt(iso?: string): string {
   if (!iso) return "—"

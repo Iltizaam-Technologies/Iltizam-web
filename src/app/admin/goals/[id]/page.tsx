@@ -9,7 +9,7 @@ import { AdminNotesSection } from "../../../../../components/goal-details/admin-
 import { GoalOverview, type GoalOverviewData } from "../../../../../components/goal-details/goal-overview"
 import { GoalDetailsHeader } from "../../../../../components/goal-details/goals-details-header"
 import { TasksSection, type TaskItem } from "../../../../../components/goal-details/tasks-section"
-import { getAdminGoalById } from "../../../../../lib/admin-api"
+import { getAdminGoalById } from "@/lib/admin-api"
 
 function initials(name: string): string {
   return name

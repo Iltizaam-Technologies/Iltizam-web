@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { AdminNav } from "../../../../components/admin/admin-nav"
 import { Footer } from "../../../../components/footer"
-import { getAdminCommunityPosts, deleteCommunityPost, type AdminCommunityPost } from "../../../../lib/admin-api"
+import { getAdminCommunityPosts, deleteCommunityPost, type AdminCommunityPost } from "@/lib/admin-api"
 
 function authorName(post: AdminCommunityPost): string {
   const u = post.userId
