@@ -4,7 +4,9 @@ import type React from "react"
 
 import { useState } from "react"
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"
+const API_BASE =
+  process.env.NEXT_PUBLIC_API_URL ||
+  (process.env.NODE_ENV === "development" ? "http://localhost:5000" : "https://iltizam-backend.onrender.com")
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
