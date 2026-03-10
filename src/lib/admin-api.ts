@@ -2,11 +2,19 @@
  * Admin API client — all admin backend requests with JWT
  */
 
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL ||
-  (process.env.NODE_ENV === "development"
-    ? "http://localhost:5000"
-    : "https://iltizam-backend.onrender.com");
+const PRODUCTION_API_URL = "https://iltizam-backend.onrender.com";
+const DEV_API_URL = "http://localhost:5000";
+
+function getApiBaseUrl(): string {
+  if (process.env.NEXT_PUBLIC_API_URL) return process.env.NEXT_PUBLIC_API_URL;
+  if (typeof window !== "undefined") {
+    const isLocalhost = /localhost|127\.0\.0\.1/.test(window.location?.hostname ?? "");
+    return isLocalhost ? DEV_API_URL : PRODUCTION_API_URL;
+  }
+  return process.env.NODE_ENV === "development" ? DEV_API_URL : PRODUCTION_API_URL;
+}
+
+const API_BASE_URL = getApiBaseUrl();
 
 function getToken(): string | null {
   if (typeof window === "undefined") return null;
