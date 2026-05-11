@@ -13,6 +13,8 @@ interface KPICard {
   value: string | number
   trend: number
   isPositive: boolean
+  /** Native tooltip explaining how the value is derived */
+  hint?: string
 }
 
 function buildKpiData(stats: AdminStats | null): KPICard[] {
@@ -26,7 +28,14 @@ function buildKpiData(stats: AdminStats | null): KPICard[] {
   }
   return [
     { icon: <Users className="w-6 h-6 text-primary" />, title: "Total Users", value: stats.users.total.toLocaleString(), trend: 0, isPositive: true },
-    { icon: <Activity className="w-6 h-6 text-primary" />, title: "Active Users", value: stats.users.active.toLocaleString(), trend: 0, isPositive: true },
+    {
+      icon: <Activity className="w-6 h-6 text-primary" />,
+      title: "Active Users",
+      value: stats.users.active.toLocaleString(),
+      trend: 0,
+      isPositive: true,
+      hint: "Unique users on trial or paid subscription, or with at least one active goal, or at least one active habit.",
+    },
     { icon: <Target className="w-6 h-6 text-primary" />, title: "Goals", value: stats.content.goals.toLocaleString(), trend: 0, isPositive: true },
     { icon: <CheckCircle className="w-6 h-6 text-primary" />, title: "Habits", value: stats.content.habits.toLocaleString(), trend: 0, isPositive: true },
   ]
@@ -37,7 +46,11 @@ export function KPICards({ stats }: { stats: AdminStats | null }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {kpiData.map((kpi, index) => (
-        <div key={index} className="bg-white rounded-lg border border-border p-6 shadow-sm hover:shadow-md transition">
+        <div
+          key={index}
+          title={kpi.hint}
+          className="bg-white rounded-lg border border-border p-6 shadow-sm hover:shadow-md transition"
+        >
           <div className="flex items-start justify-between">
             <div className="flex-1">
               <p className="text-sm text-muted-foreground font-medium">{kpi.title}</p>
