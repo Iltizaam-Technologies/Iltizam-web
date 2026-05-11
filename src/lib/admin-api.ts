@@ -2,19 +2,29 @@
  * Admin API client — all admin backend requests with JWT
  */
 
-const PRODUCTION_API_URL = "https://iltizam-backend.onrender.com";
+const PRODUCTION_API_URL = "https://iltizam-backend-production.up.railway.app";
 const DEV_API_URL = "http://localhost:5000";
 
 function getApiBaseUrl(): string {
   if (process.env.NEXT_PUBLIC_API_URL) return process.env.NEXT_PUBLIC_API_URL;
+  // next dev: always use local backend unless NEXT_PUBLIC_API_URL is set (avoids LAN IP
+  // hostnames like 192.168.x.x incorrectly targeting production).
+  if (process.env.NODE_ENV === "development") return DEV_API_URL;
   if (typeof window !== "undefined") {
-    const isLocalhost = /localhost|127\.0\.0\.1/.test(window.location?.hostname ?? "");
-    return isLocalhost ? DEV_API_URL : PRODUCTION_API_URL;
+    const host = window.location?.hostname ?? "";
+    const isLocalHost =
+      /^(localhost|127\.0\.0\.1)$/i.test(host) ||
+      /^192\.168\.\d{1,3}\.\d{1,3}$/.test(host) ||
+      /^10\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(host) ||
+      /^172\.(1[6-9]|2\d|3[01])\.\d{1,3}\.\d{1,3}$/.test(host);
+    return isLocalHost ? DEV_API_URL : PRODUCTION_API_URL;
   }
-  return process.env.NODE_ENV === "development" ? DEV_API_URL : PRODUCTION_API_URL;
+  return PRODUCTION_API_URL;
 }
 
-const API_BASE_URL = getApiBaseUrl();
+function getApiBaseUrlRuntime(): string {
+  return getApiBaseUrl();
+}
 
 function getToken(): string | null {
   if (typeof window === "undefined") return null;
@@ -33,9 +43,22 @@ export function clearAdminToken(): void {
   }
 }
 
+/** Thrown for non-OK HTTP responses so callers can distinguish auth failures from bugs. */
+export class ApiRequestError extends Error {
+  readonly statusCode: number;
+  readonly code?: string;
+
+  constructor(message: string, statusCode: number, code?: string) {
+    super(message);
+    this.name = "ApiRequestError";
+    this.statusCode = statusCode;
+    this.code = code;
+  }
+}
+
 async function apiRequest<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const token = getToken();
-  const url = `${API_BASE_URL}${endpoint}`;
+  const url = `${getApiBaseUrlRuntime()}${endpoint}`;
 
   let res: Response;
   try {
@@ -70,11 +93,12 @@ async function apiRequest<T>(endpoint: string, options: RequestInit = {}): Promi
     : {};
 
   if (!res.ok) {
+    const errBody = data as { error?: { message?: string; code?: string } };
     const message =
-      (data as { error?: { message?: string } })?.error?.message ||
+      errBody?.error?.message ||
       (data as { message?: string })?.message ||
       `Request failed (${res.status}). Try again.`;
-    throw new Error(message);
+    throw new ApiRequestError(message, res.status, errBody?.error?.code);
   }
 
   const out = ((data as { data?: T }).data !== undefined ? (data as { data: T }).data : data) as T;
@@ -95,9 +119,10 @@ export interface LoginResponse {
 }
 
 export function loginAdmin(email: string, password: string): Promise<LoginResponse> {
+  const normalizedEmail = email.trim().toLowerCase();
   return apiRequest<LoginResponse>("/api/admin/login", {
     method: "POST",
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ email: normalizedEmail, password }),
   });
 }
 

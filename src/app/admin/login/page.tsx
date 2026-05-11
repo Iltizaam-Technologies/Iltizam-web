@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation"
 import { Lock } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { loginAdmin, setAdminToken } from "@/lib/admin-api"
+import { ApiRequestError, loginAdmin, setAdminToken } from "@/lib/admin-api"
 
 export default function AdminLoginPage() {
   const router = useRouter()
@@ -38,7 +38,9 @@ export default function AdminLoginPage() {
           ? raw
           : "Something went wrong. Please check the backend is running and try again."
       setError(message)
-      if (process.env.NODE_ENV === "development") {
+      const isExpectedAuthFailure =
+        err instanceof ApiRequestError && (err.statusCode === 401 || err.statusCode === 403)
+      if (process.env.NODE_ENV === "development" && !isExpectedAuthFailure) {
         console.error("[Admin login error]", err)
       }
     } finally {
@@ -120,7 +122,7 @@ export default function AdminLoginPage() {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="admin@iltizam.ai"
+                    placeholder="admin@iltizam.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
