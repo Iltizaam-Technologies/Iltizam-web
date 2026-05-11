@@ -10,8 +10,15 @@ import { getUsers } from "@/lib/admin-api"
 function mapSubscriptionToStatus(subscriptionStatus?: string): "Active" | "Inactive" | "Suspended" {
   if (!subscriptionStatus) return "Inactive"
   const s = subscriptionStatus.toLowerCase()
-  if (s === "suspended" || s === "banned") return "Suspended"
+  if (s === "suspended" || s === "banned" || s === "canceled") return "Suspended"
   if (s === "active" || s === "trial" || s === "subscribed") return "Active"
+  return "Inactive"
+}
+
+function mapAdminAccountStatus(api?: string): "Active" | "Inactive" | "Suspended" {
+  if (api === "active") return "Active"
+  if (api === "inactive") return "Inactive"
+  if (api === "suspended") return "Suspended"
   return "Inactive"
 }
 
@@ -35,10 +42,11 @@ function initials(name: string): string {
     .slice(0, 2) || "?"
 }
 
-function mapStatusToApi(ui: string): string | undefined {
+/** Admin list filter — matches backend dashboard "Active Users" semantics when set. */
+function mapFilterToUserFilter(ui: string): "active" | "inactive" | "suspended" | undefined {
   if (ui === "Active") return "active"
-  if (ui === "Inactive") return "free"
-  if (ui === "Suspended") return "canceled"
+  if (ui === "Inactive") return "inactive"
+  if (ui === "Suspended") return "suspended"
   return undefined
 }
 
@@ -60,7 +68,7 @@ export default function UserManagementPage() {
       page: pagination.page,
       limit,
       role: filterRole === "all" ? undefined : filterRole,
-      subscriptionStatus: mapStatusToApi(filterStatus),
+      userFilter: mapFilterToUserFilter(filterStatus),
     })
       .then((res) => {
         if (cancelled) return
@@ -70,7 +78,10 @@ export default function UserManagementPage() {
           email: u.email ?? "—",
           role: (u.role as string) ?? "User",
           joinedDate: formatJoinedDate(u.createdAt),
-          status: mapSubscriptionToStatus(u.subscriptionStatus),
+          status:
+            typeof u.adminAccountStatus === "string"
+              ? mapAdminAccountStatus(u.adminAccountStatus)
+              : mapSubscriptionToStatus(u.subscriptionStatus),
           avatar: initials(u.name ?? "U"),
         }))
         setUsers(mapped)

@@ -154,17 +154,27 @@ export interface AdminUsersResponse {
     email: string;
     role?: string;
     subscriptionStatus?: string;
+    /** Matches dashboard KPI: active = trial/active sub OR active goal OR active habit */
+    adminAccountStatus?: "active" | "inactive" | "suspended";
     createdAt?: string;
     [key: string]: unknown;
   }>;
   pagination: { page: number; limit: number; total: number; totalPages: number };
 }
 
-export function getUsers(params?: { page?: number; limit?: number; role?: string; subscriptionStatus?: string }): Promise<AdminUsersResponse> {
+export function getUsers(params?: {
+  page?: number;
+  limit?: number;
+  role?: string;
+  /** Prefer over subscriptionStatus for admin list filters (aligned with dashboard KPI). */
+  userFilter?: "active" | "inactive" | "suspended";
+  subscriptionStatus?: string;
+}): Promise<AdminUsersResponse> {
   const search = new URLSearchParams();
   if (params?.page != null) search.set("page", String(params.page));
   if (params?.limit != null) search.set("limit", String(params.limit));
   if (params?.role) search.set("role", params.role);
+  if (params?.userFilter) search.set("userFilter", params.userFilter);
   if (params?.subscriptionStatus) search.set("subscriptionStatus", params.subscriptionStatus);
   const q = search.toString();
   return apiRequest<AdminUsersResponse>(`/api/admin/users${q ? `?${q}` : ""}`);
