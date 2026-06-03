@@ -4,6 +4,7 @@ import { LayoutDashboard, Users, User, Target, Heart, FileText, Brain, MessageSq
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { clearAdminToken } from "@/lib/admin-api"
+import { BrandLogo } from "@/components/brand-logo"
 
 export function AdminNav() {
   const router = useRouter()
@@ -18,12 +19,12 @@ export function AdminNav() {
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-8">
-            <Link href="/admin/dashboard" className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-primary rounded flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-sm">AI</span>
-              </div>
-              <span className="font-semibold text-foreground hidden sm:inline">ILTIZAAM</span>
-            </Link>
+            <BrandLogo
+              href="/admin/dashboard"
+              size={32}
+              label="ILTIZAAM"
+              textClassName="font-semibold text-foreground hidden sm:inline"
+            />
 
             <div className="hidden md:flex items-center gap-6">
               <Link

@@ -2,7 +2,7 @@
  * Admin API client — all admin backend requests with JWT
  */
 
-const PRODUCTION_API_URL = "https://iltizam-backend-production.up.railway.app";
+const PRODUCTION_API_URL = "https://iltizam-backend.onrender.com";
 const DEV_API_URL = "http://localhost:5000";
 
 function getApiBaseUrl(): string {

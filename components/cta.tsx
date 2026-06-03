@@ -8,10 +8,10 @@ export function CTA() {
           Stay Committed. Stay Productive.
         </h2>
         <p className="text-lg text-primary-foreground/90 max-w-2xl mx-auto">
-          Join thousands of users who are already achieving their goals with ILTIZAM AI.
+          Join thousands of users who are already achieving their goals with ILTIZAAM AI.
         </p>
         <button className="bg-accent text-accent-foreground px-8 py-3 rounded-lg font-semibold text-lg hover:opacity-90 transition-opacity inline-flex items-center gap-2">
-          Join ILTIZAM AI Now
+          Join ILTIZAAM AI Now
           <ArrowRight size={20} />
         </button>
       </div>

@@ -9,6 +9,7 @@ import { Lock } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { ApiRequestError, loginAdmin, setAdminToken } from "@/lib/admin-api"
+import { BrandLogo } from "@/components/brand-logo"
 
 export default function AdminLoginPage() {
   const router = useRouter()
@@ -57,9 +58,7 @@ export default function AdminLoginPage() {
           <div className="w-full max-w-md text-center">
             {/* Logo Section */}
             <div className="mb-8 flex justify-center">
-              <div className="rounded-lg bg-primary p-3">
-                <Lock className="h-8 w-8 text-primary-foreground" />
-              </div>
+              <BrandLogo size={72} href={null} priority />
             </div>
 
             {/* Headline */}
@@ -97,6 +96,10 @@ export default function AdminLoginPage() {
           <div className="w-full max-w-[420px]">
             {/* Form Card */}
             <div className="rounded-2xl border border-border bg-card p-8 shadow-lg">
+              <div className="mb-6 flex justify-center lg:hidden">
+                <BrandLogo size={48} href={null} showText={false} />
+              </div>
+
               {/* Form Header */}
               <h2 className="mb-2 text-2xl font-semibold text-foreground">Admin Login</h2>
               <p className="mb-6 text-sm text-muted-foreground">Sign in to access your admin dashboard</p>

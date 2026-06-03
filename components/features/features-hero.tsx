@@ -1,33 +1,40 @@
+import Image from "next/image"
+
 export function FeaturesHero() {
   return (
-    <section className="py-16 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:60px_60px]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] -z-10" />
+      
+      <div className="max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
           <div className="space-y-8">
-            <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight text-balance">
-                Powerful Tools for a More <span className="text-primary">Disciplined</span> You
+            <div className="inline-flex items-center rounded-full border border-accent/20 bg-accent/10 px-3 py-1 text-sm font-medium text-accent backdrop-blur-sm">
+              <span className="flex h-2 w-2 rounded-full bg-accent mr-2"></span>
+              Next-Gen Features
+            </div>
+            <div className="space-y-6">
+              <h1 className="text-5xl md:text-6xl font-bold text-foreground leading-[1.1] tracking-tight">
+                Powerful Tools for a More <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Disciplined</span> You
               </h1>
-              <p className="text-lg md:text-xl text-foreground/70 leading-relaxed text-balance">
-                Discover how ILTIZAM AI helps you build consistency, achieve goals, and stay emotionally balanced.
+              <p className="text-xl text-muted-foreground leading-relaxed max-w-xl">
+                Discover how ILTIZAAM AI helps you build consistency, achieve goals, and stay emotionally balanced with our intelligent suite of tools.
               </p>
             </div>
           </div>
 
           {/* Right - Visual */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-sm">
-              <div className="aspect-square bg-gradient-to-br from-accent/20 to-primary/20 rounded-3xl flex items-center justify-center">
-                <div className="w-56 h-96 bg-primary rounded-2xl shadow-2xl flex flex-col items-center justify-center space-y-4 p-6">
-                  <div className="w-32 h-32 bg-accent rounded-lg opacity-40"></div>
-                  <div className="space-y-2 w-full">
-                    <div className="h-2 bg-accent/40 rounded w-full"></div>
-                    <div className="h-2 bg-accent/40 rounded w-5/6"></div>
-                    <div className="h-2 bg-accent/40 rounded w-4/5"></div>
-                  </div>
-                </div>
-              </div>
+          <div className="relative mx-auto w-full max-w-lg lg:max-w-none">
+            <div className="relative rounded-3xl overflow-hidden border border-border/50 shadow-2xl shadow-primary/20 aspect-square group">
+              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+              <Image
+                src="/features_ai_1780448143478.png"
+                alt="AI Technology Nodes"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                priority
+              />
             </div>
           </div>
         </div>
