@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
-import { LOGO_PATH } from "@/components/brand-logo"
+import { HOME_SCREEN_PATH } from "@/components/brand-logo"
 
 export function Hero() {
   return (
@@ -59,11 +59,11 @@ export function Hero() {
             <div className="relative rounded-3xl overflow-hidden border border-border/50 shadow-2xl shadow-primary/20 group">
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
               <Image
-                src="/hero_productivity_app_1780448115477.png"
-                alt="ILTIZAAM app dashboard"
+                src={HOME_SCREEN_PATH}
+                alt="ILTIZAAM app home screen"
                 width={800}
                 height={600}
-                className="object-cover w-full h-auto group-hover:scale-[1.02] transition-transform duration-700 ease-out"
+                className="object-contain w-full h-auto group-hover:scale-[1.02] transition-transform duration-700 ease-out bg-background"
                 priority
               />
             </div>

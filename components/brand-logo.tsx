@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 export const LOGO_PATH = "/Iltizaam-logo.png"
+export const HOME_SCREEN_PATH = "/iltizam-home-screen.PNG"
 
 type BrandLogoProps = {
   /** Pixel height/width of the logo mark (square container). */
