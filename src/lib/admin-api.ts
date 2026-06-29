@@ -2,8 +2,10 @@
  * Admin API client — all admin backend requests with JWT
  */
 
-const PRODUCTION_API_URL = "https://iltizam-backend.onrender.com";
-const DEV_API_URL = "http://localhost:5000";
+// Switch API target via Iltizam-admin-side/.env.local → NEXT_PUBLIC_API_URL
+const LOCAL_API_URL = "http://localhost:5000";
+const PRODUCTION_API_URL = "https://api.iltizaamai.com.ng";
+const DEV_API_URL = LOCAL_API_URL;
 
 function getApiBaseUrl(): string {
   if (process.env.NEXT_PUBLIC_API_URL) return process.env.NEXT_PUBLIC_API_URL;

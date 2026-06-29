@@ -6,7 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "start:cpanel": "next start -p $PORT",
+    "pack:deploy": "node scripts/pack-standalone.mjs",
+    "build:deploy": "npm run build && npm run pack:deploy",
     "lint": "eslint ."
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
