@@ -1,25 +1,24 @@
 import Link from "next/link"
+import { BrandLogo } from "@/components/brand-logo"
 
 export function PrivacyTermsHeader() {
   return (
-    <header className="bg-card border-b border-border sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-6 max-w-5xl">
-        <div className="text-center mb-6">
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Iltizaam – Your Accountability Coach</h1>
-          <p className="text-lg text-muted-foreground">Privacy Policy & Terms of Use</p>
-        </div>
-
-        <nav className="flex justify-center gap-6 text-sm">
-          <Link href="/" className="text-foreground hover:text-primary transition-colors">
+    <header className="sticky top-0 z-50 border-b border-border bg-card/95 backdrop-blur-md">
+      <div className="container mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
+        <Link href="/" className="flex items-center gap-2">
+          <BrandLogo size={32} textClassName="font-bold text-foreground" />
+        </Link>
+        <nav className="flex flex-wrap items-center justify-end gap-4 text-sm">
+          <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
             Home
           </Link>
-          <Link href="#privacy" className="text-foreground hover:text-primary transition-colors">
+          <Link href="/privacy-policy" className="text-muted-foreground hover:text-primary transition-colors">
             Privacy
           </Link>
-          <Link href="#terms" className="text-foreground hover:text-primary transition-colors">
+          <Link href="/privacy-terms#terms" className="text-muted-foreground hover:text-primary transition-colors">
             Terms
           </Link>
-          <Link href="/contact" className="text-foreground hover:text-primary transition-colors">
+          <Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">
             Contact
           </Link>
         </nav>

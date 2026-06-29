@@ -59,12 +59,12 @@ export function Footer() {
             <h4 className="font-semibold text-foreground">Legal</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-sm text-foreground/70 hover:text-primary transition-colors">
+                <a href="/privacy-policy" className="text-sm text-foreground/70 hover:text-primary transition-colors">
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a href="#" className="text-sm text-foreground/70 hover:text-primary transition-colors">
+                <a href="/privacy-terms#terms" className="text-sm text-foreground/70 hover:text-primary transition-colors">
                   Terms of Service
                 </a>
               </li>
