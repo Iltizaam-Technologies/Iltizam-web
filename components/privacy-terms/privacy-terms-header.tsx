@@ -18,6 +18,9 @@ export function PrivacyTermsHeader() {
           <Link href="/privacy-terms#terms" className="text-muted-foreground hover:text-primary transition-colors">
             Terms
           </Link>
+          <Link href="/delete-account" className="text-muted-foreground hover:text-primary transition-colors">
+            Delete Account
+          </Link>
           <Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">
             Contact
           </Link>

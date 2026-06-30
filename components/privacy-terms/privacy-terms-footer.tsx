@@ -16,6 +16,10 @@ export function PrivacyTermsFooter() {
             Terms of Use
           </Link>
           <span className="text-border hidden sm:inline">•</span>
+          <Link href="/delete-account" className="text-muted-foreground hover:text-primary transition-colors">
+            Delete Account
+          </Link>
+          <span className="text-border hidden sm:inline">•</span>
           <Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">
             Contact
           </Link>
