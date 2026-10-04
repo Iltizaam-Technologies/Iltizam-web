@@ -196,7 +196,7 @@ export default function AdminLoginPage() {
 
             {/* Footer */}
             <div className="mt-8 text-center text-xs text-muted-foreground">
-              © 2025 ILTIZAAM AI. All rights reserved.
+              © 2026 Iltizaam Technologies LLC. All rights reserved.
             </div>
           </div>
         </div>

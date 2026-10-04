@@ -17,12 +17,12 @@ export function ContactInfo() {
                   <Mail className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">Email</h3>
+                  <h3 className="font-semibold text-foreground mb-1">Business Email</h3>
                   <a
-                    href="mailto:support@iltizam.ai"
+                    href="mailto:management@iltizaam.com"
                     className="text-foreground/70 hover:text-primary transition-colors"
                   >
-                    support@iltizam.ai
+                    management@iltizaam.com
                   </a>
                 </div>
               </div>
@@ -33,7 +33,12 @@ export function ContactInfo() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Phone</h3>
-                  <p className="text-foreground/70">+1 (555) 123-4567</p>
+                  <a
+                    href="tel:+13072162518"
+                    className="text-foreground/70 hover:text-primary transition-colors"
+                  >
+                    +1 (307) 216-2518
+                  </a>
                 </div>
               </div>
 
@@ -42,10 +47,11 @@ export function ContactInfo() {
                   <MapPin className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">Office Address</h3>
+                  <h3 className="font-semibold text-foreground mb-1">Business Address</h3>
                   <p className="text-foreground/70">
-                    Example Address 
-                   
+                    Iltizaam Technologies LLC
+                    <br />
+                    32 N Gould St, Sheridan, WY 82801, USA
                   </p>
                 </div>
               </div>
@@ -57,7 +63,7 @@ export function ContactInfo() {
             <div className="w-full aspect-square bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg border border-border flex items-center justify-center">
               <div className="text-center">
                 <MapPin className="w-16 h-16 text-primary/30 mx-auto mb-4" />
-                <p className="text-foreground/50 font-medium">Map & Illustration</p>
+                <p className="text-foreground/50 font-medium">Sheridan, Wyoming</p>
               </div>
             </div>
           </div>

@@ -22,7 +22,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-sm text-foreground/70 hover:text-primary transition-colors">
+                <a href="/pricing" className="text-sm text-foreground/70 hover:text-primary transition-colors">
                   Pricing
                 </a>
               </li>
@@ -79,7 +79,7 @@ export function Footer() {
 
         {/* Social Icons */}
         <div className="border-t border-border pt-8 flex items-center justify-between">
-          <p className="text-sm text-foreground/70">© 2025 ILTIZAAM AI. All rights reserved.</p>
+          <p className="text-sm text-foreground/70">© 2026 Iltizaam Technologies LLC. All rights reserved.</p>
           <div className="flex gap-4">
             <a href="#" className="text-foreground/70 hover:text-primary transition-colors">
               <Facebook size={20} />
