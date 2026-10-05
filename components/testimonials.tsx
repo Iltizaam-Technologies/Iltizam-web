@@ -4,7 +4,7 @@ const testimonials = [
   {
     name: "Sarah Ahmed",
     comment:
-      "ILTIZAAM AI transformed how I approach my goals. The accountability feature keeps me motivated every single day.",
+      "ILTIZAAM transformed how I approach my goals. The accountability feature keeps me motivated every single day.",
     image: "/testimonials_portrait_1780448157418.png",
   },
   {
@@ -35,7 +35,7 @@ export function Testimonials() {
             Loved by <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Thousands</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            See how ILTIZAAM AI is helping people around the world achieve their most ambitious goals.
+            See how ILTIZAAM is helping people around the world achieve their most ambitious goals.
           </p>
         </div>
 

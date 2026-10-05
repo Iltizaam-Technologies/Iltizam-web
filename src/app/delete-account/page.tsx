@@ -6,9 +6,9 @@ import { Trash2 } from "lucide-react"
 import { LEGAL } from "../../../components/privacy-terms/legal-constants"
 
 export const metadata: Metadata = {
-  title: "Delete Your Iltizaam Account",
+  title: "Delete Your ILTIZAAM Account",
   description:
-    "Learn how to permanently delete your Iltizaam account and understand what happens to your data after deletion.",
+    "Learn how to permanently delete your ILTIZAAM account and understand what happens to your data after deletion.",
   robots: { index: true, follow: true },
   alternates: {
     canonical: "/delete-account",
@@ -26,7 +26,7 @@ export default function DeleteAccountPage() {
               <Trash2 className="h-7 w-7 text-red-600 dark:text-red-400" />
             </div>
             <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
-              Delete Your Iltizaam Account
+              Delete Your ILTIZAAM Account
             </h1>
             <p className="mt-3 text-lg text-muted-foreground md:text-xl">{LEGAL.appName}</p>
             <p className="mt-2 text-sm text-muted-foreground">

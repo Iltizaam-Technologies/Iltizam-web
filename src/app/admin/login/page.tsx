@@ -66,7 +66,7 @@ export default function AdminLoginPage() {
 
             {/* Subtext */}
             <p className="mb-12 text-base text-muted-foreground">
-              Manage users, monitor progress, and oversee the ILTIZAAM AI system.
+              Manage users, monitor progress, and oversee the ILTIZAAM system.
             </p>
 
             {/* Illustration Placeholder */}

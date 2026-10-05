@@ -8,10 +8,10 @@ export function AboutCTA() {
           Ready to Build a Better You?
         </h2>
         <p className="text-lg text-primary-foreground/90 max-w-2xl mx-auto">
-          Join thousands of committed individuals who are already transforming their lives with ILTIZAAM AI.
+          Join thousands of committed individuals who are already transforming their lives with ILTIZAAM.
         </p>
         <button className="bg-accent text-accent-foreground px-8 py-3 rounded-lg font-semibold text-lg hover:opacity-90 transition-opacity inline-flex items-center gap-2">
-          Join ILTIZAAM AI Today
+          Join ILTIZAAM Today
           <ArrowRight size={20} />
         </button>
       </div>

@@ -18,7 +18,7 @@ type BrandLogoProps = {
 export function BrandLogo({
   size = 36,
   showText = true,
-  label = "ILTIZAAM AI",
+  label = "ILTIZAAM",
   textClassName = "font-bold text-xl text-foreground",
   className = "",
   href = "/",

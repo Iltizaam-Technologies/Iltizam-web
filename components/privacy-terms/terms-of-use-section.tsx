@@ -27,7 +27,7 @@ export function TermsOfUseSection() {
             <CardTitle>2. Description of Service</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4 text-muted-foreground leading-relaxed">
-            <p>Iltizaam provides:</p>
+            <p>ILTIZAAM provides:</p>
             <ul className="ml-4 list-disc space-y-2">
               <li>Accountability tools</li>
               <li>AI-powered reminders and coaching</li>
@@ -124,7 +124,7 @@ export function TermsOfUseSection() {
           </CardHeader>
           <CardContent className="text-muted-foreground leading-relaxed">
             <p>
-              All content, trademarks, and materials inside the App belong to Iltizaam. Users may not copy, reproduce, or
+              All content, trademarks, and materials inside the App belong to ILTIZAAM. Users may not copy, reproduce, or
               distribute any part of the App without permission.
             </p>
           </CardContent>
@@ -136,7 +136,7 @@ export function TermsOfUseSection() {
           </CardHeader>
           <CardContent className="text-muted-foreground leading-relaxed">
             <p className="mb-3">
-              You retain ownership of your posts and journal entries, but you grant Iltizaam a license to:
+              You retain ownership of your posts and journal entries, but you grant ILTIZAAM a license to:
             </p>
             <ul className="ml-4 list-disc space-y-1">
               <li>Display</li>
@@ -165,7 +165,7 @@ export function TermsOfUseSection() {
             <CardTitle>10. Limitation of Liability</CardTitle>
           </CardHeader>
           <CardContent className="text-muted-foreground leading-relaxed">
-            <p className="mb-3">Iltizaam is provided “as is.” We are not responsible for:</p>
+            <p className="mb-3">ILTIZAAM is provided “as is.” We are not responsible for:</p>
             <ul className="ml-4 list-disc space-y-1">
               <li>Loss of profits</li>
               <li>Emotional decisions made based on reminders</li>
@@ -181,7 +181,7 @@ export function TermsOfUseSection() {
           </CardHeader>
           <CardContent className="text-muted-foreground leading-relaxed">
             <p>
-              These Terms are governed by the laws of Nigeria, regardless of user location.
+              These Terms are governed by the laws of the State of Wyoming, United States, regardless of user location.
             </p>
           </CardContent>
         </Card>
@@ -196,7 +196,8 @@ export function TermsOfUseSection() {
               <a href={`mailto:${LEGAL.email}`} className="text-lg font-semibold text-primary hover:underline">
                 {LEGAL.email}
               </a>
-              <p className="mt-2 text-sm">Owner: {LEGAL.owner}</p>
+              <p className="mt-2 text-sm">{LEGAL.company}</p>
+              <p className="mt-1 text-sm">{LEGAL.address}</p>
             </div>
           </CardContent>
         </Card>

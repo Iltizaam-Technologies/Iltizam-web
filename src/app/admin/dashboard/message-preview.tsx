@@ -84,7 +84,7 @@ export function MessagePreview() {
               <div className="absolute top-0 left-0 right-0 h-20 bg-[#075E54]"></div>
               <div className="relative z-10 pt-14">
                 <div className="bg-white rounded-lg shadow-sm p-4 max-w-[85%]">
-                  <p className="text-xs text-muted-foreground font-medium mb-2">ILTIZAAM AI</p>
+                  <p className="text-xs text-muted-foreground font-medium mb-2">ILTIZAAM</p>
                   <p className="text-sm text-foreground whitespace-pre-line leading-relaxed">{getPreviewMessage()}</p>
                   <p className="text-xs text-muted-foreground text-right mt-3">8:00 AM</p>
                 </div>

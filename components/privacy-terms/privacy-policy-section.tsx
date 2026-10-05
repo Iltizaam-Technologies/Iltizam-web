@@ -18,8 +18,8 @@ export function PrivacyPolicySection() {
           </CardHeader>
           <CardContent className="space-y-3 text-muted-foreground leading-relaxed">
             <p>
-              This Privacy Policy explains how <strong className="text-foreground">{LEGAL.appName}</strong> (“Iltizaam”,
-              “we”, “our”, “the App”) collects, uses, and protects your personal information.
+              This Privacy Policy explains how <strong className="text-foreground">{LEGAL.appName}</strong> (“we”,
+              “our”, “the App”), operated by {LEGAL.company}, collects, uses, and protects your personal information.
             </p>
             <p>
               By creating an account or using the App, you consent to the practices outlined below. We are committed to

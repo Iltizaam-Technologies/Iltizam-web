@@ -7,9 +7,9 @@ import { Footer } from "../../../components/footer"
 import { Header } from "../../../components/header"
 
 export const metadata = {
-  title: "About ILTIZAM AI",
+  title: "About ILTIZAAM",
   description:
-    "Learn about ILTIZAM AI, our mission to help you stay committed to your goals through discipline, focus, and personal growth.",
+    "Learn about ILTIZAAM, our mission to help you stay committed to your goals through discipline, focus, and personal growth.",
 }
 
 export default function AboutPage() {

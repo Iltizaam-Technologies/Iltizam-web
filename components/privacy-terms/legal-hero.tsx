@@ -30,12 +30,13 @@ export function LegalHero({
 
         <div className="mx-auto mt-10 grid max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <div className="rounded-xl border border-border bg-card/80 p-4 backdrop-blur-sm">
-            <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Owner</p>
-            <p className="mt-1 font-semibold text-foreground">{LEGAL.owner}</p>
+            <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Company</p>
+            <p className="mt-1 font-semibold text-foreground">{LEGAL.company}</p>
             <p className="mt-1 flex items-center gap-1 text-sm text-muted-foreground">
               <MapPin className="h-3.5 w-3.5 shrink-0" />
-              {LEGAL.country}
+              {LEGAL.state}, {LEGAL.country}
             </p>
+            <p className="mt-1 text-sm text-muted-foreground">{LEGAL.address}</p>
           </div>
           <div className="rounded-xl border border-border bg-card/80 p-4 backdrop-blur-sm">
             <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Contact</p>

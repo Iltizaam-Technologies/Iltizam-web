@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ILTIZAAM AI",
+  title: "ILTIZAAM",
   description: "Your Committed Companion",
   icons: {
     icon: "/Iltizaam-logo.png",

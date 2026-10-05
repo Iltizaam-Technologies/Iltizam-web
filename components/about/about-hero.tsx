@@ -16,7 +16,7 @@ export function AboutHero() {
             </div>
           </div>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">ILTIZAAM AI</span>
+            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">ILTIZAAM</span>
           </h1>
           <p className="text-lg md:text-2xl text-muted-foreground leading-relaxed">
             Your journey to discipline, focus, and personal growth starts here. We believe in empowering individuals to achieve their highest potential through intelligent technology.
@@ -26,7 +26,7 @@ export function AboutHero() {
         <div className="relative w-full max-w-5xl aspect-[21/9] rounded-3xl overflow-hidden border border-border shadow-2xl">
           <Image
             src="/about_team_1780448130466.png"
-            alt="The ILTIZAAM AI Team"
+            alt="The ILTIZAAM Team"
             fill
             className="object-cover"
             priority

@@ -5,9 +5,9 @@ import { LegalHero } from "../../../components/privacy-terms/legal-hero"
 import { TermsOfUseSection } from "../../../components/privacy-terms/terms-of-use-section"
 
 export const metadata = {
-  title: "Privacy Policy & Terms of Use | Iltizaam",
+  title: "Privacy Policy & Terms of Use | ILTIZAAM",
   description:
-    "Privacy Policy and Terms of Use for Iltizaam: Your Accountability Coach — owned by Daud Moridiyah Omobola, Nigeria.",
+    "Privacy Policy and Terms of Use for ILTIZAAM, operated by Iltizaam Technologies LLC in Wyoming, United States.",
 }
 
 export default function PrivacyTermsPage() {

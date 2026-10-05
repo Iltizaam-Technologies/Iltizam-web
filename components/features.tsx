@@ -24,7 +24,7 @@ export function Features() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
-            What Makes ILTIZAAM AI Special
+            What Makes ILTIZAAM Special
           </h2>
           <p className="text-lg text-foreground/70 max-w-2xl mx-auto text-balance">
             Discover the features that set us apart and help you achieve your goals.

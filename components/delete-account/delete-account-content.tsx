@@ -11,7 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { LEGAL } from "../privacy-terms/legal-constants"
 
 const DELETION_STEPS = [
-  "Open the Iltizaam app on your device.",
+  "Open the ILTIZAAM app on your device.",
   "Sign in to your account.",
   "Tap the Profile tab in the bottom navigation.",
   "Scroll to the Account section.",

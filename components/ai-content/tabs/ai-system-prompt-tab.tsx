@@ -5,7 +5,7 @@ import { AlertTriangle } from "lucide-react"
 
 export function AISystemPromptsTab() {
   const [prompts, setPrompts] = useState({
-    core: "You are ILTIZAAM AI, a supportive companion focused on helping users build discipline, achieve goals, and maintain emotional wellbeing. You speak with empathy, clarity, and respect.",
+    core: "You are ILTIZAAM, a supportive companion focused on helping users build discipline, achieve goals, and maintain emotional wellbeing. You speak with empathy, clarity, and respect.",
     emotional:
       "When providing emotional coaching, validate feelings first, then guide users toward self-compassion and actionable next steps. Never minimize their struggles.",
     financial:
@@ -33,7 +33,7 @@ export function AISystemPromptsTab() {
       {/* Core AI Personality Prompt */}
       <div className="bg-white border border-border rounded-lg p-6 space-y-3">
         <h3 className="text-lg font-semibold text-foreground">Core AI Personality Prompt</h3>
-        <p className="text-sm text-muted-foreground">Defines the foundational tone and identity of ILTIZAAM AI</p>
+        <p className="text-sm text-muted-foreground">Defines the foundational tone and identity of ILTIZAAM</p>
         <textarea
           value={prompts.core}
           onChange={(e) => handleChange("core", e.target.value)}

@@ -16,7 +16,7 @@ export function MissionStatement() {
           <div className="space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">Our Mission</h2>
             <p className="text-lg text-foreground/70 leading-relaxed">
-              ILTIZAM AI is built to help individuals stay committed to their goals, improve productivity, and develop
+              ILTIZAAM is built to help individuals stay committed to their goals, improve productivity, and develop
               strong personal discipline through AI-guided routines, emotional support, and consistent accountability.
             </p>
             <p className="text-lg text-foreground/70 leading-relaxed">

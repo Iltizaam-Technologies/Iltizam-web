@@ -1,19 +1,9 @@
 const team = [
   {
-    name: "Mordiyah Daud",
-    role: "Founder & CEO",
-    image: "/professional-man-founder.png",
-  },
-  {
     name: "Fatima Al-Mansoori",
     role: "Head of Design",
     image: "/professional-woman-designer.png",
   },
-  // {
-  //   name: "Abdusalam Muhammad",
-  //   role: "Lead Developer",
-  //   image: "/professional-man-developer.png",
-  // },
   {
     name: "Layla Al-Mazrouei",
     role: "AI/ML Specialist",
@@ -32,7 +22,7 @@ export function TeamSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
           {team.map((member, index) => (
             <div key={index} className="bg-background rounded-2xl overflow-hidden hover:shadow-lg transition-shadow">
               <div className="aspect-square overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20">

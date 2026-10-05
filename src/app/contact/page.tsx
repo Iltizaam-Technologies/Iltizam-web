@@ -8,8 +8,8 @@ import { Header } from "../../../components/header"
 
 
 export const metadata = {
-  title: "Contact ILTIZAM AI",
-  description: "Get in touch with ILTIZAM AI. We're here to answer your questions and guide your ILTIZAM journey.",
+  title: "Contact ILTIZAAM",
+  description: "Get in touch with ILTIZAAM. We're here to answer your questions and guide your ILTIZAAM journey.",
 }
 
 export default function ContactPage() {

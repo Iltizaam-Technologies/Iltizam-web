@@ -8,19 +8,19 @@ export function FAQ() {
 
   const faqs = [
     {
-      question: "How does ILTIZAM AI work?",
+      question: "How does ILTIZAAM work?",
       answer:
-        "ILTIZAM AI is your committed companion that helps you build discipline through intelligent tracking, personalized insights, and accountability features. It uses advanced AI to understand your goals and provide guidance tailored to your unique journey.",
+        "ILTIZAAM is your committed companion that helps you build discipline through intelligent tracking, personalized insights, and accountability features. It uses advanced AI to understand your goals and provide guidance tailored to your unique journey.",
     },
     {
       question: "Is the app free?",
       answer:
-        "Yes, ILTIZAM AI offers a free tier with essential features. We also provide premium plans with advanced analytics, priority support, and exclusive features for users who want to unlock their full potential.",
+        "Yes, ILTIZAAM offers a free tier with essential features. We also provide premium plans with advanced analytics, priority support, and exclusive features for users who want to unlock their full potential.",
     },
     {
       question: "Can I sync across multiple devices?",
       answer:
-        "Your ILTIZAM account syncs seamlessly across all your devices. Start tracking on your phone and continue on your desktop—your progress is always in sync.",
+        "Your ILTIZAAM account syncs seamlessly across all your devices. Start tracking on your phone and continue on your desktop—your progress is always in sync.",
     },
     {
       question: "How is my data protected?",
@@ -34,7 +34,7 @@ export function FAQ() {
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-foreground mb-4">Frequently Asked Questions</h2>
-          <p className="text-foreground/70">Find answers to common questions about ILTIZAM AI</p>
+          <p className="text-foreground/70">Find answers to common questions about ILTIZAAM</p>
         </div>
 
         <div className="space-y-4">

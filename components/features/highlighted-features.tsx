@@ -4,14 +4,14 @@ const highlightedFeatures = [
   {
     title: "Your AI Companion that Understands You",
     description:
-      "Get personalized guidance from an AI that learns your patterns, goals, and challenges. Your ILTIZAM AI companion provides contextual motivation and strategies tailored specifically to your needs.",
+      "Get personalized guidance from an AI that learns your patterns, goals, and challenges. Your ILTIZAAM companion provides contextual motivation and strategies tailored specifically to your needs.",
     image: "/ai-companion-interface-dashboard.jpg",
     order: "normal",
   },
   {
     title: "Stay Focused with Distraction Blocking",
     description:
-      "Eliminate app distractions during focus sessions. ILTIZAM AI helps you maintain deep work by blocking notifications and apps that interrupt productivity. Reclaim hours of focused time each week.",
+      "Eliminate app distractions during focus sessions. ILTIZAAM helps you maintain deep work by blocking notifications and apps that interrupt productivity. Reclaim hours of focused time each week.",
     image: "/focus-mode-app-blocking-interface.jpg",
     order: "reverse",
   },

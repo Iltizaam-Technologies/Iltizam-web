@@ -19,7 +19,7 @@ export function FeaturesHero() {
                 Powerful Tools for a More <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Disciplined</span> You
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed max-w-xl">
-                Discover how ILTIZAAM AI helps you build consistency, achieve goals, and stay emotionally balanced with our intelligent suite of tools.
+                Discover how ILTIZAAM helps you build consistency, achieve goals, and stay emotionally balanced with our intelligent suite of tools.
               </p>
             </div>
           </div>
