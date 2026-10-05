@@ -22,7 +22,7 @@ export function Hero() {
                 Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Committed</span> <br/> Companion
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl">
-                ILTIZAAM AI is your personal accountability partner, designed to help you set ambitious goals, stay focused, and achieve greatness through intelligent habit tracking.
+                ILTIZAAM is your personal accountability partner, designed to help you set ambitious goals, stay focused, and achieve greatness through intelligent habit tracking.
               </p>
             </div>
 
