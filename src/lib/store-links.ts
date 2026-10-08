@@ -5,7 +5,7 @@ export const IOS_APP_STORE_URL =
 
 export const ANDROID_PLAY_STORE_URL =
   process.env.NEXT_PUBLIC_ANDROID_PLAY_STORE_URL ||
-  "https://play.google.com/store/apps/details?id=iltizaam.app";
+  "https://play.google.com/apps/internaltest/4701605396824775174";
 
 export const SITE_HOME_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://iltizaam.com";
