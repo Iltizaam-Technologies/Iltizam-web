@@ -186,6 +186,35 @@ export function getUserById(id: string): Promise<Record<string, unknown>> {
   return apiRequest<Record<string, unknown>>(`/api/admin/users/${id}`);
 }
 
+export function getUserGoals(
+  userId: string,
+  params?: { page?: number; limit?: number; status?: string; category?: string }
+): Promise<AdminGoalsResponse> {
+  const search = new URLSearchParams();
+  if (params?.page != null) search.set("page", String(params.page));
+  if (params?.limit != null) search.set("limit", String(params.limit));
+  if (params?.status) search.set("status", params.status);
+  if (params?.category) search.set("category", params.category);
+  const q = search.toString();
+  return apiRequest<AdminGoalsResponse>(`/api/admin/users/${userId}/goals${q ? `?${q}` : ""}`);
+}
+
+export function createUserGoal(
+  userId: string,
+  payload: {
+    title: string;
+    description?: string;
+    category: string;
+    targetDate?: string;
+    status?: string;
+  }
+): Promise<AdminGoalItem> {
+  return apiRequest<AdminGoalItem>(`/api/admin/users/${userId}/goals`, {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+}
+
 export interface BroadcastPayload {
   title: string;
   body: string;

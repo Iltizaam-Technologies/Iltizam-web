@@ -140,7 +140,7 @@ export function UserDetailsContent({ user: userProp, loading, error }: UserDetai
                   <OverviewTab />
                 </TabsContent>
                 <TabsContent value="goals">
-                  <GoalsTab />
+                  <GoalsTab userId={user.id} />
                 </TabsContent>
                 <TabsContent value="activity">
                   <RecentActivityTable />
