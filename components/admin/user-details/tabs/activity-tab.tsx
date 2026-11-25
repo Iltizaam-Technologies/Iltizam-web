@@ -31,9 +31,9 @@ export function UserDetailsContent() {
   }
 
   const statusConfig = {
-    Active: { bg: "bg-green-50", text: "text-green-700", label: "Active" },
-    Inactive: { bg: "bg-yellow-50", text: "text-yellow-700", label: "Inactive" },
-    Suspended: { bg: "bg-red-50", text: "text-red-700", label: "Suspended" },
+    Active: { bg: "bg-green-50 dark:bg-green-500/15", text: "text-green-700 dark:text-green-400", label: "Active" },
+    Inactive: { bg: "bg-yellow-50 dark:bg-yellow-500/15", text: "text-yellow-700 dark:text-yellow-400", label: "Inactive" },
+    Suspended: { bg: "bg-red-50 dark:bg-red-500/15", text: "text-red-700 dark:text-red-400", label: "Suspended" },
   }
 
   const config = statusConfig[user.status as keyof typeof statusConfig]
@@ -92,7 +92,7 @@ export function UserDetailsContent() {
           </CardContent>
 
           <CardFooter className="flex gap-2 pt-6 border-t border-border">
-            <button className="flex-1 px-4 py-2 border border-red-200 text-red-700 text-sm font-medium rounded-lg hover:bg-red-50 transition">
+            <button className="flex-1 px-4 py-2 border border-red-200 dark:border-red-500/30 text-red-700 dark:text-red-400 text-sm font-medium rounded-lg hover:bg-red-50 dark:hover:bg-red-500/15 transition">
               <LogOut size={16} className="inline mr-2" />
               Deactivate
             </button>
@@ -122,7 +122,7 @@ export function UserDetailsContent() {
                   <OverviewTab />
                 </TabsContent>
                 <TabsContent value="goals">
-                  <GoalsTab />
+                  <GoalsTab userId={user.id} />
                 </TabsContent>
                 <TabsContent value="activity">
                   <RecentActivityTable />

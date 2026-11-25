@@ -26,7 +26,7 @@ export function MoodSummaryCards({ summary, loading }: MoodSummaryCardsProps) {
       badge: false,
     },
     {
-      icon: <TrendingDown className="w-6 h-6 text-amber-600" />,
+      icon: <TrendingDown className="w-6 h-6 text-amber-600 dark:text-amber-400" />,
       title: "Low Mood Alerts",
       value: summary ? "View risk flags below" : "—",
       caption: "Check risk flags table",
@@ -47,13 +47,13 @@ export function MoodSummaryCards({ summary, loading }: MoodSummaryCardsProps) {
         <div className="col-span-full py-8 text-center text-muted-foreground">Loading…</div>
       )}
       {cards.map((card, index) => (
-        <div key={index} className="bg-white rounded-lg border border-border p-6 shadow-sm hover:shadow-md transition">
+        <div key={index} className="bg-card rounded-lg border border-border p-6 shadow-sm hover:shadow-md transition">
           <div className="flex items-start justify-between">
             <div className="flex-1">
               <p className="text-sm text-muted-foreground font-medium">{card.title}</p>
               {card.badge ? (
                 <div className="mt-2">
-                  <span className="inline-flex px-3 py-1 rounded-full text-sm font-semibold bg-amber-50 text-amber-700">
+                  <span className="inline-flex px-3 py-1 rounded-full text-sm font-semibold bg-amber-50 dark:bg-amber-500/15 text-amber-700 dark:text-amber-400">
                     {card.value}
                   </span>
                 </div>

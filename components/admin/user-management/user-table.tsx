@@ -16,9 +16,9 @@ export interface User {
 }
 
 const statusConfig = {
-  Active: { bg: "bg-green-50", text: "text-green-700", label: "Active" },
-  Inactive: { bg: "bg-yellow-50", text: "text-yellow-700", label: "Inactive" },
-  Suspended: { bg: "bg-red-50", text: "text-red-700", label: "Suspended" },
+  Active: { bg: "bg-green-50 dark:bg-green-500/15", text: "text-green-700 dark:text-green-400", label: "Active" },
+  Inactive: { bg: "bg-yellow-50 dark:bg-yellow-500/15", text: "text-yellow-700 dark:text-yellow-400", label: "Inactive" },
+  Suspended: { bg: "bg-red-50 dark:bg-red-500/15", text: "text-red-700 dark:text-red-400", label: "Suspended" },
 }
 
 interface UserTableProps {
@@ -45,7 +45,7 @@ export function UserTable({ users, searchQuery, setSearchQuery, filterStatus, se
   })
 
   return (
-    <div className="bg-white rounded-lg border border-border shadow-sm overflow-hidden">
+    <div className="bg-card rounded-lg border border-border shadow-sm overflow-hidden">
       {/* Header */}
       <div className="p-6 border-b border-border">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">

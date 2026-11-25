@@ -13,7 +13,7 @@ export function MoodDistribution({ distribution = [], loading }: MoodDistributio
   const positivePct = items.reduce((acc, i) => (i.label === "Good" || i.label === "Very Happy" ? acc + i.percentage : acc), 0)
 
   return (
-    <div className="bg-white rounded-lg border border-border p-6 shadow-sm">
+    <div className="bg-card rounded-lg border border-border p-6 shadow-sm">
       <h2 className="text-lg font-semibold text-foreground mb-6">Mood Distribution</h2>
       {loading && !distribution.length && (
         <div className="py-8 text-center text-muted-foreground">Loading…</div>

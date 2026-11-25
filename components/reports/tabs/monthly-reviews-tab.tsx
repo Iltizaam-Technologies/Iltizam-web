@@ -47,9 +47,9 @@ export function MonthlyReviewsTab() {
   ]
 
   const moodTrendConfig = {
-    Improving: "text-green-700",
-    Stable: "text-blue-700",
-    Declining: "text-red-700",
+    Improving: "text-green-700 dark:text-green-400",
+    Stable: "text-blue-700 dark:text-blue-400",
+    Declining: "text-red-700 dark:text-red-400",
   }
 
   return (

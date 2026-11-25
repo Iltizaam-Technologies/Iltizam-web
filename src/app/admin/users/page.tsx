@@ -109,7 +109,7 @@ export default function UserManagementPage() {
           <UserManagementHeader />
           <div className="p-6 max-w-7xl mx-auto">
             {error && (
-              <div className="mb-4 p-4 rounded-lg bg-red-50 text-red-700 text-sm">
+              <div className="mb-4 p-4 rounded-lg bg-red-50 dark:bg-red-500/15 text-red-700 dark:text-red-400 text-sm">
                 {error}
               </div>
             )}

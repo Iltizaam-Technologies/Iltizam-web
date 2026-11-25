@@ -49,7 +49,7 @@ export function KPICards({ stats }: { stats: AdminStats | null }) {
         <div
           key={index}
           title={kpi.hint}
-          className="bg-white rounded-lg border border-border p-6 shadow-sm hover:shadow-md transition"
+          className="bg-card rounded-lg border border-border p-6 shadow-sm hover:shadow-md transition"
         >
           <div className="flex items-start justify-between">
             <div className="flex-1">
@@ -58,11 +58,11 @@ export function KPICards({ stats }: { stats: AdminStats | null }) {
               {kpi.trend !== 0 && (
                 <div className="flex items-center gap-1 mt-3">
                   {kpi.isPositive ? (
-                    <TrendingUp size={16} className="text-green-600" />
+                    <TrendingUp size={16} className="text-green-600 dark:text-green-400" />
                   ) : (
-                    <TrendingDown size={16} className="text-red-600" />
+                    <TrendingDown size={16} className="text-red-600 dark:text-red-400" />
                   )}
-                  <span className={`text-sm font-medium ${kpi.isPositive ? "text-green-600" : "text-red-600"}`}>
+                  <span className={`text-sm font-medium ${kpi.isPositive ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`}>
                     {kpi.isPositive ? "+" : ""}
                     {kpi.trend}%
                   </span>

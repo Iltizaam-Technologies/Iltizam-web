@@ -12,9 +12,9 @@ export interface RiskFlag {
 }
 
 const riskConfig = {
-  Low: { bg: "bg-green-50", text: "text-green-700" },
-  Medium: { bg: "bg-amber-50", text: "text-amber-700" },
-  High: { bg: "bg-red-50", text: "text-red-700" },
+  Low: { bg: "bg-green-50 dark:bg-green-500/15", text: "text-green-700 dark:text-green-400" },
+  Medium: { bg: "bg-amber-50 dark:bg-amber-500/15", text: "text-amber-700 dark:text-amber-400" },
+  High: { bg: "bg-red-50 dark:bg-red-500/15", text: "text-red-700 dark:text-red-400" },
 }
 
 interface EmotionalRiskFlagsProps {
@@ -26,9 +26,9 @@ export function EmotionalRiskFlags({ riskData = [], loading }: EmotionalRiskFlag
   const items = riskData ?? []
 
   return (
-    <div className="bg-white rounded-lg border border-border shadow-sm overflow-hidden">
+    <div className="bg-card rounded-lg border border-border shadow-sm overflow-hidden">
       <div className="p-6 border-b border-border flex items-center gap-3">
-        <AlertTriangle className="w-5 h-5 text-amber-600" />
+        <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400" />
         <h2 className="text-lg font-semibold text-foreground">Emotional Risk Flags</h2>
       </div>
 

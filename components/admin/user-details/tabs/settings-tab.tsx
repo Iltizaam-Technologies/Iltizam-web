@@ -150,7 +150,7 @@ export function SettingsTab({ user }: { user?: SettingsTabUser | null }) {
       </div>
 
       {dirty ? <p className="text-xs text-muted-foreground">Unsaved draft.</p> : null}
-      {saveError ? <p className="text-sm text-red-600">{saveError}</p> : null}
+      {saveError ? <p className="text-sm text-red-600 dark:text-red-400">{saveError}</p> : null}
 
       <button
         type="submit"

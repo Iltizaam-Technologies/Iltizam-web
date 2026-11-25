@@ -65,7 +65,7 @@ export default function CommunityModerationPage() {
       <AdminNav />
       <div className="flex">
         <main className="flex-1">
-          <div className="bg-white border-b border-border">
+          <div className="bg-card border-b border-border">
             <div className="max-w-7xl mx-auto px-6 py-8">
               <h1 className="text-3xl font-bold text-foreground">Community Moderation</h1>
               <p className="text-muted-foreground mt-2">Review and moderate community posts.</p>
@@ -88,12 +88,12 @@ export default function CommunityModerationPage() {
               </select>
             </div>
             {error && (
-              <div className="mb-4 p-4 rounded-lg bg-red-50 text-red-700 text-sm">{error}</div>
+              <div className="mb-4 p-4 rounded-lg bg-red-50 dark:bg-red-500/15 text-red-700 dark:text-red-400 text-sm">{error}</div>
             )}
             {loading ? (
               <div className="py-12 text-center text-muted-foreground">Loading posts…</div>
             ) : (
-              <div className="bg-white rounded-lg border border-border shadow-sm overflow-hidden">
+              <div className="bg-card rounded-lg border border-border shadow-sm overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
@@ -117,11 +117,11 @@ export default function CommunityModerationPage() {
                           <td className="px-6 py-4 text-muted-foreground">{post.likes ?? 0}</td>
                           <td className="px-6 py-4">
                             {post.isDeleted ? (
-                              <span className="inline-flex px-2 py-1 rounded text-xs font-medium bg-red-50 text-red-700">Deleted</span>
+                              <span className="inline-flex px-2 py-1 rounded text-xs font-medium bg-red-50 dark:bg-red-500/15 text-red-700 dark:text-red-400">Deleted</span>
                             ) : post.isFlagged ? (
-                              <span className="inline-flex px-2 py-1 rounded text-xs font-medium bg-amber-50 text-amber-700">Flagged</span>
+                              <span className="inline-flex px-2 py-1 rounded text-xs font-medium bg-amber-50 dark:bg-amber-500/15 text-amber-700 dark:text-amber-400">Flagged</span>
                             ) : (
-                              <span className="inline-flex px-2 py-1 rounded text-xs font-medium bg-green-50 text-green-700">Visible</span>
+                              <span className="inline-flex px-2 py-1 rounded text-xs font-medium bg-green-50 dark:bg-green-500/15 text-green-700 dark:text-green-400">Visible</span>
                             )}
                           </td>
                           <td className="px-6 py-4">
@@ -129,7 +129,7 @@ export default function CommunityModerationPage() {
                               <button
                                 onClick={() => handleDelete(post._id)}
                                 disabled={deletingId === post._id}
-                                className="px-3 py-1.5 text-xs font-medium bg-red-50 text-red-700 rounded-lg hover:bg-red-100 disabled:opacity-50"
+                                className="px-3 py-1.5 text-xs font-medium bg-red-50 dark:bg-red-500/15 text-red-700 dark:text-red-400 rounded-lg hover:bg-red-100 dark:hover:bg-red-500/15 disabled:opacity-50"
                               >
                                 {deletingId === post._id ? "Deleting…" : "Delete"}
                               </button>

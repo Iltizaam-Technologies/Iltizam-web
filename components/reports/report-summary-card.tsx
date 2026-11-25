@@ -13,10 +13,10 @@ interface ReportsSummaryCardsProps {
 
 export function ReportsSummaryCards({ summary, loading }: ReportsSummaryCardsProps) {
   const cards = [
-    { icon: FileText, label: "Weekly Reports Generated", value: summary ? String(summary.weeklyReportsGenerated ?? 0) : "—", caption: "Last 7 days", bgColor: "bg-blue-50", iconColor: "text-blue-600" },
-    { icon: Calendar, label: "Monthly Reviews Completed", value: summary ? String(summary.monthlyReviewsCompleted ?? 0) : "—", caption: "This month", bgColor: "bg-purple-50", iconColor: "text-purple-600" },
-    { icon: Sparkles, label: "Year-End Wraps Generated", value: summary ? String(summary.yearEndWrapsGenerated ?? 0) : "—", caption: "Current cycle", bgColor: "bg-amber-50", iconColor: "text-amber-600" },
-    { icon: TrendingUp, label: "Average Completion Rate", value: summary ? `${summary.averageCompletionRate ?? 0}%` : "—", caption: "Across all reports", bgColor: "bg-green-50", iconColor: "text-green-600" },
+    { icon: FileText, label: "Weekly Reports Generated", value: summary ? String(summary.weeklyReportsGenerated ?? 0) : "—", caption: "Last 7 days", bgColor: "bg-blue-50 dark:bg-blue-500/15", iconColor: "text-blue-600 dark:text-blue-400" },
+    { icon: Calendar, label: "Monthly Reviews Completed", value: summary ? String(summary.monthlyReviewsCompleted ?? 0) : "—", caption: "This month", bgColor: "bg-purple-50 dark:bg-purple-500/15", iconColor: "text-purple-600 dark:text-purple-400" },
+    { icon: Sparkles, label: "Year-End Wraps Generated", value: summary ? String(summary.yearEndWrapsGenerated ?? 0) : "—", caption: "Current cycle", bgColor: "bg-amber-50 dark:bg-amber-500/15", iconColor: "text-amber-600 dark:text-amber-400" },
+    { icon: TrendingUp, label: "Average Completion Rate", value: summary ? `${summary.averageCompletionRate ?? 0}%` : "—", caption: "Across all reports", bgColor: "bg-green-50 dark:bg-green-500/15", iconColor: "text-green-600 dark:text-green-400" },
   ]
 
   return (

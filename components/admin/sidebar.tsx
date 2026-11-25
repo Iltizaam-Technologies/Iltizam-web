@@ -9,7 +9,7 @@ export function Sidebar({ signupsThisWeek }: SidebarProps) {
 
   return (
     <div className="space-y-6">
-      <div className="bg-white rounded-lg border border-border p-6 shadow-sm">
+      <div className="bg-card rounded-lg border border-border p-6 shadow-sm">
         <h3 className="text-lg font-semibold text-foreground mb-4">System Health</h3>
         <div className="space-y-3">
           <div className="flex items-center justify-between">
@@ -42,7 +42,7 @@ export function Sidebar({ signupsThisWeek }: SidebarProps) {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg border border-border p-6 shadow-sm">
+      <div className="bg-card rounded-lg border border-border p-6 shadow-sm">
         <div className="flex items-start justify-between mb-4">
           <h3 className="text-lg font-semibold text-foreground">Server Status</h3>
           <div className="w-3 h-3 bg-green-600 rounded-full"></div>

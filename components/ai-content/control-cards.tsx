@@ -27,7 +27,7 @@ export function AIControlCards() {
           <div className="mt-3">
             <span
               className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-                aiEnabled ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-700"
+                aiEnabled ? "bg-green-100 dark:bg-green-500/15 text-green-700 dark:text-green-400" : "bg-muted text-muted-foreground"
               }`}
             >
               {aiEnabled ? "Enabled" : "Disabled"}
@@ -63,7 +63,7 @@ export function AIControlCards() {
           <div className="mt-3">
             <span
               className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-                spiritualMode ? "bg-primary/10 text-primary" : "bg-gray-100 text-gray-700"
+                spiritualMode ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground"
               }`}
             >
               {spiritualMode ? "On" : "Off"}

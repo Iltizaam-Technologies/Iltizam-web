@@ -32,9 +32,9 @@ export function UserDetailsContent({ user: userProp, loading, error }: UserDetai
   const [activeTab, setActiveTab] = useState("overview")
 
   const statusConfig = {
-    Active: { bg: "bg-green-50", text: "text-green-700", label: "Active" },
-    Inactive: { bg: "bg-yellow-50", text: "text-yellow-700", label: "Inactive" },
-    Suspended: { bg: "bg-red-50", text: "text-red-700", label: "Suspended" },
+    Active: { bg: "bg-green-50 dark:bg-green-500/15", text: "text-green-700 dark:text-green-400", label: "Active" },
+    Inactive: { bg: "bg-yellow-50 dark:bg-yellow-500/15", text: "text-yellow-700 dark:text-yellow-400", label: "Inactive" },
+    Suspended: { bg: "bg-red-50 dark:bg-red-500/15", text: "text-red-700 dark:text-red-400", label: "Suspended" },
   }
 
   if (loading) {
@@ -44,7 +44,7 @@ export function UserDetailsContent({ user: userProp, loading, error }: UserDetai
   }
   if (error) {
     return (
-      <div className="p-4 rounded-lg bg-red-50 text-red-700 text-sm">{error}</div>
+      <div className="p-4 rounded-lg bg-red-50 dark:bg-red-500/15 text-red-700 dark:text-red-400 text-sm">{error}</div>
     )
   }
   if (!userProp) {
@@ -110,7 +110,7 @@ export function UserDetailsContent({ user: userProp, loading, error }: UserDetai
           </CardContent>
 
           <CardFooter className="flex gap-2 pt-6 border-t border-border">
-            <button className="flex-1 px-4 py-2 border border-red-200 text-red-700 text-sm font-medium rounded-lg hover:bg-red-50 transition">
+            <button className="flex-1 px-4 py-2 border border-red-200 dark:border-red-500/30 text-red-700 dark:text-red-400 text-sm font-medium rounded-lg hover:bg-red-50 dark:hover:bg-red-500/15 transition">
               <LogOut size={16} className="inline mr-2" />
               Deactivate
             </button>

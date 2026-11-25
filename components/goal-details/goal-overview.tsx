@@ -21,21 +21,21 @@ interface GoalOverviewProps {
 }
 
 const goalTypeConfig = {
-    "Long-term": { bg: "bg-pink-50", text: "text-pink-700" },
-  Monthly: { bg: "bg-orange-50", text: "text-orange-700" },
-  Weekly: { bg: "bg-purple-50", text: "text-purple-700" },
-  Daily: { bg: "bg-blue-50", text: "text-blue-700" },
-  health: { bg: "bg-blue-50", text: "text-blue-700" },
-  career: { bg: "bg-purple-50", text: "text-purple-700" },
-  spiritual: { bg: "bg-amber-50", text: "text-amber-700" },
-  financial: { bg: "bg-green-50", text: "text-green-700" },
-  personal: { bg: "bg-pink-50", text: "text-pink-700" },
+    "Long-term": { bg: "bg-pink-50 dark:bg-pink-500/15", text: "text-pink-700 dark:text-pink-400" },
+  Monthly: { bg: "bg-orange-50 dark:bg-orange-500/15", text: "text-orange-700 dark:text-orange-400" },
+  Weekly: { bg: "bg-purple-50 dark:bg-purple-500/15", text: "text-purple-700 dark:text-purple-400" },
+  Daily: { bg: "bg-blue-50 dark:bg-blue-500/15", text: "text-blue-700 dark:text-blue-400" },
+  health: { bg: "bg-blue-50 dark:bg-blue-500/15", text: "text-blue-700 dark:text-blue-400" },
+  career: { bg: "bg-purple-50 dark:bg-purple-500/15", text: "text-purple-700 dark:text-purple-400" },
+  spiritual: { bg: "bg-amber-50 dark:bg-amber-500/15", text: "text-amber-700 dark:text-amber-400" },
+  financial: { bg: "bg-green-50 dark:bg-green-500/15", text: "text-green-700 dark:text-green-400" },
+  personal: { bg: "bg-pink-50 dark:bg-pink-500/15", text: "text-pink-700 dark:text-pink-400" },
 }
 
 const statusConfig = {
-  "In Progress": { bg: "bg-amber-50", text: "text-amber-700" },
-  Completed: { bg: "bg-green-50", text: "text-green-700" },
-  Archived: { bg: "bg-gray-50", text: "text-gray-700" },
+  "In Progress": { bg: "bg-amber-50 dark:bg-amber-500/15", text: "text-amber-700 dark:text-amber-400" },
+  Completed: { bg: "bg-green-50 dark:bg-green-500/15", text: "text-green-700 dark:text-green-400" },
+  Archived: { bg: "bg-muted", text: "text-muted-foreground" },
 }
 
 export function GoalOverview({ goal: goalProp }: GoalOverviewProps) {

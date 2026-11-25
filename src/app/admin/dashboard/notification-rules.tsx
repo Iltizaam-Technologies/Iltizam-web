@@ -74,7 +74,7 @@ export function NotificationRules() {
   }
 
   return (
-    <div className="bg-white rounded-lg border border-border shadow-sm overflow-hidden">
+    <div className="bg-card rounded-lg border border-border shadow-sm overflow-hidden">
       <div className="p-6 border-b border-border">
         <div className="flex items-center gap-3">
           <Shield className="w-5 h-5 text-primary" />
@@ -193,7 +193,7 @@ export function NotificationRules() {
         </div>
 
         {dirty ? <p className="text-xs text-muted-foreground">Unsaved draft.</p> : null}
-        {saveError ? <p className="text-sm text-red-600">{saveError}</p> : null}
+        {saveError ? <p className="text-sm text-red-600 dark:text-red-400">{saveError}</p> : null}
         <button
           type="button"
           onClick={handleSave}

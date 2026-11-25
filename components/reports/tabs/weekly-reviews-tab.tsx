@@ -19,8 +19,8 @@ interface WeeklyReportsTabProps {
 
 export function WeeklyReportsTab({ weeklyReports = [], loading }: WeeklyReportsTabProps) {
   const statusConfig = {
-    Completed: "bg-green-50 text-green-700",
-    Skipped: "bg-red-50 text-red-700",
+    Completed: "bg-green-50 dark:bg-green-500/15 text-green-700 dark:text-green-400",
+    Skipped: "bg-red-50 dark:bg-red-500/15 text-red-700 dark:text-red-400",
   }
 
   return (

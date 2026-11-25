@@ -2,10 +2,14 @@
 
 import Link from "next/link"
 import { Lock } from "lucide-react"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export default function AdminForgotPasswordPage() {
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6">
+      <div className="fixed right-4 top-4 z-50">
+        <ThemeToggle />
+      </div>
       <div className="w-full max-w-md rounded-2xl border border-border bg-card p-8 shadow-lg text-center">
         <div className="mb-4 flex justify-center">
           <div className="rounded-lg bg-primary p-3">

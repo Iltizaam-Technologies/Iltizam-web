@@ -12,9 +12,9 @@ export function ActivityTimeline() {
   ]
 
   const iconConfig = {
-    created: { bg: "bg-blue-50", text: "text-blue-600" },
-    updated: { bg: "bg-purple-50", text: "text-purple-600" },
-    progress: { bg: "bg-green-50", text: "text-green-600" },
+    created: { bg: "bg-blue-50 dark:bg-blue-500/15", text: "text-blue-600 dark:text-blue-400" },
+    updated: { bg: "bg-purple-50 dark:bg-purple-500/15", text: "text-purple-600 dark:text-purple-400" },
+    progress: { bg: "bg-green-50 dark:bg-green-500/15", text: "text-green-600 dark:text-green-400" },
   }
 
   return (

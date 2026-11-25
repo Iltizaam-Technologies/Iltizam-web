@@ -11,18 +11,18 @@ export function MoodTrendsChart({ moodData = [], loading }: MoodTrendsChartProps
   const data = moodData.length ? moodData.map((d) => ({ date: d.date, mood: d.mood })) : []
 
   return (
-    <div className="bg-white rounded-lg border border-border p-6 shadow-sm">
+    <div className="bg-card rounded-lg border border-border p-6 shadow-sm">
       <h2 className="text-lg font-semibold text-foreground mb-4">Mood Trends (Last 30 Days)</h2>
       {loading && !data.length ? (
         <div className="h-[300px] flex items-center justify-center text-muted-foreground">Loading…</div>
       ) : (
       <ResponsiveContainer width="100%" height={300}>
         <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
-          <XAxis dataKey="date" stroke="#999" style={{ fontSize: "12px" }} />
-          <YAxis domain={[0, 5]} ticks={[1, 2, 3, 4, 5]} stroke="#999" style={{ fontSize: "12px" }} />
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+          <XAxis dataKey="date" stroke="var(--muted-foreground)" style={{ fontSize: "12px" }} />
+          <YAxis domain={[0, 5]} ticks={[1, 2, 3, 4, 5]} stroke="var(--muted-foreground)" style={{ fontSize: "12px" }} />
           <Tooltip
-            contentStyle={{ backgroundColor: "#fff", border: "1px solid #e5e5e5", borderRadius: "8px" }}
+            contentStyle={{ backgroundColor: "var(--card)", border: "1px solid var(--border)", borderRadius: "8px", color: "var(--card-foreground)" }}
             cursor={{ stroke: "#bb6e27", strokeWidth: 2 }}
           />
           <Line type="monotone" dataKey="mood" stroke="#bb6e27" strokeWidth={3} dot={{ fill: "#bb6e27", r: 4 }} />

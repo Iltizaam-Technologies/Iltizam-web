@@ -58,7 +58,7 @@ export function DuasTab() {
                 <td className="py-3 px-4 text-base text-foreground font-arabic">{item.arabic}</td>
                 <td className="py-3 px-4 text-sm text-muted-foreground max-w-md">{item.english}</td>
                 <td className="py-3 px-4">
-                  <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">
+                  <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-green-100 dark:bg-green-500/15 text-green-700 dark:text-green-400">
                     {item.status}
                   </span>
                 </td>
@@ -70,8 +70,8 @@ export function DuasTab() {
                     <button className="p-2 hover:bg-muted rounded transition">
                       <Power size={16} className="text-muted-foreground" />
                     </button>
-                    <button className="p-2 hover:bg-red-50 rounded transition">
-                      <Trash2 size={16} className="text-red-600" />
+                    <button className="p-2 hover:bg-red-50 dark:hover:bg-red-500/15 rounded transition">
+                      <Trash2 size={16} className="text-red-600 dark:text-red-400" />
                     </button>
                   </div>
                 </td>
@@ -84,10 +84,10 @@ export function DuasTab() {
       {/* Mobile Cards */}
       <div className="md:hidden space-y-3">
         {duas.map((item, index) => (
-          <div key={index} className="bg-white border border-border rounded-lg p-4 space-y-3">
+          <div key={index} className="bg-card border border-border rounded-lg p-4 space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-sm font-medium text-foreground">{item.context}</span>
-              <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">
+              <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-green-100 dark:bg-green-500/15 text-green-700 dark:text-green-400">
                 {item.status}
               </span>
             </div>
@@ -100,8 +100,8 @@ export function DuasTab() {
               <button className="p-2 hover:bg-muted rounded transition">
                 <Power size={16} className="text-muted-foreground" />
               </button>
-              <button className="p-2 hover:bg-red-50 rounded transition">
-                <Trash2 size={16} className="text-red-600" />
+              <button className="p-2 hover:bg-red-50 dark:hover:bg-red-500/15 rounded transition">
+                <Trash2 size={16} className="text-red-600 dark:text-red-400" />
               </button>
             </div>
           </div>

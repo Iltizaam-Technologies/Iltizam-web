@@ -10,9 +10,9 @@ export interface ActivityItem {
 }
 
 const statusConfig = {
-  completed: { icon: CheckCircle, bg: "bg-green-50", text: "text-green-700", label: "Completed" },
-  pending: { icon: Clock, bg: "bg-yellow-50", text: "text-yellow-700", label: "Pending" },
-  failed: { icon: XCircle, bg: "bg-red-50", text: "text-red-700", label: "Failed" },
+  completed: { icon: CheckCircle, bg: "bg-green-50 dark:bg-green-500/15", text: "text-green-700 dark:text-green-400", label: "Completed" },
+  pending: { icon: Clock, bg: "bg-yellow-50 dark:bg-yellow-500/15", text: "text-yellow-700 dark:text-yellow-400", label: "Pending" },
+  failed: { icon: XCircle, bg: "bg-red-50 dark:bg-red-500/15", text: "text-red-700 dark:text-red-400", label: "Failed" },
 }
 
 function formatTimeAgo(iso: string): string {
@@ -41,7 +41,7 @@ export function RecentActivityTable({ activityData = [], loading }: RecentActivi
   const items = activityData ?? []
 
   return (
-    <div className="bg-white rounded-lg border border-border shadow-sm overflow-hidden">
+    <div className="bg-card rounded-lg border border-border shadow-sm overflow-hidden">
       <div className="p-6 border-b border-border">
         <h2 className="text-lg font-semibold text-foreground">Recent Activity</h2>
       </div>

@@ -28,6 +28,9 @@
       ],
       "@/components/brand-logo": [
         "./components/brand-logo.tsx"
+      ],
+      "@/components/theme-toggle": [
+        "./components/theme-toggle.tsx"
       ]
     }
   },

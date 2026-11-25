@@ -35,7 +35,7 @@ export function TasksSection({ tasks: tasksProp }: TasksSectionProps) {
             <div key={task.id}>
               <div className="flex items-start gap-3 py-3">
                 {task.status === "Done" ? (
-                  <CheckCircle2 size={18} className="text-green-600 mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 size={18} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
                 ) : (
                   <Circle size={18} className="text-muted-foreground mt-0.5 flex-shrink-0" />
                 )}
@@ -48,7 +48,7 @@ export function TasksSection({ tasks: tasksProp }: TasksSectionProps) {
                   <div className="flex items-center justify-between mt-1">
                     <span
                       className={`text-xs font-medium px-2 py-0.5 rounded ${
-                        task.status === "Done" ? "bg-green-50 text-green-700" : "bg-amber-50 text-amber-700"
+                        task.status === "Done" ? "bg-green-50 dark:bg-green-500/15 text-green-700 dark:text-green-400" : "bg-amber-50 dark:bg-amber-500/15 text-amber-700 dark:text-amber-400"
                       }`}
                     >
                       {task.status}

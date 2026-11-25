@@ -61,7 +61,7 @@ export function NotificationTypesTable() {
   }
 
   return (
-    <div className="bg-white rounded-lg border border-border shadow-sm overflow-hidden">
+    <div className="bg-card rounded-lg border border-border shadow-sm overflow-hidden">
       <div className="p-6 border-b border-border">
         <div className="flex items-center gap-3">
           <Bell className="w-5 h-5 text-primary" />
@@ -86,14 +86,14 @@ export function NotificationTypesTable() {
                 <td className="px-6 py-4 text-sm font-medium text-foreground">{type.name}</td>
                 <td className="px-6 py-4 text-sm text-muted-foreground">{type.description}</td>
                 <td className="px-6 py-4">
-                  <span className="inline-flex px-2.5 py-1 rounded-full text-xs font-medium bg-blue-50 text-blue-700">
+                  <span className="inline-flex px-2.5 py-1 rounded-full text-xs font-medium bg-blue-50 dark:bg-blue-500/15 text-blue-700 dark:text-blue-400">
                     {type.channel}
                   </span>
                 </td>
                 <td className="px-6 py-4">
                   <span
                     className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${
-                      type.status === "Enabled" ? "bg-green-50 text-green-700" : "bg-gray-50 text-gray-700"
+                      type.status === "Enabled" ? "bg-green-50 dark:bg-green-500/15 text-green-700 dark:text-green-400" : "bg-muted text-muted-foreground"
                     }`}
                   >
                     {type.status}

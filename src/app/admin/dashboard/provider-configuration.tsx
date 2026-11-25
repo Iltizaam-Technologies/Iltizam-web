@@ -4,7 +4,7 @@ import { Settings } from "lucide-react"
 
 export function ProviderConfiguration() {
   return (
-    <div className="bg-white rounded-lg border border-border shadow-sm overflow-hidden">
+    <div className="bg-card rounded-lg border border-border shadow-sm overflow-hidden">
       <div className="p-6 border-b border-border">
         <div className="flex items-center gap-3">
           <Settings className="w-5 h-5 text-primary" />

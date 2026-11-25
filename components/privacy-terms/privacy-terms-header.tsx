@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { BrandLogo } from "@/components/brand-logo"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function PrivacyTermsHeader() {
   return (
@@ -22,6 +23,7 @@ export function PrivacyTermsHeader() {
           <Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">
             Contact
           </Link>
+          <ThemeToggle />
         </nav>
       </div>
     </header>

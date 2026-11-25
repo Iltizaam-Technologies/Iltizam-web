@@ -15,21 +15,21 @@ export interface Goal {
 }
 
 const goalTypeConfig: Record<string, string> = {
-  Daily: "bg-blue-50 text-blue-700",
-  Weekly: "bg-purple-50 text-purple-700",
-  Monthly: "bg-orange-50 text-orange-700",
-  "Long-term": "bg-pink-50 text-pink-700",
-  health: "bg-blue-50 text-blue-700",
-  career: "bg-purple-50 text-purple-700",
-  spiritual: "bg-amber-50 text-amber-700",
-  financial: "bg-green-50 text-green-700",
-  personal: "bg-pink-50 text-pink-700",
+  Daily: "bg-blue-50 dark:bg-blue-500/15 text-blue-700 dark:text-blue-400",
+  Weekly: "bg-purple-50 dark:bg-purple-500/15 text-purple-700 dark:text-purple-400",
+  Monthly: "bg-orange-50 dark:bg-orange-500/15 text-orange-700 dark:text-orange-400",
+  "Long-term": "bg-pink-50 dark:bg-pink-500/15 text-pink-700 dark:text-pink-400",
+  health: "bg-blue-50 dark:bg-blue-500/15 text-blue-700 dark:text-blue-400",
+  career: "bg-purple-50 dark:bg-purple-500/15 text-purple-700 dark:text-purple-400",
+  spiritual: "bg-amber-50 dark:bg-amber-500/15 text-amber-700 dark:text-amber-400",
+  financial: "bg-green-50 dark:bg-green-500/15 text-green-700 dark:text-green-400",
+  personal: "bg-pink-50 dark:bg-pink-500/15 text-pink-700 dark:text-pink-400",
 }
 
 const statusConfig = {
-  "In Progress": { bg: "bg-amber-50", text: "text-amber-700", label: "In Progress" },
-  Completed: { bg: "bg-green-50", text: "text-green-700", label: "Completed" },
-  Archived: { bg: "bg-gray-50", text: "text-gray-700", label: "Archived" },
+  "In Progress": { bg: "bg-amber-50 dark:bg-amber-500/15", text: "text-amber-700 dark:text-amber-400", label: "In Progress" },
+  Completed: { bg: "bg-green-50 dark:bg-green-500/15", text: "text-green-700 dark:text-green-400", label: "Completed" },
+  Archived: { bg: "bg-muted", text: "text-muted-foreground", label: "Archived" },
 }
 
 interface GoalsTableProps {
@@ -84,7 +84,7 @@ export function GoalsTable({
   }
 
   return (
-    <div className="bg-white rounded-lg border border-border shadow-sm overflow-hidden">
+    <div className="bg-card rounded-lg border border-border shadow-sm overflow-hidden">
       {/* Header with Search and Filters */}
       <div className="p-6 border-b border-border">
         <div className="flex flex-col gap-4">

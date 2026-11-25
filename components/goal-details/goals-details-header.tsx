@@ -4,7 +4,7 @@ import Link from "next/link"
 
 export function GoalDetailsHeader() {
   return (
-    <div className="bg-white border-b border-border">
+    <div className="bg-card border-b border-border">
       <div className="max-w-7xl mx-auto px-6 py-8">
         <Breadcrumb className="mb-6">
           <BreadcrumbList>

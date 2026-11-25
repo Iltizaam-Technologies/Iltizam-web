@@ -40,7 +40,7 @@ export function DeliveryLogs() {
   }, [page])
 
   return (
-    <div className="bg-white rounded-lg border border-border shadow-sm overflow-hidden">
+    <div className="bg-card rounded-lg border border-border shadow-sm overflow-hidden">
       <div className="p-6 border-b border-border">
         <div className="flex items-center gap-3">
           <FileText className="w-5 h-5 text-primary" />
@@ -70,16 +70,16 @@ export function DeliveryLogs() {
                   <span
                     className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${
                       log.status === "sent" || log.status === "Delivered"
-                        ? "bg-green-50 text-green-700"
+                        ? "bg-green-50 dark:bg-green-500/15 text-green-700 dark:text-green-400"
                         : log.status === "failed" || log.status === "Failed"
-                          ? "bg-red-50 text-red-700"
-                          : "bg-yellow-50 text-yellow-700"
+                          ? "bg-red-50 dark:bg-red-500/15 text-red-700 dark:text-red-400"
+                          : "bg-yellow-50 dark:bg-yellow-500/15 text-yellow-700 dark:text-yellow-400"
                     }`}
                   >
                     {mapStatus(log.status)}
                   </span>
                 </td>
-                <td className="px-6 py-4 text-sm text-red-600">{log.error || "—"}</td>
+                <td className="px-6 py-4 text-sm text-red-600 dark:text-red-400">{log.error || "—"}</td>
               </tr>
             ))}
           </tbody>

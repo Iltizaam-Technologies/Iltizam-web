@@ -56,7 +56,7 @@ export function AdminNotesSection({ goalId }: { goalId: string }) {
           placeholder="Draft an internal note about this goal. It stays in this browser."
         />
         {dirty ? <p className="mt-3 text-xs text-muted-foreground">Unsaved draft.</p> : null}
-        {saveError ? <p className="mt-3 text-sm text-red-600">{saveError}</p> : null}
+        {saveError ? <p className="mt-3 text-sm text-red-600 dark:text-red-400">{saveError}</p> : null}
         <button
           type="button"
           onClick={handleSave}

@@ -8,11 +8,11 @@ import { createUserGoal, getUserGoals, type AdminGoalItem } from "@/lib/admin-ap
 const CATEGORIES = ["health", "career", "spiritual", "financial", "personal"] as const
 
 const typeConfig: Record<string, string> = {
-  health: "bg-blue-50 text-blue-700",
-  career: "bg-purple-50 text-purple-700",
-  spiritual: "bg-amber-50 text-amber-700",
-  financial: "bg-green-50 text-green-700",
-  personal: "bg-pink-50 text-pink-700",
+  health: "bg-blue-50 dark:bg-blue-500/15 text-blue-700 dark:text-blue-400",
+  career: "bg-purple-50 dark:bg-purple-500/15 text-purple-700 dark:text-purple-400",
+  spiritual: "bg-amber-50 dark:bg-amber-500/15 text-amber-700 dark:text-amber-400",
+  financial: "bg-green-50 dark:bg-green-500/15 text-green-700 dark:text-green-400",
+  personal: "bg-pink-50 dark:bg-pink-500/15 text-pink-700 dark:text-pink-400",
 }
 
 function mapStatusLabel(status: string): string {
@@ -132,13 +132,13 @@ export function GoalsTab({ userId }: GoalsTabProps) {
             {saving ? "Creating…" : "Create goal"}
           </button>
         </div>
-        {formError ? <p className="text-sm text-red-700">{formError}</p> : null}
+        {formError ? <p className="text-sm text-red-700 dark:text-red-400">{formError}</p> : null}
       </form>
 
       {loading ? (
         <p className="text-sm text-muted-foreground">Loading goals…</p>
       ) : error ? (
-        <p className="text-sm text-red-700">{error}</p>
+        <p className="text-sm text-red-700 dark:text-red-400">{error}</p>
       ) : goals.length === 0 ? (
         <p className="text-sm text-muted-foreground">No goals yet. Create the first one above.</p>
       ) : (
@@ -151,7 +151,7 @@ export function GoalsTab({ userId }: GoalsTabProps) {
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-start gap-3">
                     {goal.status === "completed" ? (
-                      <CheckCircle2 size={20} className="text-green-600 mt-0.5 flex-shrink-0" />
+                      <CheckCircle2 size={20} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
                     ) : (
                       <Circle size={20} className="text-muted-foreground mt-0.5 flex-shrink-0" />
                     )}
@@ -166,7 +166,7 @@ export function GoalsTab({ userId }: GoalsTabProps) {
                           {categoryKey}
                         </span>
                         <span
-                          className={`text-xs font-medium ${goal.status === "completed" ? "text-green-600" : "text-amber-600"}`}
+                          className={`text-xs font-medium ${goal.status === "completed" ? "text-green-600 dark:text-green-400" : "text-amber-600 dark:text-amber-400"}`}
                         >
                           {status}
                         </span>

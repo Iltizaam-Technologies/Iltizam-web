@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { ApiRequestError, loginAdmin, setAdminToken } from "@/lib/admin-api"
 import { BrandLogo } from "@/components/brand-logo"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export default function AdminLoginPage() {
   const router = useRouter()
@@ -51,6 +52,9 @@ export default function AdminLoginPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <div className="fixed right-4 top-4 z-50">
+        <ThemeToggle />
+      </div>
       {/* Main Container */}
       <div className="flex min-h-screen flex-col lg:flex-row">
         {/* Left Section - Branding & Illustration */}

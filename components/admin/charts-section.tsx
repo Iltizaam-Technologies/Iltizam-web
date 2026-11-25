@@ -17,18 +17,18 @@ export function ChartsSection({ userGrowthData = emptyGrowth, weeklyActivityData
 
   return (
     <div className="space-y-6">
-      <div className="bg-white rounded-lg border border-border p-6 shadow-sm">
+      <div className="bg-card rounded-lg border border-border p-6 shadow-sm">
         <h2 className="text-lg font-semibold text-foreground mb-4">User Growth Chart</h2>
         {loading && !growth.length ? (
           <div className="h-[300px] flex items-center justify-center text-muted-foreground">Loading…</div>
         ) : (
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={growth}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
-            <XAxis dataKey="month" stroke="#999" />
-            <YAxis stroke="#999" />
+            <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+            <XAxis dataKey="month" stroke="var(--muted-foreground)" />
+            <YAxis stroke="var(--muted-foreground)" />
             <Tooltip
-              contentStyle={{ backgroundColor: "#fff", border: "1px solid #e5e5e5", borderRadius: "8px" }}
+              contentStyle={{ backgroundColor: "var(--card)", border: "1px solid var(--border)", borderRadius: "8px", color: "var(--card-foreground)" }}
               cursor={{ stroke: "#bb6e27", strokeWidth: 2 }}
             />
             <Line type="monotone" dataKey="users" stroke="#bb6e27" strokeWidth={3} dot={{ fill: "#bb6e27", r: 5 }} />
@@ -37,18 +37,18 @@ export function ChartsSection({ userGrowthData = emptyGrowth, weeklyActivityData
         )}
       </div>
 
-      <div className="bg-white rounded-lg border border-border p-6 shadow-sm">
+      <div className="bg-card rounded-lg border border-border p-6 shadow-sm">
         <h2 className="text-lg font-semibold text-foreground mb-4">Weekly Activity Chart</h2>
         {loading && !activity.length ? (
           <div className="h-[300px] flex items-center justify-center text-muted-foreground">Loading…</div>
         ) : (
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={activity}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
-            <XAxis dataKey="day" stroke="#999" />
-            <YAxis stroke="#999" />
+            <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+            <XAxis dataKey="day" stroke="var(--muted-foreground)" />
+            <YAxis stroke="var(--muted-foreground)" />
             <Tooltip
-              contentStyle={{ backgroundColor: "#fff", border: "1px solid #e5e5e5", borderRadius: "8px" }}
+              contentStyle={{ backgroundColor: "var(--card)", border: "1px solid var(--border)", borderRadius: "8px", color: "var(--card-foreground)" }}
               cursor={{ fill: "rgba(187, 110, 39, 0.1)" }}
             />
             <Bar dataKey="activity" fill="#bb6e27" radius={[8, 8, 0, 0]} />

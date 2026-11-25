@@ -51,7 +51,7 @@ export function StatusBar() {
     <div className="space-y-3">
       <p className="text-xs text-muted-foreground">{formatDraftSavedAt(savedAt, PENDING_NOTE)}</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div className="bg-white rounded-lg border border-border p-6 shadow-sm">
+        <div className="bg-card rounded-lg border border-border p-6 shadow-sm">
           <div className="flex items-start justify-between">
             <div className="flex-1">
               <p className="text-sm text-muted-foreground font-medium">WhatsApp integration</p>
@@ -64,7 +64,7 @@ export function StatusBar() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-border p-6 shadow-sm">
+        <div className="bg-card rounded-lg border border-border p-6 shadow-sm">
           <div className="flex items-start justify-between">
             <div className="flex-1">
               <p className="text-sm text-muted-foreground font-medium">Global WhatsApp toggle</p>
@@ -95,7 +95,7 @@ export function StatusBar() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-border p-6 shadow-sm">
+        <div className="bg-card rounded-lg border border-border p-6 shadow-sm">
           <div className="flex items-start justify-between">
             <div className="flex-1">
               <p className="text-sm text-muted-foreground font-medium">Daily message limit</p>
@@ -118,7 +118,7 @@ export function StatusBar() {
         </div>
       </div>
       {dirty ? <p className="text-xs text-muted-foreground">Unsaved draft.</p> : null}
-      {saveError ? <p className="text-sm text-red-600">{saveError}</p> : null}
+      {saveError ? <p className="text-sm text-red-600 dark:text-red-400">{saveError}</p> : null}
       <button
         type="button"
         onClick={handleSave}

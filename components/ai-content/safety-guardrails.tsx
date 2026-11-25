@@ -66,7 +66,7 @@ export function SafetyGuardrails() {
   }
 
   return (
-    <div className="bg-white rounded-lg border border-border p-6 shadow-sm">
+    <div className="bg-card rounded-lg border border-border p-6 shadow-sm">
       <div className="flex items-center gap-3 mb-2">
         <Shield className="w-6 h-6 text-primary" />
         <h2 className="text-lg font-semibold text-foreground">Safety & Guardrails</h2>
@@ -131,7 +131,7 @@ export function SafetyGuardrails() {
         </label>
       </div>
 
-      {saveError ? <p className="mt-4 text-sm text-red-600">{saveError}</p> : null}
+      {saveError ? <p className="mt-4 text-sm text-red-600 dark:text-red-400">{saveError}</p> : null}
       {dirty ? <p className="mt-4 text-xs text-muted-foreground">Unsaved changes on this page.</p> : null}
 
       <button

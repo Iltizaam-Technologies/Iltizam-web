@@ -76,7 +76,7 @@ export default function WhatsAppNotificationsPage() {
           <WhatsAppHeader />
           <div className="p-6 max-w-7xl mx-auto space-y-8">
             {/* Broadcast form */}
-            <section className="bg-white rounded-lg border border-border shadow-sm p-6">
+            <section className="bg-card rounded-lg border border-border shadow-sm p-6">
               <h2 className="text-lg font-semibold text-foreground mb-4">Broadcast notification</h2>
               <form onSubmit={handleBroadcast} className="space-y-4 max-w-xl">
                 <div>
@@ -113,10 +113,10 @@ export default function WhatsAppNotificationsPage() {
                   </select>
                 </div>
                 {broadcastSuccess && (
-                  <p className="text-sm text-green-700 bg-green-50 p-3 rounded-lg">{broadcastSuccess}</p>
+                  <p className="text-sm text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-500/15 p-3 rounded-lg">{broadcastSuccess}</p>
                 )}
                 {broadcastError && (
-                  <p className="text-sm text-red-700 bg-red-50 p-3 rounded-lg">{broadcastError}</p>
+                  <p className="text-sm text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-500/15 p-3 rounded-lg">{broadcastError}</p>
                 )}
                 <button
                   type="submit"
@@ -129,12 +129,12 @@ export default function WhatsAppNotificationsPage() {
             </section>
 
             {/* Broadcast history */}
-            <section className="bg-white rounded-lg border border-border shadow-sm overflow-hidden">
+            <section className="bg-card rounded-lg border border-border shadow-sm overflow-hidden">
               <h2 className="text-lg font-semibold text-foreground p-6 pb-0">Broadcast history</h2>
               <div className="p-6">
                 {historyLoading && <p className="text-muted-foreground text-sm">Loading…</p>}
                 {historyError && (
-                  <p className="text-sm text-red-700 bg-red-50 p-3 rounded-lg">{historyError}</p>
+                  <p className="text-sm text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-500/15 p-3 rounded-lg">{historyError}</p>
                 )}
                 {!historyLoading && !historyError && history.length === 0 && (
                   <p className="text-muted-foreground text-sm">No broadcasts yet.</p>
