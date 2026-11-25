@@ -435,10 +435,15 @@ export function getMoodRiskFlags(limit?: number): Promise<MoodRiskFlag[]> {
 }
 
 export interface ReportsSummary {
-  weeklyReportsGenerated?: number;
-  monthlyReviewsCompleted?: number;
-  yearEndWrapsGenerated?: number;
-  averageCompletionRate?: number;
+  journalsLast7Days?: number;
+  journalsLast30Days?: number;
+  activeUsersLast7Days?: number;
+  taskCompletionsLast7Days?: number;
+  taskCompletionsThisYear?: number;
+  goalsCompleted?: number;
+  goalsTotal?: number;
+  averageTaskCompletionRate?: number;
+  unavailable?: Record<string, string>;
 }
 
 export function getReportsSummary(): Promise<ReportsSummary> {
@@ -452,6 +457,60 @@ export interface WeeklyReportItem {
   tasksCompleted: number;
   averageMood: string;
   status: string;
+}
+
+export interface MonthlyReportItem {
+  id: string;
+  user: string;
+  month: string;
+  goalsAchieved: number;
+  moodTrend: string;
+  aiSummary: string;
+}
+
+export interface YearlyReportItem {
+  id: string;
+  user: string;
+  year: string;
+  tasksCompleted: number;
+  goalsCompleted: number;
+  topStat: string;
+  moodHighlight: string;
+}
+
+export interface UserOverviewStats {
+  goalsCount: number;
+  goalsCompleted: number;
+  habitsCount: number;
+  journalsCount: number;
+  taskCompletions: number;
+  highestHabitStreak: number | null;
+  lastActivityText: string | null;
+  lastActivityAt: string | null;
+}
+
+export interface UserActivityItem {
+  id: string;
+  user: string;
+  activity: string;
+  time: string;
+  status: "completed" | "pending" | "failed";
+}
+
+export interface AdminFinancialGoal {
+  id: string;
+  title: string;
+  targetAmount: number;
+  currentSaved: number;
+  currency: string;
+  deadline?: string;
+}
+
+export interface GoalActivityEvent {
+  id: string;
+  type: "created" | "updated" | "progress";
+  text: string;
+  timestamp: string;
 }
 
 export function getReportsWeekly(params?: { page?: number; limit?: number }): Promise<{ items: WeeklyReportItem[]; pagination: { page: number; totalPages: number } }> {
@@ -469,6 +528,51 @@ export interface ReportInsight {
 
 export function getReportsInsights(): Promise<ReportInsight[]> {
   return apiRequest<ReportInsight[]>("/api/admin/reports/insights");
+}
+
+export function getReportsMonthly(params?: { page?: number; limit?: number }): Promise<{ items: MonthlyReportItem[]; note?: string }> {
+  const search = new URLSearchParams();
+  if (params?.page != null) search.set("page", String(params.page));
+  if (params?.limit != null) search.set("limit", String(params.limit));
+  const q = search.toString();
+  return apiRequest(`/api/admin/reports/monthly${q ? `?${q}` : ""}`);
+}
+
+export function getReportsYearly(params?: { page?: number; limit?: number }): Promise<{ items: YearlyReportItem[]; note?: string }> {
+  const search = new URLSearchParams();
+  if (params?.page != null) search.set("page", String(params.page));
+  if (params?.limit != null) search.set("limit", String(params.limit));
+  const q = search.toString();
+  return apiRequest(`/api/admin/reports/yearly${q ? `?${q}` : ""}`);
+}
+
+export function updateAdminUser(
+  id: string,
+  payload: { name?: string; email?: string; role?: string }
+): Promise<Record<string, unknown>> {
+  return apiRequest(`/api/admin/users/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify(payload),
+  });
+}
+
+export function resetAdminUserPassword(id: string, password: string): Promise<{ updated: boolean }> {
+  return apiRequest(`/api/admin/users/${id}/reset-password`, {
+    method: "POST",
+    body: JSON.stringify({ password }),
+  });
+}
+
+export function getUserActivity(id: string): Promise<UserActivityItem[]> {
+  return apiRequest(`/api/admin/users/${id}/activity`);
+}
+
+export function getUserFinancialGoals(id: string): Promise<{ items: AdminFinancialGoal[]; totalsByCurrency: Array<{ currency: string; currentSaved: number; targetAmount: number }> }> {
+  return apiRequest(`/api/admin/users/${id}/financial-goals`);
+}
+
+export function getGoalActivity(id: string): Promise<GoalActivityEvent[]> {
+  return apiRequest(`/api/admin/goals/${id}/activity`);
 }
 
 export interface NotificationLogItem {

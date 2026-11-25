@@ -174,9 +174,14 @@ export function UserTable({ users, searchQuery, setSearchQuery, filterStatus, se
                       <Eye size={14} />
                       View
                     </Link>
-                    <button className="flex-1 flex items-center justify-center gap-2 px-3 py-2 border border-border rounded-lg text-xs font-medium text-foreground hover:bg-muted transition">
+                    <button
+                      type="button"
+                      disabled
+                      title="Deactivate is unavailable. Users have no suspended flag."
+                      className="flex-1 flex items-center justify-center gap-2 px-3 py-2 border border-border rounded-lg text-xs font-medium text-muted-foreground opacity-60 cursor-not-allowed"
+                    >
                       <Lock size={14} />
-                      Deactivate
+                      Deactivate unavailable
                     </button>
                   </div>
                 </div>

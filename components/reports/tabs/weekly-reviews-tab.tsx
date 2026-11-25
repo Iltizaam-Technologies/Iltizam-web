@@ -1,6 +1,5 @@
 "use client"
 
-import { Eye, Download, Flag } from "lucide-react"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 
 interface WeeklyReportRow {
@@ -18,13 +17,18 @@ interface WeeklyReportsTabProps {
 }
 
 export function WeeklyReportsTab({ weeklyReports = [], loading }: WeeklyReportsTabProps) {
-  const statusConfig = {
+  const statusConfig: Record<string, string> = {
+    Journaled: "bg-green-50 dark:bg-green-500/15 text-green-700 dark:text-green-400",
+    "Tasks only": "bg-blue-50 dark:bg-blue-500/15 text-blue-700 dark:text-blue-400",
     Completed: "bg-green-50 dark:bg-green-500/15 text-green-700 dark:text-green-400",
     Skipped: "bg-red-50 dark:bg-red-500/15 text-red-700 dark:text-red-400",
   }
 
   return (
     <div>
+      <p className="text-xs text-muted-foreground mb-4">
+        Each row is one user and one Monday–Sunday week with a journal entry or a task completion. Downloads and flags are not stored.
+      </p>
       {/* Desktop Table View */}
       <div className="hidden md:block border border-border rounded-lg overflow-hidden">
         <Table>
@@ -35,7 +39,6 @@ export function WeeklyReportsTab({ weeklyReports = [], loading }: WeeklyReportsT
               <TableHead>Tasks Completed</TableHead>
               <TableHead>Average Mood</TableHead>
               <TableHead>Status</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -47,23 +50,10 @@ export function WeeklyReportsTab({ weeklyReports = [], loading }: WeeklyReportsT
                 <TableCell>{report.averageMood}</TableCell>
                 <TableCell>
                   <span
-                    className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${statusConfig[report.status as keyof typeof statusConfig]}`}
+                    className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${statusConfig[report.status] ?? ""}`}
                   >
                     {report.status}
                   </span>
-                </TableCell>
-                <TableCell className="text-right">
-                  <div className="flex items-center justify-end gap-2">
-                    <button className="p-2 hover:bg-muted rounded transition" title="View Report">
-                      <Eye size={16} className="text-muted-foreground" />
-                    </button>
-                    <button className="p-2 hover:bg-muted rounded transition" title="Download">
-                      <Download size={16} className="text-muted-foreground" />
-                    </button>
-                    <button className="p-2 hover:bg-muted rounded transition" title="Flag Issue">
-                      <Flag size={16} className="text-muted-foreground" />
-                    </button>
-                  </div>
                 </TableCell>
               </TableRow>
             ))}
@@ -81,7 +71,7 @@ export function WeeklyReportsTab({ weeklyReports = [], loading }: WeeklyReportsT
                 <p className="text-sm text-muted-foreground mt-1">{report.weekRange}</p>
               </div>
               <span
-                className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${statusConfig[report.status as keyof typeof statusConfig]}`}
+                className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${statusConfig[report.status] ?? ""}`}
               >
                 {report.status}
               </span>
@@ -96,22 +86,12 @@ export function WeeklyReportsTab({ weeklyReports = [], loading }: WeeklyReportsT
                 <span className="font-medium">{report.averageMood}</span>
               </div>
             </div>
-            <div className="flex gap-2 mt-4 pt-4 border-t border-border">
-              <button className="flex-1 px-3 py-2 bg-muted hover:bg-muted/80 rounded text-sm font-medium transition">
-                <Eye size={14} className="inline mr-1" />
-                View
-              </button>
-              <button className="flex-1 px-3 py-2 bg-muted hover:bg-muted/80 rounded text-sm font-medium transition">
-                <Download size={14} className="inline mr-1" />
-                Download
-              </button>
-              <button className="px-3 py-2 bg-muted hover:bg-muted/80 rounded text-sm font-medium transition">
-                <Flag size={14} />
-              </button>
-            </div>
           </div>
         ))}
       </div>
+      {!loading && weeklyReports.length === 0 ? (
+        <p className="text-sm text-muted-foreground">No journal entries or task completions are stored yet.</p>
+      ) : null}
     </div>
   )
 }

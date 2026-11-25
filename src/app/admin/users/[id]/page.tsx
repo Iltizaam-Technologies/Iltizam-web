@@ -5,14 +5,27 @@ import { useParams } from "next/navigation"
 import { AdminNav } from "../../../../../components/admin/admin-nav"
 import { UserDetailsContent, type UserDetailsUser } from "../../../../../components/admin/user-details/user-details-content"
 import { Footer } from "../../../../../components/footer"
-import { getUserById } from "@/lib/admin-api"
+import { getUserById, type UserOverviewStats } from "@/lib/admin-api"
 
-function mapSubscriptionToStatus(s?: string): "Active" | "Inactive" | "Suspended" {
-  if (!s) return "Inactive"
-  const t = s.toLowerCase()
-  if (t === "suspended" || t === "banned") return "Suspended"
-  if (t === "active" || t === "trial" || t === "subscribed") return "Active"
+function mapAdminStatus(s?: string): "Active" | "Inactive" | "Suspended" {
+  if (s === "suspended") return "Suspended"
+  if (s === "active") return "Active"
   return "Inactive"
+}
+
+function readStats(value: unknown): UserOverviewStats | null {
+  if (!value || typeof value !== "object") return null
+  const stats = value as Record<string, unknown>
+  return {
+    goalsCount: Number(stats.goalsCount) || 0,
+    goalsCompleted: Number(stats.goalsCompleted) || 0,
+    habitsCount: Number(stats.habitsCount) || 0,
+    journalsCount: Number(stats.journalsCount) || 0,
+    taskCompletions: Number(stats.taskCompletions) || 0,
+    highestHabitStreak: stats.highestHabitStreak == null ? null : Number(stats.highestHabitStreak),
+    lastActivityText: typeof stats.lastActivityText === "string" ? stats.lastActivityText : null,
+    lastActivityAt: stats.lastActivityAt ? String(stats.lastActivityAt) : null,
+  }
 }
 
 function formatJoinedDate(createdAt?: string): string {
@@ -38,6 +51,7 @@ export default function UserDetailsPage() {
   const params = useParams()
   const id = typeof params?.id === "string" ? params.id : ""
   const [user, setUser] = useState<UserDetailsUser | null>(null)
+  const [stats, setStats] = useState<UserOverviewStats | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -60,11 +74,12 @@ export default function UserDetailsPage() {
           name,
           email: (u.email as string) ?? "—",
           role: (u.role as string) ?? "User",
-          status: mapSubscriptionToStatus(u.subscriptionStatus as string),
+          status: mapAdminStatus(u.adminAccountStatus as string),
           joinedDate: formatJoinedDate(u.createdAt as string),
           avatar: initials(name),
           location: (u.location as string) || undefined,
         })
+        setStats(readStats(u.stats))
       })
       .catch((err) => {
         if (!cancelled) setError(err instanceof Error ? err.message : "Failed to load user")
@@ -89,7 +104,19 @@ export default function UserDetailsPage() {
             </div>
           </div>
           <div className="p-6 max-w-7xl mx-auto">
-            <UserDetailsContent user={user} loading={loading} error={error} />
+            <UserDetailsContent
+              user={user}
+              stats={stats}
+              loading={loading}
+              error={error}
+              onUserUpdated={(next) =>
+                setUser((current) =>
+                  current
+                    ? { ...current, name: next.name, email: next.email, role: next.role, avatar: initials(next.name) }
+                    : current
+                )
+              }
+            />
           </div>
         </main>
       </div>

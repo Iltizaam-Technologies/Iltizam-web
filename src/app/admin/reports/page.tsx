@@ -33,7 +33,7 @@ export default function ReportsWrapsPage() {
           <div className="p-6 max-w-7xl mx-auto space-y-6">
             <ReportsSummaryCards summary={summary} loading={loading} />
             <ReportsTabsContent weeklyReports={weeklyItems} weeklyLoading={loading} />
-            <ReportInsights insights={insights} />
+            <ReportInsights insights={insights} loading={loading} />
           </div>
         </main>
       </div>

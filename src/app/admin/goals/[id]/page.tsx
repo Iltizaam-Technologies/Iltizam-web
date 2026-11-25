@@ -116,7 +116,7 @@ export default function GoalDetailsPage() {
                   </div>
                   <div className="space-y-6">
                     <TasksSection tasks={tasks} />
-                    <ActivityTimeline />
+                    <ActivityTimeline goalId={id} />
                   </div>
                 </div>
                 <div>
