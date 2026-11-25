@@ -13,10 +13,34 @@ function formatSentAt(iso?: string): string {
   }
 }
 
-function mapStatus(s: string): string {
-  if (s === "sent") return "Delivered"
-  if (s === "failed") return "Failed"
-  return s
+function mapStatus(status: string): string {
+  switch (status) {
+    case "queued":
+      return "Queued"
+    case "sent":
+      return "Sent"
+    case "delivered":
+      return "Delivered"
+    case "read":
+      return "Read"
+    case "failed":
+      return "Failed"
+    default:
+      return status || "Unknown"
+  }
+}
+
+function statusClass(status: string): string {
+  if (status === "delivered" || status === "read") {
+    return "bg-green-50 dark:bg-green-500/15 text-green-700 dark:text-green-400"
+  }
+  if (status === "failed") {
+    return "bg-red-50 dark:bg-red-500/15 text-red-700 dark:text-red-400"
+  }
+  if (status === "sent") {
+    return "bg-blue-50 dark:bg-blue-500/15 text-blue-700 dark:text-blue-400"
+  }
+  return "bg-yellow-50 dark:bg-yellow-500/15 text-yellow-700 dark:text-yellow-400"
 }
 
 export function DeliveryLogs() {
@@ -67,15 +91,7 @@ export function DeliveryLogs() {
                 <td className="px-6 py-4 text-sm font-medium text-foreground">{log.user}</td>
                 <td className="px-6 py-4 text-sm text-muted-foreground">{formatSentAt(log.sentAt)}</td>
                 <td className="px-6 py-4">
-                  <span
-                    className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${
-                      log.status === "sent" || log.status === "Delivered"
-                        ? "bg-green-50 dark:bg-green-500/15 text-green-700 dark:text-green-400"
-                        : log.status === "failed" || log.status === "Failed"
-                          ? "bg-red-50 dark:bg-red-500/15 text-red-700 dark:text-red-400"
-                          : "bg-yellow-50 dark:bg-yellow-500/15 text-yellow-700 dark:text-yellow-400"
-                    }`}
-                  >
+                    <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${statusClass(log.status)}`}>
                     {mapStatus(log.status)}
                   </span>
                 </td>

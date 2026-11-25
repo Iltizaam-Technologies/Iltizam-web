@@ -141,13 +141,17 @@ export default function WhatsAppNotificationsPage() {
                 )}
                 {!historyLoading && !historyError && history.length > 0 && (
                   <div className="overflow-x-auto">
+                    <p className="mb-3 text-xs text-muted-foreground">
+                      Confirmed counts messages the provider reported as delivered or read. API acceptance stays Sent in
+                      the delivery log until then.
+                    </p>
                     <table className="w-full text-sm">
                       <thead>
                         <tr className="border-b border-border text-left">
                           <th className="py-3 pr-4 font-medium text-foreground">Title</th>
                           <th className="py-3 pr-4 font-medium text-foreground">Body</th>
                           <th className="py-3 pr-4 font-medium text-foreground">Recipients</th>
-                          <th className="py-3 pr-4 font-medium text-foreground">Delivered</th>
+                          <th className="py-3 pr-4 font-medium text-foreground">Confirmed</th>
                           <th className="py-3 font-medium text-foreground">Created</th>
                         </tr>
                       </thead>
