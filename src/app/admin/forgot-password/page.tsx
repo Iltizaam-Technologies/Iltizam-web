@@ -13,8 +13,12 @@ export default function AdminForgotPasswordPage() {
           </div>
         </div>
         <h1 className="mb-2 text-2xl font-semibold text-foreground">Forgot password?</h1>
+        <p className="mb-4 text-sm text-muted-foreground">
+          This admin site cannot email a reset link. There is no password-reset endpoint.
+        </p>
         <p className="mb-6 text-sm text-muted-foreground">
-          Admin password reset is not available here. Contact your system administrator to reset your password.
+          Another super admin has to set a new password on the account in the database. If you are the only admin,
+          update that password from the server, then come back here and sign in. This page does not change any password.
         </p>
         <Link
           href="/admin/login"

@@ -2,6 +2,8 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { downloadRedirectUrl } from "../../lib/store-links";
 
+// iOS, Android, and desktop targets live in src/lib/store-links.ts.
+
 export const dynamic = "force-dynamic";
 
 export const metadata = {

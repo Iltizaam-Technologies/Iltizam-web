@@ -149,7 +149,15 @@ export function UserDetailsContent({ user: userProp, loading, error }: UserDetai
                   <FinancialTab />
                 </TabsContent>
                 <TabsContent value="settings">
-                  <SettingsTab />
+                  <SettingsTab
+                    user={{
+                      id: user.id,
+                      name: user.name,
+                      email: user.email,
+                      role: user.role,
+                      status: user.status,
+                    }}
+                  />
                 </TabsContent>
               </div>
             </Tabs>

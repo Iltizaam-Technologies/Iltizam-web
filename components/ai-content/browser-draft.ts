@@ -24,9 +24,12 @@ export function writeBrowserDraft<T>(key: string, value: T): BrowserDraft<T> {
   return draft
 }
 
-export function formatDraftSavedAt(savedAt: string | null): string {
-  if (!savedAt) return "Not saved in this browser yet."
+export function formatDraftSavedAt(
+  savedAt: string | null,
+  pendingNote = "The live coach does not use this draft."
+): string {
+  if (!savedAt) return `Not saved in this browser yet. ${pendingNote}`
   const when = new Date(savedAt)
   const label = Number.isNaN(when.getTime()) ? savedAt : when.toLocaleString()
-  return `Saved in this browser at ${label}. The live coach does not use this draft.`
+  return `Saved in this browser at ${label}. ${pendingNote}`
 }

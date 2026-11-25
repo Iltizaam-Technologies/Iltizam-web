@@ -1,16 +1,8 @@
 "use client"
 
-import { useState } from "react"
-import { Settings, CheckCircle } from "lucide-react"
+import { Settings } from "lucide-react"
 
 export function ProviderConfiguration() {
-  const [config, setConfig] = useState({
-    providerName: "Twilio",
-    apiKey: "••••••••••••••••",
-    senderPhone: "08012121212",
-    webhookUrl: "https://iltizam-ai.vercel.app/api/webhooks/whatsapp",
-  })
-
   return (
     <div className="bg-white rounded-lg border border-border shadow-sm overflow-hidden">
       <div className="p-6 border-b border-border">
@@ -20,64 +12,21 @@ export function ProviderConfiguration() {
         </div>
       </div>
 
-      <div className="p-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label className="block text-sm font-medium text-foreground mb-2">Provider Name</label>
-            <input
-              type="text"
-              value={config.providerName}
-              onChange={(e) => setConfig({ ...config, providerName: e.target.value })}
-              className="w-full px-4 py-2 border border-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-foreground mb-2">API Key</label>
-            <input
-              type="password"
-              value={config.apiKey}
-              onChange={(e) => setConfig({ ...config, apiKey: e.target.value })}
-              className="w-full px-4 py-2 border border-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-foreground mb-2">Sender Phone Number</label>
-            <input
-              type="text"
-              value={config.senderPhone}
-              onChange={(e) => setConfig({ ...config, senderPhone: e.target.value })}
-              className="w-full px-4 py-2 border border-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-foreground mb-2">Webhook URL</label>
-            <input
-              type="text"
-              value={config.webhookUrl}
-              readOnly
-              className="w-full px-4 py-2 border border-border rounded-lg bg-muted text-muted-foreground cursor-not-allowed"
-            />
-          </div>
-        </div>
-
-        <div className="mt-6 flex items-center gap-3">
-          <div className="flex items-center gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600" />
-            <span className="text-sm text-green-700 font-medium">Connected</span>
-          </div>
-        </div>
-
-        <div className="mt-6 flex gap-3">
-          <button className="px-6 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition">
-            Save Configuration
-          </button>
-          <button className="px-6 py-2 border border-border text-foreground rounded-lg font-medium hover:bg-muted transition">
-            Test Connection
-          </button>
-        </div>
+      <div className="p-6 space-y-4">
+        <p className="text-sm text-foreground">
+          WhatsApp is sent by the API through Meta&apos;s Cloud API. The token, phone number ID, template name, and
+          webhook verify token are server environment variables. This page cannot read or change them.
+        </p>
+        <ul className="text-sm text-muted-foreground list-disc pl-5 space-y-1">
+          <li>WHATSAPP_TOKEN</li>
+          <li>WHATSAPP_PHONE_NUMBER_ID</li>
+          <li>WHATSAPP_TEMPLATE_NAME</li>
+          <li>WHATSAPP_VERIFY_TOKEN</li>
+        </ul>
+        <p className="text-sm text-muted-foreground">
+          Broadcasts on this page use the existing notification API. A green &quot;Connected&quot; state is not shown
+          here because this screen does not test Meta.
+        </p>
       </div>
     </div>
   )

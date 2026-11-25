@@ -179,14 +179,10 @@ export default function WhatsAppNotificationsPage() {
             <MessagePreview />
             <DeliveryLogs />
 
-            <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-end border-t border-border pt-6">
-              <button className="px-6 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition">
-                Save All Settings
-              </button>
-              <button className="px-6 py-2 border border-border text-foreground rounded-lg font-medium hover:bg-muted transition">
-                Reset to Defaults
-              </button>
-            </div>
+            <p className="border-t border-border pt-6 text-sm text-muted-foreground">
+              Broadcast uses the notification API. Provider credentials stay in the server environment. Notification
+              rules, if saved, stay in this browser until a settings endpoint exists.
+            </p>
           </div>
         </main>
       </div>

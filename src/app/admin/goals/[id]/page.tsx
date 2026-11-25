@@ -120,7 +120,7 @@ export default function GoalDetailsPage() {
                   </div>
                 </div>
                 <div>
-                  <AdminNotesSection />
+                  <AdminNotesSection goalId={id} />
                 </div>
               </>
             )}
